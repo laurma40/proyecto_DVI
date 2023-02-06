@@ -1,0 +1,20 @@
+h1 {
+  color: blue;
+}
+
+.clase {
+  color: red;
+}
+
+co {
+  color: purple;
+  font-family:'Courier New', Courier, monospace;
+  border: 2px solid black;
+  margin: 24px;
+}
+
+.coo {
+  background-color: black; 
+  color: palevioletred;
+  font-family:'Courier New', Courier, monospace;
+}

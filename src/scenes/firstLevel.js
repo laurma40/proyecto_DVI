@@ -1,7 +1,7 @@
 //import Knight from '../objetos/knight.js';
 //import Floor from '../objetos/floor.js';
 //import Box from '../objetos/box.js';
-//import CabezaPesanta from "../objects/cabezaPesanta";
+import CabezaPesanta from "../objects/cabezaPesanta";
 /**
  * Escena principal de juego.
  * @extends Phaser.Scene
@@ -14,7 +14,7 @@ export default class firstLevel extends Phaser.Scene {
 	
 	preload(){
 		this.load.image('stairs', 'assets/stairs.png');
-		//this.load.spritesheet('cabezaPesanta', 'assets/spritesheets_1row.png', {frameWidth: 504, frameHeight: 420})
+		this.load.spritesheet('cabezaPesanta', 'assets/spritesheets_1row.png', {frameWidth: 504, frameHeight: 420})
 		//this.load.spritesheet('box', 'assets/Box/box.png', {frameWidth: 64, frameHeight: 64})
 	}
 	
@@ -25,7 +25,7 @@ export default class firstLevel extends Phaser.Scene {
 		//Imagen de fondo
 		this.add.image(0, 0, 'stairs').setOrigin(0, 0);
 
-		//let pesanta = new CabezaPesanta(this,150,100);
+		let pesanta = new CabezaPesanta(this,150,100);
 
 		this.scene.launch('title');
 

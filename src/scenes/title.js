@@ -14,7 +14,7 @@ export default class Title extends Phaser.Scene {
 	preload(){
         
 		this.load.image('start', 'assets/start.png');
-        this.load.image('inicio', 'assets/inicio.jpeg');
+        this.load.image('inicio', 'assets/casaInicio_v2.jpeg');
 		/*this.load.spritesheet('knight', 'assets/Knight/knight.png', {frameWidth: 72, frameHeight: 86})
 		this.load.spritesheet('box', 'assets/Box/box.png', {frameWidth: 64, frameHeight: 64})*/
 
@@ -27,13 +27,14 @@ export default class Title extends Phaser.Scene {
 	*/
 	create() {
 		//Pintamos un fondo
-		var back = this.add.image(-1, -1, 'inicio').setOrigin(0, 0);
-        back.setScale(0.55);
+		var back = this.add.image(0, 0, 'inicio').setOrigin(0,0);
+        back.setScale(0.75);
         
 
 		//Pintamos un botón de Empezar
-		var sprite = this.add.image(this.sys.game.canvas.width/2, this.sys.game.canvas.height/2, 'start')
+		var sprite = this.add.image(this.sys.game.canvas.width/2-20, this.sys.game.canvas.height/2-20, 'start')
         sprite.setScale(0.5);
+
 		sprite.setInteractive(); // Hacemos el sprite interactivo para que lance eventos
 
 		// Escuchamos los eventos del ratón cuando interactual con nuestro sprite de "Start"

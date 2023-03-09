@@ -8,25 +8,50 @@ export default class CabezaPesanta extends Phaser.GameObjects.Sprite {
 		// Creamos las animaciones de cabeza de pesanta
 		this.scene.anims.create({
 			key: 'front',
-			frames: scene.anims.generateFrameNumbers('cabezaPesanta', {start:0, end:3}),
+			frames: scene.anims.generateFrameNumbers('cabezaPesanta', {start:1, end:4}),
 			frameRate: 5,
 			repeat: -1
 		});
 		this.scene.anims.create({
 			key: 'back',
-			frames: scene.anims.generateFrameNumbers('cabezaPesanta', {start:4, end:7}),
+			frames: scene.anims.generateFrameNumbers('cabezaPesanta', {start:6, end:9}),
 			frameRate: 5,
 			repeat: -1
 		});
 		this.scene.anims.create({
 			key: 'right',
-			frames: scene.anims.generateFrameNumbers('cabezaPesanta', {start:8, end:11}),
+			frames: scene.anims.generateFrameNumbers('cabezaPesanta', {start:11, end:14}),
 			frameRate: 5,
 			repeat: -1
 		});
 		this.scene.anims.create({
 			key: 'left',
-			frames: scene.anims.generateFrameNumbers('cabezaPesanta', {start:12, end:15}),
+			frames: scene.anims.generateFrameNumbers('cabezaPesanta', {start:16, end:19}),
+			frameRate: 5,
+			repeat: -1
+		});
+		///
+		this.scene.anims.create({
+			key: 'standFront',
+			frames: scene.anims.generateFrameNumbers('cabezaPesanta', {start:0, end:1}),
+			frameRate: 5,
+			repeat: -1
+		});
+		this.scene.anims.create({
+			key: 'standBack',
+			frames: scene.anims.generateFrameNumbers('cabezaPesanta', {start:5, end:6}),
+			frameRate: 5,
+			repeat: -1
+		});
+		this.scene.anims.create({
+			key: 'standRight',
+			frames: scene.anims.generateFrameNumbers('cabezaPesanta', {start:10, end:11}),
+			frameRate: 5,
+			repeat: -1
+		});
+		this.scene.anims.create({
+			key: 'standLeft',
+			frames: scene.anims.generateFrameNumbers('cabezaPesanta', {start:15, end:16}),
 			frameRate: 5,
 			repeat: -1
 		});
@@ -56,25 +81,41 @@ export default class CabezaPesanta extends Phaser.GameObjects.Sprite {
 			this.x -= 5*dt/60;
 		}
 
+		else if(this.aKey.isUp && this.anims.currentAnim.key === 'left') {
+			this.play('standLeft');
+		}
+
 		// Mientras pulsemos la tecla 'D' movemos el personaje en la X
-		if(this.dKey.isDown){
+		else if(this.dKey.isDown){
 			if(this.anims.currentAnim.key !== 'right')
 				this.play('right');
 			this.x += 5*dt/60;
 		}
+
+		else if(this.dKey.isUp && this.anims.currentAnim.key === 'right') {
+			this.play('standRight');
+		}
 		
 		// Mientras pulsemos la tecla 'W' movemos el personaje en la Y
-		if(this.wKey.isDown){
+		else if(this.wKey.isDown){
 			if(this.anims.currentAnim.key !== 'back')
 				this.play('back');
 			this.y -= 5*dt/60;
 		}
 
+		else if(this.wKey.isUp && this.anims.currentAnim.key === 'back') {
+			this.play('standBack');
+		}
+
 		// Mientras pulsemos la tecla 'S' movemos el personaje en la Y
-		if(this.sKey.isDown){
+		else if(this.sKey.isDown){
 			if(this.anims.currentAnim.key !== 'front')
 				this.play('front');
 			this.y += 5*dt/60;
+		}
+
+		else if(this.sKey.isUp && this.anims.currentAnim.key === 'front') {
+			this.play('standFront');
 		}
 	}
 }

@@ -1,7 +1,9 @@
 //import Knight from '../objetos/knight.js';
 //import Floor from '../objetos/floor.js';
 //import Box from '../objetos/box.js';
+import Batery from "../objects/batery";
 import CabezaPesanta from "../objects/cabezaPesanta";
+import Filemon from "../objects/filemon";
 /**
  * Escena principal de juego.
  * @extends Phaser.Scene
@@ -15,6 +17,9 @@ export default class firstLevel extends Phaser.Scene {
 	preload(){
 		this.load.image('stairs', 'assets/stairs.png');
 		this.load.spritesheet('cabezaPesanta', 'assets/spritesheets_1row.png', {frameWidth: 504, frameHeight: 420})
+		this.load.spritesheet('filemon', 'assets/filemon-520-450.png', {frameWidth: 520, frameHeight: 450})
+		this.load.spritesheet('batery', 'assets/SpriteSheet_Batery.png',{frameWidth: 280, frameHeight: 370})
+
 		//this.load.spritesheet('box', 'assets/Box/box.png', {frameWidth: 64, frameHeight: 64})
 	}
 	
@@ -25,7 +30,10 @@ export default class firstLevel extends Phaser.Scene {
 		//Imagen de fondo
 		this.add.image(0, 0, 'stairs').setOrigin(0, 0);
 
-		let pesanta = new CabezaPesanta(this,150,100);
+		//let pesanta = new CabezaPesanta(this,150,100);
+		let file = new Filemon(this,150,100);
+		let pila = new Batery(this,400,300);
+
 
 		this.scene.launch('title');
 

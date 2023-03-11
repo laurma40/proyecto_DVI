@@ -9,7 +9,7 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 
 	constructor(scene, x, y, colliderGroup) {
 		super(scene, x, y, 'filemon');
-		this.setScale(0.2);
+		this.setScale(0.1);
 		this.scene.add.existing(this); //Añadimos el caballero a la escena
 
 		// Creamos las animaciones de cabeza de pesanta

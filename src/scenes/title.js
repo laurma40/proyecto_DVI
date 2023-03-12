@@ -33,7 +33,7 @@ export default class Title extends Phaser.Scene {
 
 		//Pintamos un botón de Empezar
 		var sprite = this.add.image(this.sys.game.canvas.width/2, this.sys.game.canvas.height/2-20, 'start')
-        sprite.setScale(0.5);
+        sprite.setScale(0.125);
 
 		sprite.setInteractive(); // Hacemos el sprite interactivo para que lance eventos
 

@@ -1,27 +1,65 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<header>
-	<img src="assets/logo-studio.png" alt="Logo Empresa" style="display: inline-block; margin-right: 10px;">
-	<p id="eslogan">Mortadelo Studios: donde los sustos no son opcionales. Bohu!!!</p>
-	<button onclick="window.open('masinformacion.html', '_blank')">Más información</button>
-</header>
-
 <head>
 	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="viewport" content="width=device-width, initial-scale=2.0" />
 	<link rel="stylesheet" type="text/css" href="src/styles/estilos.css">
 	<script src="./lib/phaser.js"></script>
     <link rel="icon" type="image/x-icon" href="assets/logo-studio.png">	
 	<title>Que viene el COCO!</title>
 </head>
 
-<body>
+<body style="background: url('assets/fondopixel.jpeg')">
+	<!--
+	<header>
+		<img src="assets/logo-studio.png" alt="Logo Empresa" style="display: inline-block; margin-right: 10px;">
+		<p id="eslogan">Mortadelo Studios: donde los sustos no son opcionales. Bohu!!!</p>
+		<button onclick="window.open('masinformacion.html', '_blank')">Más información</button>
+	</header>
+	-->
+
+	<!-- La parte de menú -->
+	<span>
+		<section id="inicio" class="menu">
+			<div class = "contenido">
+				<header>
+					<div class="logo">
+						<img src="assets/logo-studio.png" alt="Logo Empresa" style="display: inline-block; width:90%; height:90%;">
+					</div>
+					<nav id="navegador">
+						<a href="#inicio">Inicio</a>
+						<a href="#juego">Jugar</a>
+						<a href="#controles">Controles<a>
+						<a href="#estudio">Equipo</a>
+						<a href="#github">GITHUB</a>
+					</nav>										
+				</header>
+
+				<div class="descripcion">
+					<h2><span>¡Que viene el COCO!</span></h2>
+					<p>El protagonista Filemón,un niño pequeño, que por no hacer caso a sus padres y no acostarse pronto, llama la atención de “El Coco”, un ser que devora a los niños que se quedan despiertos hasta muy tarde.</p>
+				</div>
+			</div>
+		</section>
+	</span> 
+
 	<script type = " text/javascript">
-		document.body.style.backgroundColor='black'; 
+		document.body.style.background=""; 
+		background: url(img_flwr.gif) right bottom no-repeat
 	</script>
-	<div id="juego"></div>
-	<script type="module" src="./src/game.js"></script>
+	
+	<div id="juego">
+		<script type="module" src="./src/game.js"></script>
+	</div>
+
+	<div id ="estudio">
+		<h2><span>Mortadelo Studios: donde los sustos no son opcionales. Bohu!!!</span></h2>
+		<button onclick="window.open('masinformacion.html', '_blank')" >Más información</button>
+	</div>
+
+
+
 </body>
 
 </html>

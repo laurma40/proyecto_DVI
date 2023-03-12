@@ -1,18 +1,116 @@
+@font-face {
+    font-family: 'silkscreenbold';
+    src: url('./fonts/silkscreen-bold-webfont.woff2') format('woff2'),
+         url('./fonts/silkscreen-bold-webfont.woff') format('woff');
+    font-weight: bold;
+    font-style: bolder;
+
+}
+
+@font-face {
+    font-family: 'silkscreenregular';
+    src: url('./fonts/silkscreen-regular-webfont.woff2') format('woff2'),
+         url('./fonts/silkscreen-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+/* NO SÉ
+@font-face {
+    font-family: 'pressstart2pregular';
+    src: url('./fonts/pressstart2p-regular-webfont.woff2') format('woff2'),
+         url('./fonts/pressstart2p-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}*/
+
+/*Parte del menú*/
+.menu .contenido{
+    max-width: 1100px;
+    margin: auto;
+    color: #fff;
+}
+
+.menu header{
+    display: flex;
+    align-items: center;
+}
+
+.menu header nav{  
+    justify-content: space-between;
+    display: flex;
+    
+    border: dashed #000000 5px;  
+    width: 850px;
+    height: 20px;
+    padding: 10px 20px;
+    background-color: #be1c5a;
+    font-family: 'silkscreenbold';
+}
+
+.menu header nav a{
+    color: #fff;
+    text-decoration: none;
+}
+
+.menu header nav a:hover{
+    border-bottom: 5px dashed #000;
+}
+
+.menu .descripcion h2 {
+	color: black;
+	text-align: center;
+    font-family: 'silkscreenbold';
+}
+
+.menu .descripcion h2 span{
+    background-color: rgba(255, 255, 255, 0.24);
+}
+
+.menu .descripcion p {
+    margin-left: auto;
+    margin-right: auto;
+    color: black;
+	text-align: center;
+    font-family: 'silkscreenregular';
+    box-sizing: border-box;
+    border: dashed #000000 7.5px;  
+    width: 600px;
+    padding: 20px;
+    background-color: #be1c5a;
+}
+
+/*Parte del estudio*/
+#estudio h2 {
+    color: black;
+	text-align: center;
+    font-family: 'silkscreenbold';
+}
+
+#estudio h2 span{
+    background-color: rgba(255, 255, 255, 0.274);
+}
+
 #eslogan {
     color: white;
     display: inline-block;
+    font-family: 'silkscreenregular';
 }
+
 table {
     border-collapse: collapse;
     width: 100%;
-    color: orange;
+    color: #be1c5a;
     font-size: 1.2em;
+    font-family: 'silkscreenregular';
 }
 td, th {
-    border: 2px solid orange;
+    border: 2px solid #be1c5a;
     padding: 10px;
     text-align: left;
 }
 th {
-    background-color: orange;
+    background-color: #be1c5a;
 }

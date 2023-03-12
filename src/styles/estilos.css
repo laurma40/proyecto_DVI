@@ -82,15 +82,47 @@
     background-color: #be1c5a;
 }
 
+/*Parte del juego*/
+#juego {
+    margin-top: 150px;
+}
+
+/*Parte de controles*/
+#controles h2 {
+    color: black;
+	text-align: center;
+    font-family: 'silkscreenbold';
+}
+
+#controles h2 span{
+    background-color: #ffffff46;
+}
+
+#controles p {
+    margin-left: auto;
+    margin-right: auto;
+    color: black;
+	text-align: center;
+    font-family: 'silkscreenregular';
+    box-sizing: border-box;
+    border: dashed #000000 7.5px;  
+    width: 600px;
+    padding: 20px;
+    background-color: #be1c5a;
+}
+
+
+
 /*Parte del estudio*/
 #estudio h2 {
+    margin-top: 100PX;
     color: black;
 	text-align: center;
     font-family: 'silkscreenbold';
 }
 
 #estudio h2 span{
-    background-color: rgba(255, 255, 255, 0.274);
+    background-color: #ffffff46;
 }
 
 #eslogan {
@@ -113,4 +145,22 @@ td, th {
 }
 th {
     background-color: #be1c5a;
+}
+
+/*Parte de github*/
+#github h2 {
+    margin-top: 100PX;
+    color: black;
+	text-align: center;
+    font-family: 'silkscreenbold';
+}
+
+#github h2 span{
+    background-color: #ffffff46;
+}
+
+#github a{
+    margin: auto;
+    display: flex;
+    padding-bottom: 10px;
 }

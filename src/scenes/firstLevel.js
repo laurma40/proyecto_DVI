@@ -3,7 +3,7 @@
 //import Box from '../objetos/box.js';
 import Batery from "../objects/batery";
 import CabezaPesanta from "../objects/cabezaPesanta";
-import Filemon from "../objects/filemon";
+import Filemon from "../objects/filemon.js";
 /**
  * Escena principal de juego.
  * @extends Phaser.Scene
@@ -15,11 +15,16 @@ export default class firstLevel extends Phaser.Scene {
 	}
 	
 	preload(){
-		this.load.image('stairs', 'assets/stairs.png');
+		//this.load.image('stairs', 'assets/stairs.png');
 		this.load.spritesheet('cabezaPesanta', 'assets/spritesheets_1row.png', {frameWidth: 504, frameHeight: 420})
 		this.load.spritesheet('filemon', 'assets/filemon-520-450.png', {frameWidth: 520, frameHeight: 450})
 		this.load.spritesheet('batery', 'assets/SpriteSheet_Batery.png',{frameWidth: 280, frameHeight: 370})
-
+		//Cargamos el archivo JSON necesario para importar el Tilemap
+		this.load.tilemapTiledJSON('tilemap','../../assets/Tilemap/MapaPrueba.json');
+		//Cargamos los tilesets necesarios para poder crear el mapa
+		this.load.image('Inside_A4','../../assets/Tilemap/Inside_A4.png');
+		this.load.image('Outside_A1','../../assets/Tilemap/Outside_A1.png');
+		this.load.image('Outside_A5','../../assets/Tilemap/Outside_A5.png');
 		//this.load.spritesheet('box', 'assets/Box/box.png', {frameWidth: 64, frameHeight: 64})
 	}
 	
@@ -28,14 +33,41 @@ export default class firstLevel extends Phaser.Scene {
 	*/
 	create() {
 		//Imagen de fondo
-		this.add.image(0, 0, 'stairs').setOrigin(0, 0);
+		//this.add.image(0, 0, 'stairs').setOrigin(0, 0);
 
 		//let pesanta = new CabezaPesanta(this,150,100);
 		let file = new Filemon(this,150,100);
 		let pila = new Batery(this,400,300);
 
+		//this.scene.launch('title');
+		//crear tilemap
+		this.map = this.make.tilemap({
+			key: 'tilemap',
+			tileWidth: 24,
+			tileHeight: 24,
+			width:50,
+			height:50
+		});
+	
+		const tileset1 = this.map.addTilesetImage('Inside_A4');
+		const tileset2 = this.map.addTilesetImage('Outside_A1');
+		const tileset3 = this.map.addTilesetImage('Outside_A5');
 
-		this.scene.launch('title');
+		this.groundLayer = this.map.createLayer('Suelo',[tileset1,tileset2,tileset3]);
+
+		// Obtener los polígonos y el objeto cuadrado de la capa de objetos
+
+		/*let muros = this.map.createFromObjects('Muros',{name: '',key: ''});
+		let murosGroup = this.add.group();
+		murosGroup.addMultiple(muros);
+		muros.forEach(obj => {
+			this.physics.add.existing(obj);
+		});*/
+		this.mov = this.map.createFromObjects('Player',{name: 'player',classType: Filemon, key:'player'});
+		let player = this.mov[0];
+		this.cameras.main.startFollow(player);
+
+		//this.physics.add.collider(player,murosGroup);
 
 		/*
 		let boxes = this.physics.add.group();

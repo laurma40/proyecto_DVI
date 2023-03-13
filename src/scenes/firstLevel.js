@@ -37,7 +37,7 @@ export default class firstLevel extends Phaser.Scene {
 
 		//let pesanta = new CabezaPesanta(this,150,100);
 		let file = new Filemon(this,150,100);
-		let pila = new Batery(this,400,300);
+		
 
 		//this.scene.launch('title');
 		//crear tilemap
@@ -66,6 +66,10 @@ export default class firstLevel extends Phaser.Scene {
 		this.mov = this.map.createFromObjects('Player',{name: 'player',classType: Filemon, key:'player'});
 		let player = this.mov[0];
 		this.cameras.main.startFollow(player);
+
+
+
+		let pila = new Batery(this,600,1120);
 
 		//this.physics.add.collider(player,murosGroup);
 

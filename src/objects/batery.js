@@ -4,12 +4,19 @@ export default class Batery extends Phaser.GameObjects.Sprite {
 	 * Constructor de Box, nuestras cajas destructibles
 	 * @param {number} x - coordenada x
 	 * @param {number} y - coordenada y
-	 */
-	constructor(scene, x, y, colliderGroup) {
+	*/
+
+	constructor(scene, x, y, colliderGroup) { 
 		super(scene, x, y, 'batery'); // todo menos la escena son opcionales
-		this.setScale(0.07,0.07);
+		this.setScale(0.04,0.04);
 		this.scene.add.existing(this); //Añadimos la caja a la escena
 		
+
+		//se podria pasar en el constructor por si se quiere cambiar dependiendo del nivel (guardo la carga total por si se quiere haer una varra o algo)
+		var cargaTotl = 200;
+		this.carga = cargaTotl;
+
+
 		// Creamos las animaciones de nuestra caja
 		this.scene.anims.create({
 			key: 'on',
@@ -62,9 +69,21 @@ export default class Batery extends Phaser.GameObjects.Sprite {
 		if(this.body.velocity.x <= 5 && this.body.velocity.x > 0 || this.body.velocity.x >= -5 && this.body.velocity.x < 0){
 			 this.body.velocity.x = 0;
 		}*/
-
-
+		
 
 	}
+
+
+	descarga(){
+		
+		this.carga--;
+		
+		if(this.carga >= 0){ //si la carga baja de 0 se gasta
+			this.play('off');
+		}
+		
+		console.log(this.carga);
+	}
+
 
 }

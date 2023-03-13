@@ -6,14 +6,14 @@ export default class Batery extends Phaser.GameObjects.Sprite {
 	 * @param {number} y - coordenada y
 	*/
 
-	constructor(scene, x, y, colliderGroup) { 
+	constructor(scene, x, y, cargaInicial) { //paso la carga por el constructor para poder cambiarla depende del nivel
 		super(scene, x, y, 'batery'); // todo menos la escena son opcionales
 		this.setScale(0.04,0.04);
-		this.scene.add.existing(this); //Añadimos la caja a la escena
+		this.scene.add.existing(this); //Añadimos la pila a la escena
 		
 
-		//se podria pasar en el constructor por si se quiere cambiar dependiendo del nivel (guardo la carga total por si se quiere haer una varra o algo)
-		var cargaTotl = 200;
+		//(guardo la carga total por si se quiere haer una varra o algo)
+		var cargaTotl = cargaInicial;
 		this.carga = cargaTotl;
 
 
@@ -31,14 +31,6 @@ export default class Batery extends Phaser.GameObjects.Sprite {
 			repeat: 0
 		});
 
-		// Si la animación de ataque se completa pasamos a ejecutar la animación 'idle'
-		/*this.on('animationcomplete', end => {
-			if (this.anims.currentAnim.key === 'hit'){
-				new Box(scene, Phaser.Math.Between(50, scene.sys.game.canvas.width-100),20, colliderGroup);
-				this.setActive(false).setVisible(false);
-				this.toDestroy = true;
-			}
-		})*/
 
 		this.play('on');
 
@@ -46,7 +38,7 @@ export default class Batery extends Phaser.GameObjects.Sprite {
 		//scene.physics.add.existing(this);
 
 		// Decimos que la caja colisiona con los límites del mundo
-	//this.body.setCollideWorldBounds();
+		//this.body.setCollideWorldBounds();
 
 		//colliderGroup.add(this);
 	}
@@ -58,25 +50,14 @@ export default class Batery extends Phaser.GameObjects.Sprite {
 	 * @param {number} dt - Tiempo entre frames
 	 */
 	preUpdate(t, dt) {
-		/*
-		super.preUpdate(t, dt);
-		if(this.body.velocity.x > 5){
-			this.body.velocity.x -= 5;
-		} else if(this.body.velocity.x < -5){
-			this.body.velocity.x += 5;
-		}
-
-		if(this.body.velocity.x <= 5 && this.body.velocity.x > 0 || this.body.velocity.x >= -5 && this.body.velocity.x < 0){
-			 this.body.velocity.x = 0;
-		}*/
-		
+	
 
 	}
 
 
 	descarga(){
 		
-		this.carga--;
+		this.carga--; 
 		
 		if(this.carga >= 0){ //si la carga baja de 0 se gasta
 			this.play('off');

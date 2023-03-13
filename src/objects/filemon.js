@@ -85,13 +85,13 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		this.play('front');
 
 		// Seteamos las teclas para mover al personaje
-		this.wKey = this.scene.input.keyboard.addKey('W'); //saltar
+		this.wKey = this.scene.input.keyboard.addKey('W'); //arriba
 		this.aKey = this.scene.input.keyboard.addKey('A'); //izquierda
-		this.sKey = this.scene.input.keyboard.addKey('S'); //parar animación
+		this.sKey = this.scene.input.keyboard.addKey('S'); //abajo
 		this.dKey = this.scene.input.keyboard.addKey('D'); //derecha
 
-		this.eKey = this.scene.input.keyboard.addKey('E'); 
-		this.fKey = this.scene.input.keyboard.addKey('F'); 
+		this.eKey = this.scene.input.keyboard.addKey('E'); //encender / apagar
+		this.fKey = this.scene.input.keyboard.addKey('F'); //coger / interactuar
 		
 		
 	}
@@ -151,80 +151,66 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		}
 
 		
-		////////////
-		///PILAS
+		///////////////////////////////////////////////////////////////////////////////////
+
+		///LINTERNA encender y apagar
 		
 		//Encender y apagar linterna -> se pulsa el boton de encender y tenemos pilas
 		if(this.eKey.isDown && this.pilas.length != 0){ 
 			this.linterna = !this.linterna;
 			console.log("linterna " + this.linterna);
+
 			//HACER LA MASCARA; SE ACTIVA Y DESACTIVA AQUI
 		}
 		
 		//Descargamos pila 
 		if(this.linterna){//si esta encendida la linterna, para que se haya encendido tiene q tener pilas se chequea antes
-			this.pilas[0].descarga();
+			
+			this.pilas[0].descarga(); //pasar dt¿?
+
 			if(this.pilas[0].carga == 0){
-				this.pilas[0].x = this.x + 2;
-				this.pilas[0].y = this.y + 2;
-				this.pilas.pop();//suelto la pila
+				this.pilas[0].x = this.x + 5;
+				this.pilas[0].y = this.y + 10;
+				this.pilas.shift();//suelto la pila en primera posición
 			}
 			if(this.pilas.length == 0){this.linterna = false;} 
 		}
 
 
-		//COGER OBJETOS - en proceso
-
-		/*
-		if(this.fKey.isDown){ 
-			for (let i = 0; i < this.sce.list.length; i++) {
-				const child = this.sce.list[i];
-				// Hacer algo con cada objeto
-				console.log(child.name);
-
-				//el objeto esta en un radio de 10 de filemon
-				if((child.y >= this.y + 10 || child.y < this.y + 10) && (child.x >= this.x + 10 || child.x < this.x + 10) ){
-					if(child.name == "batery"){
-						this.cojePila(child);
-
-						return false; //para el bucle 
-					}
-					
-				}
-			}
-		}*/
-
-
-		/* 
-		if(this.fKey.isDown){ 
-			this.sce.list.forEach(child => { //recorro los objetos de la escena 
-				// Hacer algo con cada objeto
-				console.log(child.name);
-	
-				//el objeto esta en un radio de 10 de filemon
-				if((child.y >= this.y + 10 || child.y < this.y + 10) && (child.x >= this.x + 10 || child.x < this.x + 10) ){
-					if(child.name == "batery"){
-						this.cojePila(child);
-
-						return false; //para el bucle 
-					}
-					
-				}
-	
-			});
-	
-		}*/
-
+		//COGER / INTERACTUAR CON  OBJETOS (de momento pilas)
 		
+		if(this.fKey.isDown){ 
+			
+			const objetosEscena = this.sce.children.getChildren(); 
+			let ditancia = 10;
+
+			objetosEscena.forEach(objeto => { //recorro los objetos en la escena
+				
+				//console.log(objeto);
+				//console.log(this.pilas.length);
+
+				if( Math.abs(objeto.y - this.y) <= ditancia && Math.abs(objeto.x - this.x) >= ditancia){
+					if(objeto.name == "batery"){ 
+						this.cojePila(objeto);
+					}	
+
+					return false; //para el bucle para coger de uno en uno 
+				}		
+
+			});
+		}
 		
 	}
 
 
 	cojePila(batery){
 
-		if(this.pilas.length < 3){ //Solo puede llevar tres pilas 
+		if( batery.carga > 0 && this.pilas.length < 3){ //Solo puede llevar tres pilas y solo la cojo si tiene carga
 			this.pilas.push(batery);
-			//AQUI SE METERIAN EN ALGUN ESPECIO DE INVENTARIO
+			//AQUI SE METERIAN EN ALGUN ESPECIO DE INVENTARIO (la mando lejos para ver q se coge)
+			batery.x = 100000;
+			batery.y= 100000;
+
 			//Y PONER SONIDO
 		}
 	}

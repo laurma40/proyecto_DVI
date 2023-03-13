@@ -36,7 +36,7 @@ export default class firstLevel extends Phaser.Scene {
 		//this.add.image(0, 0, 'stairs').setOrigin(0, 0);
 
 		//let pesanta = new CabezaPesanta(this,150,100);
-		let file = new Filemon(this,150,100);
+		//let file = new Filemon(this,150,100);
 		
 
 		//this.scene.launch('title');
@@ -63,13 +63,21 @@ export default class firstLevel extends Phaser.Scene {
 		muros.forEach(obj => {
 			this.physics.add.existing(obj);
 		});*/
+
+		let pila1 = new Batery(this,600,1110, 200).setName("batery");
+		let pila2 = new Batery(this,600,1120, 200).setName("batery");
+		let pila3 = new Batery(this,600,1050, 400).setName("batery");
+		let pila4 = new Batery(this,600,1020, 800).setName("batery");
+
+
+
 		this.mov = this.map.createFromObjects('Player',{name: 'player',classType: Filemon, key:'player'});
 		let player = this.mov[0];
 		this.cameras.main.startFollow(player);
 
 
 
-		let pila = new Batery(this,600,1120);
+		
 
 		//this.physics.add.collider(player,murosGroup);
 

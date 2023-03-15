@@ -6,7 +6,6 @@ capacidad bolsillos {total, actual} --> cojer cosas F
 */
 
 
-import Battery from "./battery";
 import LifeBar from "./lifeBar";
 import Luz from "./luz";
 
@@ -95,10 +94,9 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		this.sKey = this.scene.input.keyboard.addKey('S'); //abajo
 		this.dKey = this.scene.input.keyboard.addKey('D'); //derecha
 
-		this.eKey = this.scene.input.keyboard.addKey('E'); //encender / apagar
-		this.canPressE = true;
-
-		this.fKey = this.scene.input.keyboard.addKey('F'); //coger / interactuarzz
+		this.eKey = this.scene.input.keyboard.addKey('E'); //coger / interactuarzz/
+		this.fKey = this.scene.input.keyboard.addKey('F'); //encender / apagar
+		this.canPressF = true;
 		
 		this.luz = new Luz(this.scene, this.x, this.y);
 		this.progressBar = new LifeBar(this.scene, this.x + 170, this.y - 180, this.corduraMax );
@@ -166,7 +164,7 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		this.luz.setPosition(this.x, this.y);
 		
 		//Encender y apagar linterna -> se pulsa el boton de encender y tenemos pilas
-		if(this.eKey.isDown && this.pilas.length != 0 && this.canPressE){ 
+		if(this.fKey.isDown && this.pilas.length != 0 && this.canPressF){ 
 			this.linterna = !this.linterna;
 			console.log("linterna " + this.linterna);
 
@@ -175,9 +173,9 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 			} 
 			else{this.luz.play('offLuz');}
 
-			this.canPressE = false;
+			this.canPressF = false;
 			// Esperar un segundo antes de volver a escuchar la tecla E porque si no no se pulsa bien
-			setTimeout(() => { this.canPressE = true; }, 100); //esto lo mejora pero no lo arregla del todo
+			setTimeout(() => { this.canPressF = true; }, 100); //esto lo mejora pero no lo arregla del todo
 		}
 		
 		//Descargamos pila 
@@ -199,7 +197,7 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 
 		////COGER / INTERACTUAR CON  OBJETOS (de momento pilas)
 		
-		if(this.fKey.isDown){ 
+		if(this.eKey.isDown){ 
 			
 			const objetosEscena = this.scene.children.getChildren(); 
 			let ditancia = 10;
@@ -211,15 +209,20 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 				if( Math.abs(objeto.y - this.y) <= ditancia && Math.abs(objeto.x - this.x) >= ditancia){
 					if(objeto.name == "battery"){ 
 						this.cojePila(objeto);
+
+						console.log("hola");
+						//this.objetoAux = objeto;
 					}	
 
 					//AÑADIR AQUI EL RESTO DE OBJETOS CON LOS QUE PUEDE INTERACTUAR
 					//Armario, puerta, cama(meta), llave
 
 					return false; //para el bucle para coger de uno en uno (no va bn :( ) 
+
 				}		
 
 			});
+
 		}
 
 
@@ -243,11 +246,19 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 
 	cojePila(battery){
 
+
+		console.log(this.pilas.length);
+
 		if( battery.carga > 0 && this.pilas.length < 3){ //Solo puede llevar tres pilas y solo la cojo si tiene carga
 			this.pilas.push(battery);
-			//AQUI SE METERIAN EN ALGUN ESPECIO DE INVENTARIO (la hago invisible de momento)
+			
+			//AQUI SE METERIAN EN ALGUN ESPECIO DE INVENTARIO (la hago invisible de momento y la mando lejos)
 
 			battery.visible = false;
+			battery.x = 100000;
+			battery.y = 100000;
+
+
 
 			//Y PONER SONIDO
 		}

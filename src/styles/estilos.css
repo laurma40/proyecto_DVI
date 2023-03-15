@@ -15,7 +15,6 @@
     font-style: normal;
 
 }
-
 /* NO SÉ
 @font-face {
     font-family: 'pressstart2pregular';
@@ -89,7 +88,6 @@
 
 /*Parte de controles*/
 #controles h2 {
-    margin-top: 150PX;
     color: black;
 	text-align: center;
     font-family: 'silkscreenbold';
@@ -112,11 +110,26 @@
     background-color: #be1c5a;
 }
 
+/*Parte de github*/
+#github h2 {
+    margin-top: 100PX;
+    color: black;
+	text-align: center;
+    font-family: 'silkscreenbold';
+}
 
+#github h2 span{
+    background-color: #ffffff46;
+}
+
+#github a{
+    margin: auto;
+    display: flex;
+    padding-bottom: 10px;
+}
 
 /*Parte del estudio*/
 #estudio h2 {
-    margin-top: 100PX;
     color: black;
 	text-align: center;
     font-family: 'silkscreenbold';
@@ -146,24 +159,6 @@ td, th {
 }
 th {
     background-color: #be1c5a;
-}
-
-/*Parte de github*/
-#github h2 {
-    margin-top: 100PX;
-    color: black;
-	text-align: center;
-    font-family: 'silkscreenbold';
-}
-
-#github h2 span{
-    background-color: #ffffff46;
-}
-
-#github a{
-    margin: auto;
-    display: flex;
-    padding-bottom: 10px;
 }
 
 /*botón para mover hacia arriba la página*/

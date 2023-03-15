@@ -7,7 +7,17 @@
 	<link rel="stylesheet" type="text/css" href="src/styles/estilos.css">
 	<script src="./lib/phaser.js"></script>
     <link rel="icon" type="image/x-icon" href="assets/logo-studio.png">	
-	<title>Que viene el COCO!</title>
+	<title>Que viene el COCO!</title>	
+
+	<style>
+		html, body, div{
+			cursor:url('../assets/cursorCustom.cur'), auto;
+		}
+		a:hover, button:hover {
+			cursor:url('../assets/cursorHover.cur'), auto;
+		}
+	</style>
+
 </head>
 
 <body style="background: url('assets/fondopixel2.jpeg')">
@@ -62,18 +72,18 @@
 		</p>
 	</div>
 
-	<!-- La parte de estudio -->
-	<div id ="estudio">
-		<h2><span>Mortadelo Studios: donde los sustos no son opcionales. Bohu!!!</span></h2>
-		<button onclick="window.open('masinformacion.html', '_blank')" style="display: block; justify-content: center; margin: auto; font-family: 'silkscreenregular'; border: 2px solid black; background-color: #ffffff46;">Más información</button>
-	</div>
-
 	<!-- La parte de GITHUB -->
 	<div id="github">
 		<h2><span>GITHUB</span></h2>
-		<a href="https://github.com/laurma40/proyecto_DVI.git">
-			<img src="./assets/githubicon.png" alt="Link a github" style="display: block; justify-content: center; margin: auto;width: 5%; height: 5%;"> 
+		<a href="https://github.com/laurma40/proyecto_DVI.git" >
+			<img src="./assets/githubicon.png" alt="Link a github" style="display: block; justify-content: center; margin: auto; width: 5%; height: 5%;">
 		</a>
+	</div>
+
+	<!-- La parte de estudio -->
+	<div id ="estudio">
+		<h2><span>Mortadelo Studios: donde los sustos no son opcionales. Bohu!!!</span></h2>
+		<button onclick="window.open('masinformacion.html', '_blank')" style="display: block; justify-content: center; margin: auto; font-family: 'silkscreenregular'; border: 2px solid black; background-color: #ffffff46;;">Más información</button>
 	</div>
 
 </body>
@@ -102,5 +112,4 @@
 		}
 	</script>
 </body>
-
 </html>

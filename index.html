@@ -11,14 +11,6 @@
 </head>
 
 <body style="background: url('assets/fondopixel2.jpeg')">
-	<!--
-	<header>
-		<img src="assets/logo-studio.png" alt="Logo Empresa" style="display: inline-block; margin-right: 10px;">
-		<p id="eslogan">Mortadelo Studios: donde los sustos no son opcionales. Bohu!!!</p>
-		<button onclick="window.open('masinformacion.html', '_blank')">Más información</button>
-	</header>
-	-->
-
 	<!-- La parte de menú -->
 	<span>
 		<section id="inicio" class="menu">
@@ -57,7 +49,17 @@
 	<!-- La parte de controles -->
 	<div id ="controles">
 		<h2><span>Controles</span></h2>
-		<p>Por rellenar...</p>
+		<p>
+			<br>
+			<img src="assets/controlesWASD.png" alt="Controles movimiento" style="width: 40%; height: 40%;vertical-align:middle;"> Para mover al personaje
+			</br>
+			<br>
+			<img src="assets/controlE.png" alt="Controles interaccion" style="width: 15%; height: 15%;vertical-align:middle; margin-right: 50px;"> Para interactuar con el entorno
+			</br>
+			<br>
+			<img src="assets/controlF.png" alt="Controles linterna" style="width: 15%; height: 15%;vertical-align:middle; margin-right: 40px;"> Para encender/apagar la linterna
+			</br>
+		</p>
 	</div>
 
 	<!-- La parte de estudio -->
@@ -74,6 +76,31 @@
 		</a>
 	</div>
 
+</body>
+
+<body>
+	<button onclick="topFunction()" id="topBtn" title="Go to top"><br>^</br>Top</button>
+	<script>
+		// Get the button:
+		let mybutton = document.getElementById("topBtn");
+
+		// When the user scrolls down 20px from the top of the document, show the button
+		window.onscroll = function() {scrollFunction()};
+
+		function scrollFunction() {
+		if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+			mybutton.style.display = "block";
+		} else {
+			mybutton.style.display = "none";
+		}
+		}
+
+		// When the user clicks on the button, scroll to the top of the document
+		function topFunction() {
+		document.body.scrollTop = 0; // For Safari
+		document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+		}
+	</script>
 </body>
 
 </html>

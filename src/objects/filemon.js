@@ -6,7 +6,9 @@ capacidad bolsillos {total, actual} --> cojer cosas F
 */
 
 
-import Batery from "./batery";
+import Batery from "./battery";
+import LifeBar from "./lifeBar";
+import Luz from "./luz";
 
 export default class Filemon extends Phaser.GameObjects.Sprite {
 
@@ -25,9 +27,12 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		//variables globales (creo q si se declaran arriba con el @ se hacen globales también)
 		this.linterna = false;
 		this.pilas = [];
-		//this.pilas.push(new Batery(scene,400,300));
+		//this.pilas.push(new Battery(scene,400,300));
 
-		this.sce = scene;
+		this.corduraMax = 5000; //esto se pasaría por el constructor para que dependa del nivel
+		this.cordura = this.corduraMax;
+
+		this.scene = scene;
 		
 	
 
@@ -91,9 +96,12 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		this.dKey = this.scene.input.keyboard.addKey('D'); //derecha
 
 		this.eKey = this.scene.input.keyboard.addKey('E'); //encender / apagar
-		this.fKey = this.scene.input.keyboard.addKey('F'); //coger / interactuar
+		this.canPressE = true;
+
+		this.fKey = this.scene.input.keyboard.addKey('F'); //coger / interactuarzz
 		
-		
+		this.luz = new Luz(this.scene, this.x, this.y);
+		this.progressBar = new LifeBar(this.scene, this.x + 170, this.y - 180, this.corduraMax );
 	}
 	/**
 	 * Bucle principal del personaje, actualizamos su posición y ejecutamos acciones según el Input
@@ -153,63 +161,95 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		
 		///////////////////////////////////////////////////////////////////////////////////
 
-		///LINTERNA encender y apagar
+		////LINTERNA encender y apagar
+		
+		this.luz.setPosition(this.x, this.y);
 		
 		//Encender y apagar linterna -> se pulsa el boton de encender y tenemos pilas
-		if(this.eKey.isDown && this.pilas.length != 0){ 
+		if(this.eKey.isDown && this.pilas.length != 0 && this.canPressE){ 
 			this.linterna = !this.linterna;
 			console.log("linterna " + this.linterna);
 
-			//HACER LA MASCARA; SE ACTIVA Y DESACTIVA AQUI
+			if(this.linterna){
+				this.luz.play('onLuz');
+			} 
+			else{this.luz.play('offLuz');}
+
+			this.canPressE = false;
+			// Esperar un segundo antes de volver a escuchar la tecla E porque si no no se pulsa bien
+			setTimeout(() => { this.canPressE = true; }, 100); //esto lo mejora pero no lo arregla del todo
 		}
 		
 		//Descargamos pila 
 		if(this.linterna){//si esta encendida la linterna, para que se haya encendido tiene q tener pilas se chequea antes
 			
-			this.pilas[0].descarga(); //pasar dt¿?
+			this.pilas[0].descarga(); //USAR DT¿?
 
-			if(this.pilas[0].carga == 0){
+			if(this.pilas[0].carga <= 0){
 				this.pilas[0].x = this.x + 5;
 				this.pilas[0].y = this.y + 10;
+				this.pilas[0].visible = true;
 				this.pilas.shift();//suelto la pila en primera posición
 			}
-			if(this.pilas.length == 0){this.linterna = false;} 
+			if(this.pilas.length == 0){
+				this.linterna = false;
+				this.luz.play('offLuz')
+			} 
 		}
 
-
-		//COGER / INTERACTUAR CON  OBJETOS (de momento pilas)
+		////COGER / INTERACTUAR CON  OBJETOS (de momento pilas)
 		
 		if(this.fKey.isDown){ 
 			
-			const objetosEscena = this.sce.children.getChildren(); 
+			const objetosEscena = this.scene.children.getChildren(); 
 			let ditancia = 10;
 
 			objetosEscena.forEach(objeto => { //recorro los objetos en la escena
 				
 				//console.log(objeto);
-				//console.log(this.pilas.length);
 
 				if( Math.abs(objeto.y - this.y) <= ditancia && Math.abs(objeto.x - this.x) >= ditancia){
-					if(objeto.name == "batery"){ 
+					if(objeto.name == "battery"){ 
 						this.cojePila(objeto);
 					}	
 
-					return false; //para el bucle para coger de uno en uno 
+					//AÑADIR AQUI EL RESTO DE OBJETOS CON LOS QUE PUEDE INTERACTUAR
+					//Armario, puerta, cama(meta), llave
+
+					return false; //para el bucle para coger de uno en uno (no va bn :( ) 
 				}		
 
 			});
 		}
+
+
+		////CORDURA
+
+		if(this.linterna){
+			if(this.cordura < this.corduraMax) this.cordura++; //HACERLO CON
+		}
+		else{
+			if(this.cordura > 0) this.cordura--; //USAR DT¿?
+			else{
+				//LLAMAR A SCENE GAME OVER 
+				this.scene.scene.start('gameOver'); //Cambiamos a la escena de juego
+			}
+
+		}
+		this.progressBar.updateBar(this.cordura, this.x + 168, this.y - 178);
 		
 	}
 
 
-	cojePila(batery){
+	cojePila(battery){
 
-		if( batery.carga > 0 && this.pilas.length < 3){ //Solo puede llevar tres pilas y solo la cojo si tiene carga
-			this.pilas.push(batery);
+		if( battery.carga > 0 && this.pilas.length < 3){ //Solo puede llevar tres pilas y solo la cojo si tiene carga
+			this.pilas.push(battery);
 			//AQUI SE METERIAN EN ALGUN ESPECIO DE INVENTARIO (la mando lejos para ver q se coge)
-			batery.x = 100000;
-			batery.y= 100000;
+
+			battery.visible = false;
+			//battery.x = 100000;
+			//battery.y= 100000;
 
 			//Y PONER SONIDO
 		}

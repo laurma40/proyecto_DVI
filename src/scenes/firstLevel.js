@@ -1,7 +1,7 @@
 //import Knight from '../objetos/knight.js';
 //import Floor from '../objetos/floor.js';
 //import Box from '../objetos/box.js';
-import Batery from "../objects/batery";
+import Batery from "../objects/battery";
 import CabezaPesanta from "../objects/cabezaPesanta";
 import Filemon from "../objects/filemon.js";
 /**
@@ -18,14 +18,15 @@ export default class firstLevel extends Phaser.Scene {
 		//this.load.image('stairs', 'assets/stairs.png');
 		this.load.spritesheet('cabezaPesanta', 'assets/spritesheets_1row.png', {frameWidth: 504, frameHeight: 420})
 		this.load.spritesheet('filemon', 'assets/filemon-520-450.png', {frameWidth: 520, frameHeight: 450})
-		this.load.spritesheet('batery', 'assets/SpriteSheet_Batery.png',{frameWidth: 280, frameHeight: 370})
+		this.load.spritesheet('battery', 'assets/SpriteSheet_Batery.png',{frameWidth: 280, frameHeight: 370})
+		this.load.spritesheet('luz', 'assets/luz.png',{frameWidth: 100, frameHeight: 100})
 		//Cargamos el archivo JSON necesario para importar el Tilemap
 		this.load.tilemapTiledJSON('tilemap','../../assets/Tilemap/MapaPrueba.json');
 		//Cargamos los tilesets necesarios para poder crear el mapa
 		this.load.image('Inside_A4','../../assets/Tilemap/Inside_A4.png');
 		this.load.image('Outside_A1','../../assets/Tilemap/Outside_A1.png');
 		this.load.image('Outside_A5','../../assets/Tilemap/Outside_A5.png');
-		//this.load.spritesheet('box', 'assets/Box/box.png', {frameWidth: 64, frameHeight: 64})
+
 	}
 	
 	/**
@@ -64,10 +65,10 @@ export default class firstLevel extends Phaser.Scene {
 			this.physics.add.existing(obj);
 		});*/
 
-		let pila1 = new Batery(this,600,1110, 200).setName("batery");
-		let pila2 = new Batery(this,600,1120, 200).setName("batery");
-		let pila3 = new Batery(this,600,1050, 400).setName("batery");
-		let pila4 = new Batery(this,600,1020, 800).setName("batery");
+		let pila1 = new Batery(this,600,1110, 200).setName("battery");
+		let pila2 = new Batery(this,600,1120, 200).setName("battery");
+		let pila3 = new Batery(this,600,1050, 400).setName("battery");
+		let pila4 = new Batery(this,600,1020, 800).setName("battery");
 
 
 

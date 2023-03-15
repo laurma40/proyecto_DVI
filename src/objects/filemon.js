@@ -6,7 +6,7 @@ capacidad bolsillos {total, actual} --> cojer cosas F
 */
 
 
-import Batery from "./battery";
+import Battery from "./battery";
 import LifeBar from "./lifeBar";
 import Luz from "./luz";
 
@@ -245,11 +245,9 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 
 		if( battery.carga > 0 && this.pilas.length < 3){ //Solo puede llevar tres pilas y solo la cojo si tiene carga
 			this.pilas.push(battery);
-			//AQUI SE METERIAN EN ALGUN ESPECIO DE INVENTARIO (la mando lejos para ver q se coge)
+			//AQUI SE METERIAN EN ALGUN ESPECIO DE INVENTARIO (la hago invisible de momento)
 
 			battery.visible = false;
-			//battery.x = 100000;
-			//battery.y= 100000;
 
 			//Y PONER SONIDO
 		}

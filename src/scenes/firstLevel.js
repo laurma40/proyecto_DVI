@@ -1,7 +1,7 @@
 //import Knight from '../objetos/knight.js';
 //import Floor from '../objetos/floor.js';
 //import Box from '../objetos/box.js';
-import Batery from "../objects/battery";
+import Battery from "../objects/battery";
 import CabezaPesanta from "../objects/cabezaPesanta";
 import Filemon from "../objects/filemon.js";
 /**
@@ -65,10 +65,10 @@ export default class firstLevel extends Phaser.Scene {
 			this.physics.add.existing(obj);
 		});*/
 
-		let pila1 = new Batery(this,600,1110, 200).setName("battery");
-		let pila2 = new Batery(this,600,1120, 200).setName("battery");
-		let pila3 = new Batery(this,600,1050, 400).setName("battery");
-		let pila4 = new Batery(this,600,1020, 800).setName("battery");
+		let pila1 = new Battery(this,600,1110, 200).setName("battery");
+		let pila2 = new Battery(this,600,1120, 200).setName("battery");
+		let pila3 = new Battery(this,600,1050, 400).setName("battery");
+		let pila4 = new Battery(this,600,1020, 800).setName("battery");
 
 
 

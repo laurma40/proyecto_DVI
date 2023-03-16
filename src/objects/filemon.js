@@ -203,36 +203,6 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 			} 
 		}
 
-		////COGER / INTERACTUAR CON  OBJETOS (de momento pilas)
-		
-		if(this.eKey.isDown){ 
-			
-			const objetosEscena = this.scene.children.getChildren(); 
-			let ditancia = 10;
-
-			objetosEscena.forEach(objeto => { //recorro los objetos en la escena
-				
-				//console.log(objeto);
-
-				if( Math.abs(objeto.y - this.y) <= ditancia && Math.abs(objeto.x - this.x) >= ditancia){
-					if(objeto.name == "battery"){ 
-						this.cojePila(objeto);
-
-						console.log("hola");
-						//this.objetoAux = objeto;
-					}	
-
-					//AÑADIR AQUI EL RESTO DE OBJETOS CON LOS QUE PUEDE INTERACTUAR
-					//Armario, puerta, cama(meta), llave
-
-					return false; //para el bucle para coger de uno en uno (no va bn :( ) 
-
-				}		
-
-			});
-
-		}
-
 
 		////CORDURA
 
@@ -252,28 +222,30 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 	}
 
 
-	cojePila(battery){
-
-
-		console.log(this.pilas.length);
-
-		if( battery.carga > 0 && this.pilas.length < 3){ //Solo puede llevar tres pilas y solo la cojo si tiene carga
-			this.pilas.push(battery);
-			
-			//AQUI SE METERIAN EN ALGUN ESPECIO DE INVENTARIO (la hago invisible de momento y la mando lejos)
-
-			battery.visible = false;
-			battery.x = 100000;
-			battery.y = 100000;
-
-
-
-			//Y PONER SONIDO
-		}
-	}
-
 
 	
+	cojePila(sprte1, sprite2){//this.pila1, this.player,
 
+
+		console.log("AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
+
+		if(this.eKey.isDown){ 
+
+
+			if( sprte1.carga > 0 && this.pilas.length < 3){ //Solo puede llevar tres pilas y solo la cojo si tiene carga
+				this.pilas.push(sprte1);
+				
+				//AQUI SE METERIAN EN ALGUN ESPECIO DE INVENTARIO (la hago invisible de momento y la mando lejos)
+
+				sprte1.visible = false;
+				sprte1.x = 100000;
+				sprte1.y = 100000;
+
+
+				//Y PONER SONIDO
+			}
+		}
+		
+	}
 
 }

@@ -50,10 +50,10 @@ export default class firstLevel extends Phaser.Scene {
 		this.borderLayer = this.map.createLayer('Borde',[tileset1,tileset2,tileset3]);
 		this.colisionLayer = this.map.createLayer('Colisiones',tileset2);
 
-		let pila1 = new Battery(this,600,1110, 200).setName("battery");
-		let pila2 = new Battery(this,600,1120, 200).setName("battery");
-		let pila3 = new Battery(this,600,1050, 400).setName("battery");
-		let pila4 = new Battery(this,600,1020, 800).setName("battery");
+		this.pila1 = new Battery(this,600,1110, 200).setName("battery");
+		//let pila2 = new Battery(this,600,1120, 200).setName("battery");
+		//let pila3 = new Battery(this,600,1050, 400).setName("battery");
+		//let pila4 = new Battery(this,600,1020, 800).setName("battery");
 
 		this.mov = this.map.createFromObjects('Objetos',{name: 'player',classType: Filemon, key:'player'});
 		this.player = this.mov[0];
@@ -61,55 +61,15 @@ export default class firstLevel extends Phaser.Scene {
 		this.physics.add.existing(this.player);
 		this.physics.world.enable(this.player);
 		this.physics.add.collider(this.player, this.colisionLayer, this.colision);
+		
+		//primeros dos parametros los elementos que colisionanel, despues lafuncion, depues no sé, ultimo parametro a quien pertenece la funcion
+		this.physics.add.overlap(this.pila1, this.player, this.player.cojePila, null, this.player);
 		this.colisionLayer.setCollision(7457);
 
 
-		//this.physics.add.collider(player,murosGroup);
-
-		/*
-		let boxes = this.physics.add.group();
-		
-		//Instanciamos nuestro personaje, que es un caballero, y la plataforma invisible que hace de suelo
-		let knight = new Knight(this, 50, 0);
-		let floor = new Floor(this, 50);
-		let box1 = new Box(this, 200, 0, boxes);
-		let box2 = new Box(this, 400, 0, boxes);
-
-		knight.body.onCollide = true; // Activamos onCollide para poder detectar la colisión del caballero con el suelo
-
-		let scene = this; // Nos guardamos una referencia a la escena para usarla en la función anidada que viene a continuación
-		
-		this.physics.add.collider(knight, floor, function(){
-			if(scene.physics.world.overlap(knight, floor)) {
-				knight.enableJump(); // Hemos tocado el suelo, permitimos volver a saltar
-			}
-		});
-
-		this.physics.add.collider(floor, boxes);
-		this.physics.add.collider(knight, boxes);
-		*/
-		/*
-		 * Escuchamos los eventos de colisión en el mundo para poder actuar ante ellos
-		 * En este caso queremos detectar cuando el caballero colisiona con el suelo para activar el salto del personaje
-		 * El salto del caballero lo desactivamos en su "clase" (archivo knight.js) para evitar dobles saltos
-		 * También comprobamos si está en contacto con alguna caja mientras ataca, en ese caso destruimos la caja
-		 */
-		/*
-		scene.physics.world.on('collide', function(gameObject1, gameObject2, body1, body2) {
-			if(gameObject1 === knight && gameObject2 === floor || gameObject1 === floor && gameObject2 === knight){
-				knight.enableJump();
-			}
-
-			if(gameObject1 === knight && boxes.contains(gameObject2)){
-				if(gameObject1.isAttackInProcess()) {
-					gameObject2.destroyMe()
-				} 				
-			}
-		});	
-
-		this.scene.launch('title');*/
 	}
 	colision(){
 		console.log('Colision');
 	}
+	
 }

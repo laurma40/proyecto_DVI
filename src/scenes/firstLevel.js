@@ -17,8 +17,12 @@ export default class firstLevel extends Phaser.Scene {
 	preload(){
 		//this.load.image('stairs', 'assets/stairs.png');
 		this.load.spritesheet('cabezaPesanta', 'assets/spritesheets_1row.png', {frameWidth: 504, frameHeight: 420})
-		this.load.spritesheet('filemon', 'assets/filemon-520-450.png', {frameWidth: 520, frameHeight: 450})
-		this.load.spritesheet('battery', 'assets/SpriteSheet_Batery.png',{frameWidth: 280, frameHeight: 370})
+		//this.load.spritesheet('filemon', 'assets/filemon-520-450.png', {frameWidth: 520, frameHeight: 450})
+		this.load.spritesheet('filemon', 'assets/filemon-250-400.png', {frameWidth: 250, frameHeight: 400})
+
+		//this.load.spritesheet('battery', 'assets/SpriteSheet_Batery.png',{frameWidth: 280, frameHeight: 370})
+		this.load.spritesheet('battery', 'assets/SpriteSheet_Batery2.png',{frameWidth: 280, frameHeight: 370})
+
 		this.load.spritesheet('luz', 'assets/luz.png',{frameWidth: 100, frameHeight: 100})
 		//Cargamos el archivo JSON necesario para importar el Tilemap
 		this.load.tilemapTiledJSON('tilemap','../../assets/Tilemap/MapaPrueba.json');
@@ -51,7 +55,7 @@ export default class firstLevel extends Phaser.Scene {
 		this.colisionLayer = this.map.createLayer('Colisiones',tileset2);
 
 		this.pila1 = new Battery(this,600,1110, 200).setName("battery");
-		//let pila2 = new Battery(this,600,1120, 200).setName("battery");
+		this.pila2 = new Battery(this,600,1200, 200).setName("battery");
 		//let pila3 = new Battery(this,600,1050, 400).setName("battery");
 		//let pila4 = new Battery(this,600,1020, 800).setName("battery");
 
@@ -63,6 +67,8 @@ export default class firstLevel extends Phaser.Scene {
 		this.physics.add.collider(this.player, this.colisionLayer, this.colision);
 		
 		//primeros dos parametros los elementos que colisionanel, despues lafuncion, depues no sé, ultimo parametro a quien pertenece la funcion
+		this.physics.add.overlap(this.pila2, this.player, this.player.cojePila, null, this.player);
+
 		this.physics.add.overlap(this.pila1, this.player, this.player.cojePila, null, this.player);
 		this.colisionLayer.setCollision(7457);
 

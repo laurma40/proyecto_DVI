@@ -27,7 +27,7 @@ export default class Luz extends Phaser.GameObjects.Sprite {
 
         console.log('LUZZZZZZZZZZZZZZZZZZZZZZzz');
 
-		this.setAlpha(0.7);
+		this.setAlpha(0.6);
         
 		this.displayWidth = this.scene.cameras.main.width;
 		this.displayHeight = this.scene.cameras.main.height;

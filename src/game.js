@@ -1,4 +1,5 @@
 import FirstLevel from './scenes/firstLevel.js';
+import GameOver from './scenes/gameOver.js';
 import Title from './scenes/title.js'
 /**
  * Inicio del juego en Phaser. Creamos el archivo de configuración del juego y creamos
@@ -11,10 +12,8 @@ let config = {
     // type: Phaser.CANVAS,
     // canvas: document.getElementById("juego"),
     
-    width:  656,
-    height: 376,
-    //height: 500,
-
+    width:  606,
+    height: 400,
     pixelArt: true,
 	scale: {
 		autoCenter: Phaser.Scale.CENTER_HORIZONTALLY,
@@ -31,7 +30,7 @@ let config = {
         },
 		zoom: 1
     },
-    scene: [Title, FirstLevel],
+    scene: [Title, FirstLevel, GameOver],
     physics: { 
         default: 'arcade', 
         arcade: { 
@@ -45,7 +44,7 @@ let config = {
             right: true
         }
     },
-    title: "Prueba de concepto",
+    title: "Juego Prueba",
     version: "1.0.0",
     transparent: false
 };

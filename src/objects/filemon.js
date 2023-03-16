@@ -20,8 +20,10 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 	constructor(scene, x, y, colliderGroup) {
 		super(scene, x, y, 'filemon');
 		this.setScale(0.1);
+		this.speed = 250;
+		this.scene = scene;
 		this.scene.add.existing(this); //Añadimos el caballero a la escena
-
+		this.scene.physics.add.existing(this);
 
 		//variables globales (creo q si se declaran arriba con el @ se hacen globales también)
 		this.linterna = false;
@@ -109,52 +111,58 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 	preUpdate(t, dt) {
 		// Es muy imporante llamar al preUpdate del padre (Sprite), sino no se ejecutará la animación
 		super.preUpdate(t, dt);
-		var speed = 6; //cambiara segun tenga la linterna encendida o apagada
-
 
 		// Mientras pulsemos la tecla 'A' movemos el personaje en la X
-		if(this.aKey.isDown){
-			if(this.anims.currentAnim.key !== 'left')
+		if (this.aKey.isDown) {
+			if (this.anims.currentAnim.key !== 'left')
 				this.play('left');
-			this.x -= speed*dt/60;
+			this.body.setVelocityX(-this.speed*dt/60);
+			//this.x -= this.speed*dt/60;
 		}
 
-		else if(this.aKey.isUp && this.anims.currentAnim.key === 'left') {
+		else if (this.aKey.isUp && this.anims.currentAnim.key === 'left') {
 			this.play('standLeft');
 		}
 
 		// Mientras pulsemos la tecla 'D' movemos el personaje en la X
-		else if(this.dKey.isDown){
-			if(this.anims.currentAnim.key !== 'right')
+		else if (this.dKey.isDown) {
+			if (this.anims.currentAnim.key !== 'right')
 				this.play('right');
-			this.x += speed*dt/60;
+			this.body.setVelocityX(this.speed*dt/60);
+			//this.x += speed*dt/60;
 		}
 
-		else if(this.dKey.isUp && this.anims.currentAnim.key === 'right') {
+		else if (this.dKey.isUp && this.anims.currentAnim.key === 'right') {
 			this.play('standRight');
 		}
-		
+
 		// Mientras pulsemos la tecla 'W' movemos el personaje en la Y
-		else if(this.wKey.isDown){
-			if(this.anims.currentAnim.key !== 'back')
+		else if (this.wKey.isDown) {
+			if (this.anims.currentAnim.key !== 'back')
 				this.play('back');
-			this.y -= speed*dt/60;
+			//this.y -= speed*dt/60;
+			this.body.setVelocityY(-this.speed*dt/60);
 		}
 
-		else if(this.wKey.isUp && this.anims.currentAnim.key === 'back') {
+		else if (this.wKey.isUp && this.anims.currentAnim.key === 'back') {
 			this.play('standBack');
 		}
 
 		// Mientras pulsemos la tecla 'S' movemos el personaje en la Y
-		else if(this.sKey.isDown){
-			if(this.anims.currentAnim.key !== 'front')
+		else if (this.sKey.isDown) {
+			if (this.anims.currentAnim.key !== 'front')
 				this.play('front');
-			this.y += speed*dt/60;
+			this.body.setVelocityY(this.speed*dt/60);
+			//this.y += speed*dt/60;
 		}
 
-		else if(this.sKey.isUp && this.anims.currentAnim.key === 'front') {
+		else if (this.sKey.isUp && this.anims.currentAnim.key === 'front') {
 			this.play('standFront');
 		}
+		else {
+			this.body.setVelocityX(0);
+			this.body.setVelocityY(0);
+        }
 
 		
 		///////////////////////////////////////////////////////////////////////////////////

@@ -33,19 +33,11 @@ export default class firstLevel extends Phaser.Scene {
 	* Creación de los elementos de la escena principal de juego
 	*/
 	create() {
-		//Imagen de fondo
-		//this.add.image(0, 0, 'stairs').setOrigin(0, 0);
-
-		//let pesanta = new CabezaPesanta(this,150,100);
-		//let file = new Filemon(this,150,100);
-		
-
-		//this.scene.launch('title');
 		//crear tilemap
 		this.map = this.make.tilemap({
 			key: 'tilemap',
-			tileWidth: 24,
-			tileHeight: 24,
+			tileWidth: 12,
+			tileHeight: 12,
 			width:50,
 			height:50
 		});
@@ -55,30 +47,22 @@ export default class firstLevel extends Phaser.Scene {
 		const tileset3 = this.map.addTilesetImage('Outside_A5');
 
 		this.groundLayer = this.map.createLayer('Suelo',[tileset1,tileset2,tileset3]);
-
-		// Obtener los polígonos y el objeto cuadrado de la capa de objetos
-
-		/*let muros = this.map.createFromObjects('Muros',{name: '',key: ''});
-		let murosGroup = this.add.group();
-		murosGroup.addMultiple(muros);
-		muros.forEach(obj => {
-			this.physics.add.existing(obj);
-		});*/
+		this.borderLayer = this.map.createLayer('Borde',[tileset1,tileset2,tileset3]);
+		this.colisionLayer = this.map.createLayer('Colisiones',tileset2);
 
 		let pila1 = new Battery(this,600,1110, 200).setName("battery");
 		let pila2 = new Battery(this,600,1120, 200).setName("battery");
 		let pila3 = new Battery(this,600,1050, 400).setName("battery");
 		let pila4 = new Battery(this,600,1020, 800).setName("battery");
 
+		this.mov = this.map.createFromObjects('Objetos',{name: 'player',classType: Filemon, key:'player'});
+		this.player = this.mov[0];
+		this.cameras.main.startFollow(this.player);
+		this.physics.add.existing(this.player);
+		this.physics.world.enable(this.player);
+		this.physics.add.collider(this.player, this.colisionLayer, this.colision);
+		this.colisionLayer.setCollision(7457);
 
-
-		this.mov = this.map.createFromObjects('Player',{name: 'player',classType: Filemon, key:'player'});
-		let player = this.mov[0];
-		this.cameras.main.startFollow(player);
-
-
-
-		
 
 		//this.physics.add.collider(player,murosGroup);
 
@@ -125,5 +109,7 @@ export default class firstLevel extends Phaser.Scene {
 
 		this.scene.launch('title');*/
 	}
-
+	colision(){
+		console.log('Colision');
+	}
 }

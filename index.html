@@ -2,8 +2,8 @@
 <html lang="es">
 
 <head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=2.0" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=2.0">
 	<link rel="stylesheet" type="text/css" href="src/styles/estilos.css">
 	<script src="./lib/phaser.js"></script>
     <link rel="icon" type="image/x-icon" href="assets/logo-studio.png">	
@@ -11,16 +11,16 @@
 
 	<style>
 		html, body, div{
-			cursor:url('../assets/cursorCustom.cur'), auto;
+			cursor:url('assets/cursorImg/cursorCustom.cur'), auto;
 		}
 		a:hover, button:hover {
-			cursor:url('../assets/cursorHover.cur'), auto;
+			cursor:url('assets/cursorImg/cursorHover.cur'), auto;
 		}
 	</style>
 
 </head>
 
-<body style="background: url('assets/fondopixel2.jpeg')">
+<body style="background-image: url('assets/fondopixel2.jpeg'); background-repeat: repeat;">
 	<!-- La parte de menú -->
 	<span>
 		<section id="inicio" class="menu">
@@ -46,20 +46,17 @@
 		</section>
 	</span> 
 
-	<script type = " text/javascript">
-		document.body.style.background=""; 
-		background: url(img_flwr.gif) right bottom no-repeat
-	</script>
-
 	<!-- La parte de juego -->
-	<div id="juego">
-		<script type="module" src="./src/game.js"></script>
-	</div>
+	<div id="juego"></div>
+	<script type="module" src="./src/game.js"></script>
 
 	<!-- La parte de controles -->
 	<div id ="controles">
 		<h2><span>Controles</span></h2>
 		<p>
+			<br>
+			Objetivo: Llegar a la cama sano y salvo. ¡Evita la oscuridad y los monstruos!
+			</br>
 			<br>
 			<img src="assets/controlesWASD.png" alt="Controles movimiento" style="width: 40%; height: 40%;vertical-align:middle;"> Para mover al personaje
 			</br>
@@ -73,10 +70,10 @@
 	</div>
 
 	<!-- La parte de GITHUB -->
-	<div id="github">
+	<div id="github" >
 		<h2><span>GITHUB</span></h2>
 		<a href="https://github.com/laurma40/proyecto_DVI.git" >
-			<img src="./assets/githubicon.png" alt="Link a github" style="display: block; justify-content: center; margin: auto; width: 5%; height: 5%;">
+			<img src="./assets/githubicon.png" alt="Link a github" style="display: flex; justify-content: center; margin: auto; width: 5%; height: 5%; align-items:center;">
 		</a>
 	</div>
 
@@ -86,9 +83,7 @@
 		<button onclick="window.open('masinformacion.html', '_blank')" style="display: block; justify-content: center; margin: auto; font-family: 'silkscreenregular'; border: 2px solid black; background-color: #ffffff46;;">Más información</button>
 	</div>
 
-</body>
-
-<body>
+	<!-- Botón para subir arriba -->
 	<button onclick="topFunction()" id="topBtn" title="Go to top"><br>^</br>Top</button>
 	<script>
 		// Get the button:
@@ -111,5 +106,6 @@
 		document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 		}
 	</script>
+
 </body>
 </html>

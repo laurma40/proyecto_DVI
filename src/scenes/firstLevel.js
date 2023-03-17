@@ -4,6 +4,7 @@
 import Battery from "../objects/battery";
 import CabezaPesanta from "../objects/cabezaPesanta";
 import Filemon from "../objects/filemon.js";
+import Armario from "../objects/armario.js";
 /**
  * Escena principal de juego.
  * @extends Phaser.Scene
@@ -22,6 +23,8 @@ export default class firstLevel extends Phaser.Scene {
 
 		//this.load.spritesheet('battery', 'assets/SpriteSheet_Batery.png',{frameWidth: 280, frameHeight: 370})
 		this.load.spritesheet('battery', 'assets/SpriteSheet_Batery2.png',{frameWidth: 280, frameHeight: 370})
+
+		//AÑADIR SPRITE ARMARIO AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
 		this.load.spritesheet('luz', 'assets/luz.png',{frameWidth: 100, frameHeight: 100})
 		//Cargamos el archivo JSON necesario para importar el Tilemap
@@ -59,6 +62,8 @@ export default class firstLevel extends Phaser.Scene {
 		//let pila3 = new Battery(this,600,1050, 400).setName("battery");
 		//let pila4 = new Battery(this,600,1020, 800).setName("battery");
 
+		//this.armario1 = new Armario(this, coordenada X, coordenada Y).setName('armario')
+
 		this.mov = this.map.createFromObjects('Objetos',{name: 'player',classType: Filemon, key:'player'});
 		this.player = this.mov[0];
 		this.cameras.main.startFollow(this.player);
@@ -70,6 +75,8 @@ export default class firstLevel extends Phaser.Scene {
 		this.physics.add.overlap(this.pila2, this.player, this.player.cojePila, null, this.player);
 
 		this.physics.add.overlap(this.pila1, this.player, this.player.cojePila, null, this.player);
+
+		//this.physics.add.overlap(this.armario1, this.player, this.player.interactuarArmario, null, this.player);
 		this.colisionLayer.setCollision(7457);
 
 

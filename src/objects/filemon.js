@@ -28,6 +28,7 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		//variables globales (creo q si se declaran arriba con el @ se hacen globales también)
 		this.linterna = false;
 		this.pilas = [];
+		this.zonaSegura = false;
 		//this.pilas.push(new Battery(scene,400,300));
 
 		this.corduraMax = 5000; //esto se pasaría por el constructor para que dependa del nivel
@@ -99,6 +100,10 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		this.eKey = this.scene.input.keyboard.addKey('E'); //coger / interactuarzz/
 		this.fKey = this.scene.input.keyboard.addKey('F'); //encender / apagar
 		this.canPressF = true;
+		this.canPressW = true;
+		this.canPressA = true;
+		this.canPressS = true;
+		this.canPressD = true;
 		
 		this.luz = new Luz(this.scene, this.x, this.y);
 		this.progressBar = new LifeBar(this.scene, this.x + 170, this.y - 180, this.corduraMax );
@@ -206,7 +211,7 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 
 		////CORDURA
 
-		if(this.linterna){
+		if(this.linterna || this.zonaSegura){
 			if(this.cordura < this.corduraMax) this.cordura++; //HACERLO CON
 		}
 		else{
@@ -246,6 +251,37 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 			}
 		}
 		
+	}
+
+	interactuarArmario(sprite1, sprite2){ // armario, this.player
+		if(this.eKey.isDown){
+			this.linterna = false;
+			this.zonaSegura = !this.zonaSegura;
+			if(this.zonaSegura){
+				sprite1.play('open');
+				this.canPressF = false;
+				this.canPressW = false;
+				this.canPressA = false;
+				this.canPressS = false;
+				this.canPressD = false;
+				this.canPressE = false;
+				sprite2.visible = false;
+			}
+			else{
+				sprite2.play('close');
+				this.canPressF = true;
+				this.canPressW = true;
+				this.canPressA = true;
+				this.canPressS = true;
+				this.canPressD = true;
+				sprite2.visible = true;
+			}
+			// Esperar un segundo antes de volver a escuchar la tecla E porque si no no se pulsa bien
+			setTimeout(() => { this.canPressE = true; }, 100); //esto lo mejora pero no lo arregla del todo
+		}
+		else if (this.eKey.isUp && (sprite2.anims.currentAnim.key === 'open' || sprite2.anims.currentAnim.key === 'close')) {
+			sprite2.play('closed');
+		}
 	}
 
 }

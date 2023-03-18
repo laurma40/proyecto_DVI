@@ -7,7 +7,7 @@ import Filemon from "../objects/filemon.js";
 import Armario from "../objects/armario.js";
 /**
  * Escena principal de juego.
- * @extends Phaser.Scene
+ * @extends Phaser.Scenes
  */
 export default class firstLevel extends Phaser.Scene {
 	
@@ -28,12 +28,14 @@ export default class firstLevel extends Phaser.Scene {
 		this.load.image('escalera','../../assets/Tilemap/escalera.jpeg');
 		this.load.image('muro','../../assets/Tilemap/muro.jpeg');
 		this.load.image('puertas','../../assets/Tilemap/puertas.png');
+		this.load.image('recursosSalon','../../assets/Tilemap/recursosSalon.png');
 	}
 	
 	/**
 	* Creación de los elementos de la escena principal de juego
 	*/
 	create() {
+
 		//crear tilemap
 		this.map = this.make.tilemap({
 			key: 'tilemap',
@@ -42,20 +44,32 @@ export default class firstLevel extends Phaser.Scene {
 			width:200,
 			height:200
 		});
-	
+		
+		//Tileds para el Fondo
 		const t_alfombra = this.map.addTilesetImage('alfombra');
 		const t_muro = this.map.addTilesetImage('muro');
 		const t_puertas = this.map.addTilesetImage('puertas');
 		const t_escalera = this.map.addTilesetImage('escalera');
+		const t_salon = this.map.addTilesetImage('recursosSalon');
+		
 		//Este es el orden de Pintado
 		this.colisionesLayer =this.map.createLayer('Colisiones',t_alfombra);
-		this.colisionEscaleraLayer=this.map.createLayer('ColsionEscalera',t_escalera);
-		this.cambioMurosLayer=this.map.createLayer('CambiosMuro',t_escalera);
+		this.colisionEscaleraYPuertaLayer=this.map.createLayer('ColsionEscaleraYPuertas',t_escalera);
+		this.cambioMurosLayer=this.map.createLayer('OtrasColisiones',t_escalera);
 		this.pasilloLayer = this.map.createLayer('Corridor',[t_alfombra,t_escalera]);
 		this.muroExteriorLayer = this.map.createLayer('MurosExterior',t_muro);
+		//Capas de la habitacion del salon
+		this.SalonSueloLayer = this.map.createLayer('Salon/SalonSuelo',[t_salon,t_muro]);
+		this.PatasMesaLayer = this.map.createLayer('Salon/patasMesa',t_salon);
+		this.ObjetosSalonLayer = this.map.createLayer('Salon/ObjetosSalon',t_salon);
+		this.CortinasLayer = this.map.createLayer('Salon/Cortinas',t_salon);
 		this.muroInteriorLayer = this.map.createLayer('MurosInterior',t_muro);
 		this.puertasLayer = this.map.createLayer('Puertas',t_puertas);
+
 		
+		
+		
+
 		console.log(this);
 
 		let pila1 = new Battery(this,600,1110, 200).setName("battery");
@@ -69,16 +83,36 @@ export default class firstLevel extends Phaser.Scene {
 		this.physics.add.existing(this.player);
 		this.physics.world.enable(this.player);
 
+		//Añadir las colisiones del jugador con la capa
 		this.physics.add.collider(this.player, this.colisionesLayer, this.colision);
-		this.physics.add.collider(this.player, this.colisionEscaleraLayer, this.colision);
+		this.physics.add.collider(this.player, this.colisionEscaleraYPuertaLayer);
 		this.physics.add.overlap(this.player, this.cambioMurosLayer);
-		this.physics.add.collider(this.player, this.puertasLayer,this.colision);
+		//this.physics.add.collider(this.player, this.puertasLayer,this.colision);
+		
+		//Comportamiento segun con que colisione
 		this.colisionesLayer.setCollision(7937);
-		this.colisionEscaleraLayer.setCollision([10680,8577]);
-		this.cambioMurosLayer.setCollision([10684,10688]);
+		/*this.colisionEscaleraYPuertaLayer.setCollision([8577,10684,10692,10688,8593]);
+		this.colisionEscaleraYPuertaLayer.setTileIndexCallback(8577, this.escaleraHabitacion,this);
+		this.colisionEscaleraYPuertaLayer.setTileIndexCallback(10684,this.entradaHabitacion,this);//H1 Arriba
+		this.colisionEscaleraYPuertaLayer.setTileIndexCallback(10692,this.entradaHabitacion,this);//Alfombra
+		this.colisionEscaleraYPuertaLayer.setTileIndexCallback(10688,this.entradaHabitacion,this);//H1 Abajo
+		this.colisionEscaleraYPuertaLayer.setTileIndexCallback(8593,this.entradaHabitacion,this);//H2 Abajo*/
+
 		this.cambioMurosLayer.setTileIndexCallback(10684, this.cambioEntrada, this);
 		this.cambioMurosLayer.setTileIndexCallback(10692, this.cambioLateralesIncio, this);
 		this.cambioMurosLayer.setTileIndexCallback(10688, this.cambioLateralesArriba, this);
+
+		
+		// Creamos los objetos a través de la capa de objetos del tilemap y la imagen o la clase que queramos
+		let pilas = this.map.createFromObjects('Objetos', {name: "pila",classType: Battery, key: 'battery' });
+		//this.anims.play('spin', pilas);
+		
+		/*let pilasGroup = this.add.group();
+		pilasGroup.addMultiple(pilas)
+		pilas.forEach(obj => {
+			this.physics.add.existing(obj);
+		});
+		this.physics.add.overlap(this.player, pilasGroup);*/
 		//this.cambioMurosLayer.setCollision(8577);
 		//this.colisionEscaleraLayer.setCollision()
 
@@ -148,6 +182,12 @@ export default class firstLevel extends Phaser.Scene {
 		}else if(this.player.sKey.isDown){
 			this.muroInteriorLayer.setVisible(true);
 		}
+	}
+	entradaHabitacion(){
+		console.log('Pulsa p para entrar a la habitación');
+	};
+	escaleraHabitacion(){
+		console.log('Pulsa p para entrar al dormitorio');
 	}
 	colision(){
 		console.log('Colision');

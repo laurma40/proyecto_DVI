@@ -18,9 +18,11 @@ export default class firstLevel extends Phaser.Scene {
 	preload(){
 		//this.load.image('stairs', 'assets/stairs.png');
 		this.load.spritesheet('cabezaPesanta', 'assets/spritesheets_1row.png', {frameWidth: 504, frameHeight: 420})
-		this.load.spritesheet('filemon', 'assets/filemon-520-450.png', {frameWidth: 520, frameHeight: 450})
+		this.load.spritesheet('filemon', 'assets/filemon-250-400.png', {frameWidth: 250, frameHeight: 400})
 		this.load.spritesheet('battery', 'assets/SpriteSheet_Batery.png',{frameWidth: 280, frameHeight: 370})
 		this.load.spritesheet('luz', 'assets/luz.png',{frameWidth: 100, frameHeight: 100})
+
+		this.load.spritesheet('armario', 'assets/armario-125-125.png', {frameWidth: 125, frameHeight: 125})
 		//Cargamos el archivo JSON necesario para importar el Tilemap
 		this.load.tilemapTiledJSON('tilemap','../../assets/Tilemap/MapaNivel1.json');
 		//Cargamos los tilesets necesarios para poder crear el mapa
@@ -76,6 +78,8 @@ export default class firstLevel extends Phaser.Scene {
 		let pila2 = new Battery(this,600,1120, 200).setName("battery");
 		let pila3 = new Battery(this,600,1050, 400).setName("battery");
 		let pila4 = new Battery(this,600,1020, 800).setName("battery");
+
+		let armario1 = new Armario(this, 1200, 1900).setName("armario");
 
 		this.mov = this.map.createFromObjects('Objetos',{name: 'player',classType: Filemon, key:'player'});
 		this.player = this.mov[0];

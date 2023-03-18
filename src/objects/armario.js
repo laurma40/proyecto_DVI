@@ -7,25 +7,25 @@ export default class Armario extends Phaser.GameObjects.Sprite {
 
     constructor(scene, x, y) { 
 		super(scene, x, y, 'armario'); // todo menos la escena son opcionales
-		this.setScale(0.1,0.1);
+		this.setScale(1,1);
 		this.scene.add.existing(this); //Añadimos el armario a la escena
 		this.scene.physics.add.existing(this);
 
         this.scene.anims.create({
 			key: 'open',
-			frames: scene.anims.generateFrameNumbers('armario', {start:4, end:7}),
+			frames: scene.anims.generateFrameNumbers('armario', {start:0, end:7}),
 			frameRate: 5,
 			repeat: -1
 		});
 		this.scene.anims.create({
 			key: 'close',
-			frames: scene.anims.generateFrameNumbers('armario', {start:0, end:3}),
+			frames: scene.anims.generateFrameNumbers('armario', {start:8, end:15}),
 			frameRate: 5,
 			repeat: -1
 		});
         this.scene.anims.create({
 			key: 'closed',
-			frames: scene.anims.generateFrameNumbers('armario', {start:4, end:4}),
+			frames: scene.anims.generateFrameNumbers('armario', {start:0, end:0}),
 			frameRate: 1,
 			repeat: 0
 		});

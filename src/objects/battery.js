@@ -13,8 +13,12 @@ export default class Battery extends Phaser.GameObjects.Sprite {
 		this.scene.physics.add.existing(this);
 
 		//(guardo la carga total por si se quiere haer una barra o algo)
-		var cargaTotl = cargaInicial;
-		this.carga = cargaTotl;
+		
+		if(cargaInicial == null) this.carga = 400; //pongo una carga por defecto
+		else this.carga = cargaInicial;
+
+		//var cargaTotl = cargaInicial; //(guardo la carga total por si se quiere haer una barra o algo)
+
 		this.enUso = false; //hará falta parfa mostrar la barra de carga
 
 

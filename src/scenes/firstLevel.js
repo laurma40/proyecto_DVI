@@ -19,7 +19,7 @@ export default class firstLevel extends Phaser.Scene {
 		//this.load.image('stairs', 'assets/stairs.png');
 		this.load.spritesheet('cabezaPesanta', 'assets/spritesheets_1row.png', {frameWidth: 504, frameHeight: 420})
 		this.load.spritesheet('filemon', 'assets/filemon-250-400.png', {frameWidth: 250, frameHeight: 400})
-		this.load.spritesheet('battery', 'assets/SpriteSheet_Batery.png',{frameWidth: 280, frameHeight: 370})
+		this.load.spritesheet('battery', 'assets/SpriteSheet_Batery3.png',{frameWidth: 280, frameHeight: 370})
 		this.load.spritesheet('luz', 'assets/luz.png',{frameWidth: 100, frameHeight: 100})
 
 		this.load.spritesheet('armario', 'assets/armario-125-125.png', {frameWidth: 125, frameHeight: 125})
@@ -73,11 +73,11 @@ export default class firstLevel extends Phaser.Scene {
 		
 
 		console.log(this);
-
+/*
 		let pila1 = new Battery(this,600,1110, 200).setName("battery");
 		let pila2 = new Battery(this,600,1120, 200).setName("battery");
 		let pila3 = new Battery(this,600,1050, 400).setName("battery");
-		let pila4 = new Battery(this,600,1020, 800).setName("battery");
+		let pila4 = new Battery(this,600,1020, 800).setName("battery");*/
 
 		let armario1 = new Armario(this, 1200, 1900).setName("armario");
 
@@ -108,7 +108,11 @@ export default class firstLevel extends Phaser.Scene {
 
 		
 		// Creamos los objetos a través de la capa de objetos del tilemap y la imagen o la clase que queramos
-		let pilas = this.map.createFromObjects('Objetos', {name: "pila",classType: Battery, key: 'battery' });
+		this.pilas = this.map.createFromObjects('Objetos', {name: "pila",classType: Battery, key: 'battery' });
+
+		this.physics.add.overlap(this.pilas, this.player, this.player.cojePila, null, this.player);
+
+
 		//this.anims.play('spin', pilas);
 		
 		/*let pilasGroup = this.add.group();

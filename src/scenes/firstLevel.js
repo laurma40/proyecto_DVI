@@ -24,13 +24,11 @@ export default class firstLevel extends Phaser.Scene {
 
 		this.load.spritesheet('armario', 'assets/armario-125-125.png', {frameWidth: 125, frameHeight: 125})
 		//Cargamos el archivo JSON necesario para importar el Tilemap
-		this.load.tilemapTiledJSON('tilemap','../../assets/Tilemap/MapaNivel1.json');
+		this.load.tilemapTiledJSON('tilemap','../../assets/Tilemap/MapaPiso1Definitivo.json');
 		//Cargamos los tilesets necesarios para poder crear el mapa
-		this.load.image('alfombra','../../assets/Tilemap/alfombra.jpeg');
-		this.load.image('escalera','../../assets/Tilemap/escalera.jpeg');
 		this.load.image('muro','../../assets/Tilemap/muro.jpeg');
-		this.load.image('puertas','../../assets/Tilemap/puertas.png');
-		this.load.image('recursosSalon','../../assets/Tilemap/recursosSalon.png');
+		//this.load.image('puertas','../../assets/Tilemap/puertas.png');
+		this.load.image('mapaImg','../../assets/Tilemap/mapaCapa.png');
 	}
 	
 	/**
@@ -48,38 +46,18 @@ export default class firstLevel extends Phaser.Scene {
 		});
 		
 		//Tileds para el Fondo
-		const t_alfombra = this.map.addTilesetImage('alfombra');
 		const t_muro = this.map.addTilesetImage('muro');
-		const t_puertas = this.map.addTilesetImage('puertas');
-		const t_escalera = this.map.addTilesetImage('escalera');
-		const t_salon = this.map.addTilesetImage('recursosSalon');
+		this.imagenCapa = this.add.image(0,0,'mapaImg');
+		this.imagenCapa.setOrigin(0, 0);
+		this.imagenCapa.setDepth(0);
+				//Este es el orden de Pintado
+		this.colisionesLayer =this.map.createLayer('Colisiones/colisionesMuro',t_muro);
+		//this.capaAntiguoMapa = this.map.createLayer('mapaCapa', imagenCapa);
+		this.muroInteriorLayer = this.map.createLayer('Muros/muroInterior',t_muro);
+		this.muroExteriorLayer = this.map.createLayer('Muros/muroExterior',t_muro);
+		//this.puertasLayer = this.map.createLayer('Puertas',t_puertas);
 		
-		//Este es el orden de Pintado
-		this.colisionesLayer =this.map.createLayer('Colisiones',t_alfombra);
-		this.colisionEscaleraYPuertaLayer=this.map.createLayer('ColsionEscaleraYPuertas',t_escalera);
-		this.cambioMurosLayer=this.map.createLayer('OtrasColisiones',t_escalera);
-		this.pasilloLayer = this.map.createLayer('Corridor',[t_alfombra,t_escalera]);
-		this.muroExteriorLayer = this.map.createLayer('MurosExterior',t_muro);
-		//Capas de la habitacion del salon
-		this.SalonSueloLayer = this.map.createLayer('Salon/SalonSuelo',[t_salon,t_muro]);
-		this.PatasMesaLayer = this.map.createLayer('Salon/patasMesa',t_salon);
-		this.ObjetosSalonLayer = this.map.createLayer('Salon/ObjetosSalon',t_salon);
-		this.CortinasLayer = this.map.createLayer('Salon/Cortinas',t_salon);
-		this.muroInteriorLayer = this.map.createLayer('MurosInterior',t_muro);
-		this.puertasLayer = this.map.createLayer('Puertas',t_puertas);
-
-		
-		
-		
-
 		console.log(this);
-/*
-		let pila1 = new Battery(this,600,1110, 200).setName("battery");
-		let pila2 = new Battery(this,600,1120, 200).setName("battery");
-		let pila3 = new Battery(this,600,1050, 400).setName("battery");
-		let pila4 = new Battery(this,600,1020, 800).setName("battery");*/
-
-		let armario1 = new Armario(this, 1200, 1900).setName("armario");
 
 		this.mov = this.map.createFromObjects('Objetos',{name: 'player',classType: Filemon, key:'player'});
 		this.player = this.mov[0];
@@ -89,27 +67,26 @@ export default class firstLevel extends Phaser.Scene {
 
 		//Añadir las colisiones del jugador con la capa
 		this.physics.add.collider(this.player, this.colisionesLayer, this.colision);
-		this.physics.add.collider(this.player, this.colisionEscaleraYPuertaLayer);
-		this.physics.add.overlap(this.player, this.cambioMurosLayer);
 		//this.physics.add.collider(this.player, this.puertasLayer,this.colision);
 		
 		//Comportamiento segun con que colisione
-		this.colisionesLayer.setCollision(7937);
-		/*this.colisionEscaleraYPuertaLayer.setCollision([8577,10684,10692,10688,8593]);
+		//this.colisionesLayer.setCollision(7937);
+		/*
 		this.colisionEscaleraYPuertaLayer.setTileIndexCallback(8577, this.escaleraHabitacion,this);
 		this.colisionEscaleraYPuertaLayer.setTileIndexCallback(10684,this.entradaHabitacion,this);//H1 Arriba
 		this.colisionEscaleraYPuertaLayer.setTileIndexCallback(10692,this.entradaHabitacion,this);//Alfombra
 		this.colisionEscaleraYPuertaLayer.setTileIndexCallback(10688,this.entradaHabitacion,this);//H1 Abajo
 		this.colisionEscaleraYPuertaLayer.setTileIndexCallback(8593,this.entradaHabitacion,this);//H2 Abajo*/
 
-		this.cambioMurosLayer.setTileIndexCallback(10684, this.cambioEntrada, this);
-		this.cambioMurosLayer.setTileIndexCallback(10692, this.cambioLateralesIncio, this);
-		this.cambioMurosLayer.setTileIndexCallback(10688, this.cambioLateralesArriba, this);
+		//this.colisionesLayer.setTileIndexCallback(10684, this.cambioEntrada, this);
+		//this.colisionesLayer.setTileIndexCallback(10692, this.cambioLateralesIncio, this);
+		//this.colisionesLayer.setTileIndexCallback(10688, this.cambioLateralesArriba, this);
 
 		
 		// Creamos los objetos a través de la capa de objetos del tilemap y la imagen o la clase que queramos
 		this.pilas = this.map.createFromObjects('Objetos', {name: "pila",classType: Battery, key: 'battery' });
-
+		this.armarios = this.map.createFromObjects('Objetos', {name: "armario", classType: Armario, key: 'armario'});
+        	this.physics.add.overlap(this.armarios, this.player, this.player.interactuarArmario, null, this.player);
 		this.physics.add.overlap(this.pilas, this.player, this.player.cojePila, null, this.player);
 
 
@@ -138,7 +115,7 @@ export default class firstLevel extends Phaser.Scene {
 
 		knight.body.onCollide = true; // Activamos onCollide para poder detectar la colisión del caballero con el suelo
 
-		let scene = this; // Nos guardamos una referencia a la escena para usarla en la función anidada que viene a continuación
+		//let scene = this; // Nos guardamos una referencia a la escena para usarla en la función anidada que viene a continuación
 		
 		this.physics.add.collider(knight, floor, function(){
 			if(scene.physics.world.overlap(knight, floor)) {

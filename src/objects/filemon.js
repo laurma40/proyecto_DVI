@@ -104,6 +104,8 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		this.canPressA = true;
 		this.canPressS = true;
 		this.canPressD = true;
+
+		this.animacionEnCurso = false;
 		
 		this.luz = new Luz(this.scene, this.x, this.y);
 		this.progressBar = new LifeBar(this.scene, this.x + 170, this.y - 180, this.corduraMax );
@@ -254,33 +256,31 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 	}
 
 	interactuarArmario(sprite1, sprite2){ // armario, this.player
+		
 		if(this.eKey.isDown){
 			this.linterna = false;
 			this.zonaSegura = !this.zonaSegura;
 			if(this.zonaSegura){
 				sprite1.play('open');
-				this.canPressF = false;
-				this.canPressW = false;
-				this.canPressA = false;
-				this.canPressS = false;
-				this.canPressD = false;
-				this.canPressE = false;
+				this.scene.input.keyboard.removeKey('W');
+				this.scene.input.keyboard.removeKey('A');
+				this.scene.input.keyboard.removeKey('S');
+				this.scene.input.keyboard.removeKey('D');
+				this.scene.input.keyboard.removeKey('F');
 				sprite2.visible = false;
 			}
 			else{
-				sprite2.play('close');
-				this.canPressF = true;
-				this.canPressW = true;
-				this.canPressA = true;
-				this.canPressS = true;
-				this.canPressD = true;
+				sprite1.play('close');
+				this.wKey = this.scene.input.keyboard.addKey('W');
+				this.aKey = this.scene.input.keyboard.addKey('A');
+				this.sKey = this.scene.input.keyboard.addKey('S');
+				this.dKey = this.scene.input.keyboard.addKey('D');
+				this.fKey = this.scene.input.keyboard.addKey('F');
 				sprite2.visible = true;
 			}
-			// Esperar un segundo antes de volver a escuchar la tecla E porque si no no se pulsa bien
-			setTimeout(() => { this.canPressE = true; }, 100); //esto lo mejora pero no lo arregla del todo
 		}
-		else if (this.eKey.isUp && (sprite2.anims.currentAnim.key === 'open' || sprite2.anims.currentAnim.key === 'close')) {
-			sprite2.play('closed');
+		else{
+			setTimeout(() => { sprite1.play('closed') }, 1000);
 		}
 	}
 

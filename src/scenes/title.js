@@ -13,14 +13,14 @@ export default class Title extends Phaser.Scene {
 	 */
 	preload(){
         
-		//this.load.image('start', 'assets/start.png');
 		this.load.image('start', 'assets/start3.png');
 		this.load.image('start2', 'assets/start4.png');
 
         this.load.image('inicio', 'assets/casaInicio_v2.jpeg');
-		/*this.load.spritesheet('knight', 'assets/Knight/knight.png', {frameWidth: 72, frameHeight: 86})
-		this.load.spritesheet('box', 'assets/Box/box.png', {frameWidth: 64, frameHeight: 64})*/
 
+		this.load.image('over', 'assets/gameOver.png');
+		this.load.image('retry', 'assets/retry.png');
+		this.load.image('retry2', 'assets/retry2.png');
 
 
 	}

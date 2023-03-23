@@ -14,7 +14,7 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 	constructor(scene, x, y, colliderGroup) {
 		super(scene, x, y, 'filemon');
 		this.setScale(0.1);
-		this.speed = 250;
+		this.speed = 150;
 		this.scene = scene;
 		this.scene.add.existing(this); //Añadimos el caballero a la escena
 		this.scene.physics.add.existing(this);
@@ -114,12 +114,13 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 	preUpdate(t, dt) {
 		// Es muy imporante llamar al preUpdate del padre (Sprite), sino no se ejecutará la animación
 		super.preUpdate(t, dt);
-
+		let velocity = new Phaser.Math.Vector2(0, 0);
 		// Mientras pulsemos la tecla 'A' movemos el personaje en la X
 		if (this.aKey.isDown) {
-			if (this.anims.currentAnim.key !== 'left')
+			if (this.anims.currentAnim.key !== 'left'){
 				this.play('left');
-			this.body.setVelocityX(-this.speed*dt/60);
+			}
+			velocity.x = -1;
 			//this.x -= this.speed*dt/60;
 		}
 
@@ -129,9 +130,10 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 
 		// Mientras pulsemos la tecla 'D' movemos el personaje en la X
 		else if (this.dKey.isDown) {
-			if (this.anims.currentAnim.key !== 'right')
+			if (this.anims.currentAnim.key !== 'right'){
 				this.play('right');
-			this.body.setVelocityX(this.speed*dt/60);
+			}
+			velocity.x = 1;
 			//this.x += speed*dt/60;
 		}
 
@@ -140,11 +142,12 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		}
 
 		// Mientras pulsemos la tecla 'W' movemos el personaje en la Y
-		else if (this.wKey.isDown) {
-			if (this.anims.currentAnim.key !== 'back')
+		if (this.wKey.isDown) {
+			if (this.anims.currentAnim.key !== 'back' && this.anims.currentAnim.key !== 'left' && this.anims.currentAnim.key !== 'right'){
 				this.play('back');
+			}
 			//this.y -= speed*dt/60;
-			this.body.setVelocityY(-this.speed*dt/60);
+			velocity.y = -1;
 		}
 
 		else if (this.wKey.isUp && this.anims.currentAnim.key === 'back') {
@@ -153,19 +156,17 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 
 		// Mientras pulsemos la tecla 'S' movemos el personaje en la Y
 		else if (this.sKey.isDown) {
-			if (this.anims.currentAnim.key !== 'front')
+			if (this.anims.currentAnim.key !== 'front' && this.anims.currentAnim.key !== 'left' && this.anims.currentAnim.key !== 'right')
 				this.play('front');
-			this.body.setVelocityY(this.speed*dt/60);
+			velocity.y = 1;
 			//this.y += speed*dt/60;
 		}
 
 		else if (this.sKey.isUp && this.anims.currentAnim.key === 'front') {
 			this.play('standFront');
 		}
-		else {
-			this.body.setVelocityX(0);
-			this.body.setVelocityY(0);
-        }
+		velocity.normalize();
+		this.body.setVelocity(velocity.x*this.speed, velocity.y*this.speed);
 
 		
 		///////////////////////////////////////////////////////////////////////////////////
@@ -181,8 +182,12 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 
 			if(this.linterna){
 				this.luz.play('onLuz');
+				this.speed = 80;
 			} 
-			else{this.luz.play('offLuz');}
+			else{
+				this.luz.play('offLuz');
+				this.speed = 150;
+			}
 
 			this.canPressF = false;
 			// Esperar un segundo antes de volver a escuchar la tecla E porque si no no se pulsa bien

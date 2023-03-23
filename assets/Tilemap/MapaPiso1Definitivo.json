@@ -765,6 +765,18 @@
                  "width":0,
                  "x":1340,
                  "y":1820
+                }, 
+                {
+                 "height":0,
+                 "id":9,
+                 "name":"bed",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":1089.33333333333,
+                 "y":1869.33333333333
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -773,7 +785,7 @@
          "y":0
         }],
  "nextlayerid":12,
- "nextobjectid":9,
+ "nextobjectid":10,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.10.0",
@@ -782,7 +794,7 @@
         {
          "columns":64,
          "firstgid":1,
-         "image":"..\/Tiled\/muro.jpeg",
+         "image":"muro.jpeg",
          "imageheight":720,
          "imagewidth":768,
          "margin":0,

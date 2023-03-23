@@ -17,7 +17,7 @@ export default class LifeBar extends Phaser.GameObjects.Graphics {
 
     	this.fillStyle(0x222222, 0.8);
 		this.fillRect(x, y, 100, 10);
-		this.depth = 2;
+		this.depth = 3;
 
 
 		this.lifeText = new Phaser.GameObjects.Text(scene, x - 70, y, valorInicial, { color: '#ffffff', fontSize: '12px' });

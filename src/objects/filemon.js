@@ -19,6 +19,8 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		this.scene.add.existing(this); //Añadimos el caballero a la escena
 		this.scene.physics.add.existing(this);
 
+		this.depth = 1;
+
 		//variables globales (creo q si se declaran arriba con el @ se hacen globales también)
 		this.linterna = false;
 		this.pilas = [];

@@ -22,11 +22,11 @@ export default class firstLevel extends Phaser.Scene {
 
 		this.load.spritesheet('armario', 'assets/armario-125-125.png', {frameWidth: 125, frameHeight: 125})
 		//Cargamos el archivo JSON necesario para importar el Tilemap
-		this.load.tilemapTiledJSON('tilemap','../../assets/Tilemap/MapaPiso1Definitivo.json');
+		this.load.tilemapTiledJSON('tilemap','assets/Tilemap/MapaPiso1Definitivo.json');
 		//Cargamos los tilesets necesarios para poder crear el mapa
-		this.load.image('muro','../../assets/Tilemap/muro.jpeg');
+		this.load.image('muro','assets/Tilemap/muro.jpeg');
 		//this.load.image('puertas','../../assets/Tilemap/puertas.png');
-		this.load.image('mapaImg','../../assets/Tilemap/mapaCapa.png');
+		this.load.image('mapaImg','assets/Tilemap/mapaCapa.png');
 	}
 	
 	/**

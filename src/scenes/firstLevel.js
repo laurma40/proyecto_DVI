@@ -24,7 +24,7 @@ export default class firstLevel extends Phaser.Scene {
 		//Cargamos el archivo JSON necesario para importar el Tilemap
 		this.load.tilemapTiledJSON('tilemap','assets/Tilemap/MapaPiso1Definitivo.json');
 		//Cargamos los tilesets necesarios para poder crear el mapa
-		this.load.image('muro','assets/Tilemap/muro.jpeg');
+		this.load.image('nuevosMuros','assets/Tilemap/nuevosMuros.jpeg');
 		//this.load.image('puertas','../../assets/Tilemap/puertas.png');
 		this.load.image('mapaImg','assets/Tilemap/mapaCapa.png');
 	}
@@ -42,11 +42,11 @@ export default class firstLevel extends Phaser.Scene {
 			width:200,
 			height:200
 		});
-		const t_muro = this.map.addTilesetImage('muro');
+		const t_muro = this.map.addTilesetImage('nuevosMuros');
 		this.imagenCapa = this.add.image(0,0,'mapaImg');
 		this.imagenCapa.setOrigin(0, 0);
 		this.imagenCapa.setDepth(0);
-				//Este es el orden de Pintado
+		//Este es el orden de Pintado
 		this.colisionesLayer =this.map.createLayer('Colisiones/colisionesMuro',t_muro);
 		this.colisionesLayer.setVisible(false);
 		//this.capaAntiguoMapa = this.map.createLayer('mapaCapa', imagenCapa);
@@ -54,14 +54,14 @@ export default class firstLevel extends Phaser.Scene {
 		this.muroExteriorLayer = this.map.createLayer('Muros/muroExterior',t_muro);
 		//this.puertasLayer = this.map.createLayer('Puertas',t_puertas);
 		
-		console.log(this);
 		
-		this.colisionesLayer.setCollision([2561,2601]);
-		this.colisionesLayer.setTileIndexCallback(2569,this.cambioEntrada,this);
-		this.colisionesLayer.setTileIndexCallback(2577,this.cambioLateralesIncio,this);
-		this.colisionesLayer.setTileIndexCallback(2585,this.cambioLateralesArriba,this);
-		this.colisionesLayer.setTileIndexCallback(2593,this.entradaHabitacion,this);
-		this.colisionesLayer.setTileIndexCallback(2601,this.escaleraHabitacion,this);
+		console.log(this);
+		this.colisionesLayer.setCollision(1281);
+		this.colisionesLayer.setTileIndexCallback(1289,this.cambioEntrada,this);
+		this.colisionesLayer.setTileIndexCallback(1297,this.cambioLateralesIncio,this);
+		this.colisionesLayer.setTileIndexCallback(1305,this.cambioLateralesArriba,this);
+		this.colisionesLayer.setTileIndexCallback(1313,this.entradaHabitacion,this);
+		//this.colisionesLayer.setTileIndexCallback(2601,this.escaleraHabitacion,this);
 		this.mov = this.map.createFromObjects('Objetos',{name: 'player',classType: Filemon, key:'player'});
 		this.player = this.mov[0];
 		this.cameras.main.startFollow(this.player);
@@ -71,7 +71,7 @@ export default class firstLevel extends Phaser.Scene {
 		//Añadir las colisiones del jugador con la capa
 		this.physics.add.collider(this.player, this.colisionesLayer, this.colision);
 		
-
+		console.log(this);
 		
 		// Creamos los objetos a través de la capa de objetos del tilemap y la imagen o la clase que queramos
 		this.pilas = this.map.createFromObjects('Objetos', {name: "pila",classType: Battery, key: 'battery' });

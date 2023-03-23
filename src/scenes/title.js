@@ -18,9 +18,9 @@ export default class Title extends Phaser.Scene {
 
         this.load.image('inicio', 'assets/casaInicio_v2.jpeg');
 
-		this.load.image('over', 'assets/gameOver.png');
-		this.load.image('retry', 'assets/retry.png');
-		this.load.image('retry2', 'assets/retry2.png');
+		this.load.image('over', 'assets/gameOver2.png');
+		this.load.image('retry', 'assets/retry12.png');
+		this.load.image('retry2', 'assets/retry22.png');
 
 
 	}

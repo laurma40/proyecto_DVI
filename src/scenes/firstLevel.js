@@ -1,7 +1,8 @@
-import Battery from "../objects/battery";
-import CabezaPesanta from "../objects/cabezaPesanta";
+import Battery from "../objects/battery.js";
+import CabezaPesanta from "../objects/cabezaPesanta.js";
 import Filemon from "../objects/filemon.js";
 import Armario from "../objects/armario.js";
+import Bed from "../objects/bed.js";
 /**
  * Escena principal de juego.
  * @extends Phaser.Scenes
@@ -17,6 +18,7 @@ export default class firstLevel extends Phaser.Scene {
 		this.load.spritesheet('filemon', 'assets/filemon-250-400.png', {frameWidth: 250, frameHeight: 400})
 		this.load.spritesheet('battery', 'assets/SpriteSheet_Batery3.png',{frameWidth: 280, frameHeight: 370})
 		this.load.spritesheet('luz', 'assets/luz.png',{frameWidth: 100, frameHeight: 100})
+		this.load.spritesheet('bed', 'assets/cama_530_330.png', {frameWidth: 530, frameHeight: 330})
 
 		this.load.spritesheet('armario', 'assets/armario-125-125.png', {frameWidth: 125, frameHeight: 125})
 		//Cargamos el archivo JSON necesario para importar el Tilemap
@@ -74,7 +76,9 @@ export default class firstLevel extends Phaser.Scene {
 		// Creamos los objetos a través de la capa de objetos del tilemap y la imagen o la clase que queramos
 		this.pilas = this.map.createFromObjects('Objetos', {name: "pila",classType: Battery, key: 'battery' });
 		this.armarios = this.map.createFromObjects('Objetos', {name: "armario", classType: Armario, key: 'armario'});
-        	this.physics.add.overlap(this.armarios, this.player, this.player.interactuarArmario, null, this.player);
+		this.bed = this.map.createFromObjects('Objetos', {name: "bed", classType: Bed, key: 'bed'});
+		this.physics.add.overlap(this.bed, this.player, this.player.dormir, null, this.player);
+        this.physics.add.overlap(this.armarios, this.player, this.player.interactuarArmario, null, this.player);
 		this.physics.add.overlap(this.pilas, this.player, this.player.cojePila, null, this.player);
 	}
 	cambioEntrada(){

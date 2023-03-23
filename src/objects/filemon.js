@@ -1,13 +1,7 @@
 
-/*
-luz --> encender y apagar E
-num Pilas
-capacidad bolsillos {total, actual} --> cojer cosas F
-*/
 
-
-import LifeBar from "./lifeBar";
-import Luz from "./luz";
+import LifeBar from "./lifeBar.js";
+import Luz from "./luz.js";
 
 export default class Filemon extends Phaser.GameObjects.Sprite {
 
@@ -259,6 +253,7 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		
 		if(this.eKey.isDown){
 			this.linterna = false;
+			this.luz.play('offLuz');
 			this.zonaSegura = !this.zonaSegura;
 			if(this.zonaSegura){
 				sprite1.play('open');
@@ -278,10 +273,34 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 				this.fKey = this.scene.input.keyboard.addKey('F');
 				sprite2.visible = true;
 			}
+
+			this.canPressF = false;
+			setTimeout(() => { 
+				this.canPressF = true;
+				sprite1.play('closed') ;
+			}, 1000);
 		}
-		else{
-			setTimeout(() => { sprite1.play('closed') }, 1000);
-		}
+	
+		this.canPressF = true;
 	}
+
+	
+    dormir(sprte1, sprite2){//cama, this.player,
+
+
+		if(this.eKey.isDown){ 
+
+			sprte1.play('conFilemon')
+			this.visible = false;
+			this.linterna = false;
+	
+			this.scene.cameras.main.fadeOut(1000, 0, 0, 0)
+			this.scene.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
+				this.scene.scene.start('gameOver'); //Cambiamos a la escena de juego
+			});
+		}
+		
+	}
+    
 
 }

@@ -14,7 +14,6 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 	constructor(scene, x, y, colliderGroup) {
 		super(scene, x, y, 'filemon');
 		this.setScale(0.1);
-		this.speed = 150;
 		this.scene = scene;
 		this.scene.add.existing(this); //Añadimos el caballero a la escena
 		this.scene.physics.add.existing(this);
@@ -27,11 +26,12 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		this.zonaSegura = false;
 		//this.pilas.push(new Battery(scene,400,300));
 
-		this.corduraMax = 5000; //esto se pasaría por el constructor para que dependa del nivel
+		this.corduraMax = 4000; //esto se pasaría por el constructor para que dependa del nivel
 		this.cordura = this.corduraMax;
 
-		this.scene = scene;
-		
+		this.maxSpeed = 115;
+		this.minSpeed = 75;
+		this.speed = this.maxSpeed;		
 	
 
 		// Creamos las animaciones de cabeza de pesanta
@@ -182,11 +182,13 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 
 			if(this.linterna){
 				this.luz.play('onLuz');
-				this.speed = 80;
+				this.speed = this.minSpeed;
+				console.log(this.speed);
 			} 
 			else{
 				this.luz.play('offLuz');
-				this.speed = 150;
+				this.speed = this.maxSpeed;
+				console.log(this.speed);
 			}
 
 			this.canPressF = false;
@@ -204,6 +206,7 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 				this.pilas[0].y = this.y + 10;
 				this.pilas[0].visible = true;
 				this.pilas.shift();//suelto la pila en primera posición
+				this.speed = this.maxSpeed;
 			}
 			if(this.pilas.length == 0){
 				this.linterna = false;

@@ -10,7 +10,12 @@ A través de los pasillos de su casa y escondiéndose de figuras extrañas, tend
 ## Capturas/bocetos
 
 ```
-Por completar...
+![Captura de pantalla 2023-03-26 162948](https://user-images.githubusercontent.com/118825120/228006397-43638db6-d9f8-4a4c-8627-93e893f46177.png)
+
+![Captura de pantalla 2023-03-27 183057](https://user-images.githubusercontent.com/118825120/228006562-1f85caaf-a780-435a-81ed-f7f2376a8d1a.png)
+
+![Captura de pantalla 2023-03-27 183145](https://user-images.githubusercontent.com/118825120/228006645-968ebf92-7b50-400a-ba24-d4bbe063af34.png)
+
 ```
 
 ## Página web

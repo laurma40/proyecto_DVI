@@ -75,10 +75,10 @@ export default class firstLevel extends Phaser.Scene {
 		
 		// Creamos los objetos a través de la capa de objetos del tilemap y la imagen o la clase que queramos
 		this.pilas = this.map.createFromObjects('Objetos', {name: "pila",classType: Battery, key: 'battery' });
-		this.armarios = this.map.createFromObjects('Objetos', {name: "armario", classType: Armario, key: 'armario'});
+		//this.armarios = this.map.createFromObjects('Objetos', {name: "armario", classType: Armario, key: 'armario'});
 		this.bed = this.map.createFromObjects('Objetos', {name: "bed", classType: Bed, key: 'bed'});
 		this.physics.add.overlap(this.bed, this.player, this.player.dormir, null, this.player);
-        this.physics.add.overlap(this.armarios, this.player, this.player.interactuarArmario, null, this.player);
+        //this.physics.add.overlap(this.armarios, this.player, this.player.interactuarArmario, null, this.player);
 		this.physics.add.overlap(this.pilas, this.player, this.player.cojePila, null, this.player);
 	}
 	cambioEntrada(){

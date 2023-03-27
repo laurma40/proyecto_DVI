@@ -30,7 +30,7 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		this.cordura = this.corduraMax;
 
 		this.maxSpeed = 115;
-		this.minSpeed = 75;
+		this.minSpeed = 70;
 		this.speed = this.maxSpeed;		
 	
 
@@ -303,6 +303,7 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 			sprte1.play('conFilemon')
 			this.visible = false;
 			this.linterna = false;
+			this.luz.play('offLuz');
 	
 			this.scene.cameras.main.fadeOut(1000, 0, 0, 0)
 			this.scene.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {

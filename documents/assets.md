@@ -91,7 +91,7 @@ También se han hecho ediciones de imágenes reales para pixel art:
 | :- | :- |
 |<p>Logo Mortadelo:</p><p>[logo-studio.png](https://github.com/laurma40/proyecto_DVI/blob/pagina/assets/logo-studio.png)</p>|<p><https://www.elmundo.es/promociones/comicsmortadelo/images/mortadelo_solo.png?crc=3758579294></p><p></p><p>Creditos al autor de los cómics: [Francisco Ibáñez](https://www.google.com/search?rlz=1C1CHBF_esES912ES912&q=Francisco+Ib%C3%A1%C3%B1ez&stick=H4sIAAAAAAAAAONgVuLUz9U3MDcsNkt6xGjCLfDyxz1hKe1Ja05eY1Tl4grOyC93zSvJLKkUEudig7J4pbi5ELp4FrEKuRUl5iVnFifnK3gmHV54eGNqFQBOIefcWQAAAA&sa=X&ved=2ahUKEwiEx__g__z9AhXE_rsIHfEjAoUQzIcDKAB6BAgtEAE)</p>|
 
-1. # <a name="_owvjn4euwtpm"></a>Música y sonidos 
+2. # <a name="_owvjn4euwtpm"></a>Música y sonidos 
 
 Todos los recursos de audio que se han recopilado hasta el momento proceden de la misma fuente, Zapsplat: <https://www.zapsplat.com/> .
 

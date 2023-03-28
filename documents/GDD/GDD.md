@@ -19,7 +19,7 @@
 
 <a name="_heading=h.ep13uwvl0dmf"></a>**ÍNDICE**
 
-[**1. INTRODUCCIÓN	2**](#_heading=h.30j0zll)**
+[**1. INTRODUCCIÓN**](#_heading=h.30j0zll)
 
 [1.1 GAME CONCEPT	2](#_heading=h.1fob9te)
 

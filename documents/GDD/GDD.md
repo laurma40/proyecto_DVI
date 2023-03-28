@@ -1,65 +1,52 @@
 ![](Aspose.Words.3dfe8fbc-37f9-4d9d-b1b3-33de3fc12f0b.003.png)
 
-
-
-
-
 **DOCUMENTO:** *Game Design Document*
 
 **AUTHOR/S**: Julia Fluiters Pereira, Laura Martínez Tomás, Víctor Giménez Chillada y Francisco Javier Antoranz Esteban
-
-
-
-
-
-
-
-
-
 
 <a name="_heading=h.ep13uwvl0dmf"></a>**ÍNDICE**
 
 [**1. INTRODUCCIÓN**](#_heading=h.30j0zll)
 
-[1.1 GAME CONCEPT	2](#_heading=h.1fob9te)
+[1.1 GAME CONCEPT](#_heading=h.1fob9te)
 
-[1.1.1 INFORMACIÓN BÁSICA	2](#_heading=h.3znysh7)
+[1.1.1 INFORMACIÓN BÁSICA](#_heading=h.3znysh7)
 
-[1.1.2 DESCRIPCIÓN	2](#_heading=h.2et92p0)
+[1.1.2 DESCRIPCIÓN](#_heading=h.2et92p0)
 
-[1.1.3 CARACTERÍSTICAS PRINCIPALES	2](#_heading=h.tyjcwt)
+[1.1.3 CARACTERÍSTICAS PRINCIPALES](#_heading=h.tyjcwt)
 
-[1.1.4 RIESGOS	2](#_heading=h.3dy6vkm)
+[1.1.4 RIESGOS](#_heading=h.3dy6vkm)
 
-[1.2 ESTÉTICA	3](#_heading=h.1t3h5sf)
+[1.2 ESTÉTICA](#_heading=h.1t3h5sf)
 
-[1.2.1 ARTE	3](#_heading=h.4d34og8)
+[1.2.1 ARTE](#_heading=h.4d34og8)
 
-[1.2.2 MÚSICA Y SONIDO	5](#_heading=h.2s8eyo1)
+[1.2.2 MÚSICA Y SONIDO](#_heading=h.2s8eyo1)
 
-[**2. MECÁNICAS	6**](#_heading=h.17dp8vu)
+[**2. MECÁNICAS**](#_heading=h.17dp8vu)
 
-[2.1 FLUJO DEL JUEGO	6](#_heading=h.3rdcrjn)
+[2.1 FLUJO DEL JUEGO](#_heading=h.3rdcrjn)
 
-[2.2 MUNDO	6](#_heading=h.26in1rg)
+[2.2 MUNDO](#_heading=h.26in1rg)
 
-[2.3 JUGADOR	6](#_heading=h.lnxbz9)
+[2.3 JUGADOR](#_heading=h.lnxbz9)
 
-[2.4 ENEMIGOS	7](#_heading=h.35nkun2)
+[2.4 ENEMIGOS](#_heading=h.35nkun2)
 
-[2.5 COMBATE	7](#_heading=h.1ksv4uv)
+[2.5 COMBATE](#_heading=h.1ksv4uv)
 
-[2.6 OBJETOS / ELEMENTOS	7](#_heading=h.44sinio)
+[2.6 OBJETOS / ELEMENTOS](#_heading=h.44sinio)
 
-[**3. CONTENIDO DE MUESTRA	9**](#_heading=h.1y810tw)
+[**3. CONTENIDO DE MUESTRA**](#_heading=h.1y810tw)
 
-[**4. INTERFAZ	11**](#_heading=h.4i7ojhp)
+[**4. INTERFAZ**](#_heading=h.4i7ojhp)
 
-[4.1 GUI	11](#_heading=h.2xcytpi)
+[4.1 GUI](#_heading=h.2xcytpi)
 
-[4.2 CONTROLES	11](#_heading=h.1ci93xb)
+[4.2 CONTROLES](#_heading=h.1ci93xb)
 
-[**5. REFERENCIAS	12**](#_heading=h.3whwml4)
+[**5. REFERENCIAS**](#_heading=h.3whwml4)
 
 
 # <a name="_heading=h.30j0zll"></a>1. **INTRODUCCIÓN**

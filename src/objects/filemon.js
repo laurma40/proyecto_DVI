@@ -206,11 +206,11 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 				this.pilas[0].y = this.y + 10;
 				this.pilas[0].visible = true;
 				this.pilas.shift();//suelto la pila en primera posición
-				this.speed = this.maxSpeed;
 			}
 			if(this.pilas.length == 0){
 				this.linterna = false;
-				this.luz.play('offLuz')
+				this.luz.play('offLuz');
+				this.speed = this.maxSpeed;
 			} 
 		}
 

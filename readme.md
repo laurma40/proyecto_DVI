@@ -10,13 +10,17 @@ A través de los pasillos de su casa y escondiéndose de figuras extrañas, tend
 ## Capturas/bocetos
 
 
-![ventana de inicio](https://github.com/laurma40/proyecto_DVI/blob/pagina/assets/ventanaInicio.png)
+![ventana de inicio](https://github.com/laurma40/proyecto_DVI/blob/pagina/assets/capturas/ventanaInicio.png)
 
-![ventana de juego](https://github.com/laurma40/proyecto_DVI/blob/pagina/assets/ventanaJuego1.png)
+![ventana de juego](https://github.com/laurma40/proyecto_DVI/blob/pagina/assets/capturas/ventanaJuego1.png)
 
-![ventana de juego](https://github.com/laurma40/proyecto_DVI/blob/pagina/assets/ventanaJuego2.png)
+![ventana de juego](https://github.com/laurma40/proyecto_DVI/blob/pagina/assets/capturas/ventanaJuego2.png)
 
+![ventana de juego](https://github.com/laurma40/proyecto_DVI/blob/pagina/assets/capturas/ventanaMovimientos.gif)
 
+![ventana de juego](https://github.com/laurma40/proyecto_DVI/blob/pagina/assets/capturas/ventanaPila.gif)
+
+![ventana de juego](https://github.com/laurma40/proyecto_DVI/blob/pagina/assets/capturas/ventanaLinterna.gif)
 
 ## Página web
 

@@ -15,15 +15,6 @@
     font-style: normal;
 
 }
-/* NO SÉ
-@font-face {
-    font-family: 'pressstart2pregular';
-    src: url('./fonts/pressstart2p-regular-webfont.woff2') format('woff2'),
-         url('./fonts/pressstart2p-regular-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-
-}*/
 
 /*Parte del menú*/
 .menu .contenido{
@@ -84,7 +75,6 @@
 /*Parte del juego*/
 #juego {
     margin-top: 150px;
-    margin-bottom: 150px;
 }
 
 /*Parte de controles*/

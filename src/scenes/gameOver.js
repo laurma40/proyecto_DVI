@@ -13,12 +13,6 @@ export default class GameOver extends Phaser.Scene {
 	 */
 	preload(){
         
-		//this.load.image('start', 'assets/start.png');
-        //this.load.image('inicio', 'assets/casaInicio_v2.jpeg');
-		/*this.load.spritesheet('knight', 'assets/Knight/knight.png', {frameWidth: 72, frameHeight: 86})
-		this.load.spritesheet('box', 'assets/Box/box.png', {frameWidth: 64, frameHeight: 64})*/
-
-
 
 	}
 	
@@ -32,8 +26,16 @@ export default class GameOver extends Phaser.Scene {
         
 
 		//Pintamos un botón de Empezar
-		var sprite = this.add.image(this.sys.game.canvas.width/2, this.sys.game.canvas.height/2-20, 'start')
-        sprite.setScale(0.125);
+		var overView = this.add.image(this.sys.game.canvas.width/2, this.sys.game.canvas.height/2-20, 'over')
+        overView.setScale(0.035);
+
+
+		var s1 = this.textures.get('retry');
+		var s2 = this.textures.get('retry2');
+
+		var sprite = this.add.image(this.sys.game.canvas.width/2, this.sys.game.canvas.height/2-20, 'retry')
+        sprite.setScale(0.025);
+
 
 		sprite.setInteractive(); // Hacemos el sprite interactivo para que lance eventos
 
@@ -49,10 +51,14 @@ export default class GameOver extends Phaser.Scene {
 
 		sprite.on('pointerover', () => {
 			console.log("hola")
+			sprite.setTexture(s2.key);
+
 	    });
 
 	    sprite.on('pointerout', () => {
 			console.log("adios")
+			sprite.setTexture(s1.key);
+
 	    });
 
 	}

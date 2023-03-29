@@ -10,11 +10,15 @@ export default class Battery extends Phaser.GameObjects.Sprite {
 		super(scene, x, y, 'battery'); // todo menos la escena son opcionales
 		this.setScale(0.04,0.04);
 		this.scene.add.existing(this); //Añadimos la pila a la escena
-		
+		this.scene.physics.add.existing(this);
 
-		//(guardo la carga total por si se quiere haer una varra o algo)
-		var cargaTotl = cargaInicial;
-		this.carga = cargaTotl;
+		//(guardo la carga total por si se quiere haer una barra o algo)
+		
+		if(cargaInicial == null) this.carga = 400; //pongo una carga por defecto
+		else this.carga = cargaInicial;
+
+		//var cargaTotl = cargaInicial; //(guardo la carga total por si se quiere haer una barra o algo)
+
 		this.enUso = false; //hará falta parfa mostrar la barra de carga
 
 
@@ -35,13 +39,6 @@ export default class Battery extends Phaser.GameObjects.Sprite {
 
 		this.play('on');
 
-		// Agregamos la caja a las físicas para que Phaser lo tenga en cuenta
-		//scene.physics.add.existing(this);
-
-		// Decimos que la caja colisiona con los límites del mundo
-		//this.body.setCollideWorldBounds();
-
-		//colliderGroup.add(this);
 	}
 
 	/**
@@ -52,7 +49,6 @@ export default class Battery extends Phaser.GameObjects.Sprite {
 	 */
 	preUpdate(t, dt) {
 	
-
 	}
 
 

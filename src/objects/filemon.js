@@ -1,13 +1,7 @@
 
-/*
-luz --> encender y apagar E
-num Pilas
-capacidad bolsillos {total, actual} --> cojer cosas F
-*/
 
-
-import LifeBar from "./lifeBar";
-import Luz from "./luz";
+import LifeBar from "./lifeBar.js";
+import Luz from "./luz.js";
 
 export default class Filemon extends Phaser.GameObjects.Sprite {
 
@@ -20,21 +14,24 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 	constructor(scene, x, y, colliderGroup) {
 		super(scene, x, y, 'filemon');
 		this.setScale(0.1);
-		this.speed = 250;
 		this.scene = scene;
 		this.scene.add.existing(this); //Añadimos el caballero a la escena
 		this.scene.physics.add.existing(this);
 
+		this.depth = 1;
+
 		//variables globales (creo q si se declaran arriba con el @ se hacen globales también)
 		this.linterna = false;
 		this.pilas = [];
+		this.zonaSegura = false;
 		//this.pilas.push(new Battery(scene,400,300));
 
-		this.corduraMax = 5000; //esto se pasaría por el constructor para que dependa del nivel
+		this.corduraMax = 4000; //esto se pasaría por el constructor para que dependa del nivel
 		this.cordura = this.corduraMax;
 
-		this.scene = scene;
-		
+		this.maxSpeed = 115;
+		this.minSpeed = 70;
+		this.speed = this.maxSpeed;		
 	
 
 		// Creamos las animaciones de cabeza de pesanta
@@ -99,6 +96,12 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		this.eKey = this.scene.input.keyboard.addKey('E'); //coger / interactuarzz/
 		this.fKey = this.scene.input.keyboard.addKey('F'); //encender / apagar
 		this.canPressF = true;
+		this.canPressW = true;
+		this.canPressA = true;
+		this.canPressS = true;
+		this.canPressD = true;
+
+		this.animacionEnCurso = false;
 		
 		this.luz = new Luz(this.scene, this.x, this.y);
 		this.progressBar = new LifeBar(this.scene, this.x + 170, this.y - 180, this.corduraMax );
@@ -111,12 +114,13 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 	preUpdate(t, dt) {
 		// Es muy imporante llamar al preUpdate del padre (Sprite), sino no se ejecutará la animación
 		super.preUpdate(t, dt);
-
+		let velocity = new Phaser.Math.Vector2(0, 0);
 		// Mientras pulsemos la tecla 'A' movemos el personaje en la X
 		if (this.aKey.isDown) {
-			if (this.anims.currentAnim.key !== 'left')
+			if (this.anims.currentAnim.key !== 'left'){
 				this.play('left');
-			this.body.setVelocityX(-this.speed*dt/60);
+			}
+			velocity.x = -1;
 			//this.x -= this.speed*dt/60;
 		}
 
@@ -126,9 +130,10 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 
 		// Mientras pulsemos la tecla 'D' movemos el personaje en la X
 		else if (this.dKey.isDown) {
-			if (this.anims.currentAnim.key !== 'right')
+			if (this.anims.currentAnim.key !== 'right'){
 				this.play('right');
-			this.body.setVelocityX(this.speed*dt/60);
+			}
+			velocity.x = 1;
 			//this.x += speed*dt/60;
 		}
 
@@ -137,11 +142,12 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		}
 
 		// Mientras pulsemos la tecla 'W' movemos el personaje en la Y
-		else if (this.wKey.isDown) {
-			if (this.anims.currentAnim.key !== 'back')
+		if (this.wKey.isDown) {
+			if (this.anims.currentAnim.key !== 'back' && this.anims.currentAnim.key !== 'left' && this.anims.currentAnim.key !== 'right'){
 				this.play('back');
+			}
 			//this.y -= speed*dt/60;
-			this.body.setVelocityY(-this.speed*dt/60);
+			velocity.y = -1;
 		}
 
 		else if (this.wKey.isUp && this.anims.currentAnim.key === 'back') {
@@ -150,19 +156,17 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 
 		// Mientras pulsemos la tecla 'S' movemos el personaje en la Y
 		else if (this.sKey.isDown) {
-			if (this.anims.currentAnim.key !== 'front')
+			if (this.anims.currentAnim.key !== 'front' && this.anims.currentAnim.key !== 'left' && this.anims.currentAnim.key !== 'right')
 				this.play('front');
-			this.body.setVelocityY(this.speed*dt/60);
+			velocity.y = 1;
 			//this.y += speed*dt/60;
 		}
 
 		else if (this.sKey.isUp && this.anims.currentAnim.key === 'front') {
 			this.play('standFront');
 		}
-		else {
-			this.body.setVelocityX(0);
-			this.body.setVelocityY(0);
-        }
+		velocity.normalize();
+		this.body.setVelocity(velocity.x*this.speed, velocity.y*this.speed);
 
 		
 		///////////////////////////////////////////////////////////////////////////////////
@@ -178,8 +182,14 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 
 			if(this.linterna){
 				this.luz.play('onLuz');
+				this.speed = this.minSpeed;
+				console.log(this.speed);
 			} 
-			else{this.luz.play('offLuz');}
+			else{
+				this.luz.play('offLuz');
+				this.speed = this.maxSpeed;
+				console.log(this.speed);
+			}
 
 			this.canPressF = false;
 			// Esperar un segundo antes de volver a escuchar la tecla E porque si no no se pulsa bien
@@ -199,44 +209,15 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 			}
 			if(this.pilas.length == 0){
 				this.linterna = false;
-				this.luz.play('offLuz')
+				this.luz.play('offLuz');
+				this.speed = this.maxSpeed;
 			} 
-		}
-
-		////COGER / INTERACTUAR CON  OBJETOS (de momento pilas)
-		
-		if(this.eKey.isDown){ 
-			
-			const objetosEscena = this.scene.children.getChildren(); 
-			let ditancia = 10;
-
-			objetosEscena.forEach(objeto => { //recorro los objetos en la escena
-				
-				//console.log(objeto);
-
-				if( Math.abs(objeto.y - this.y) <= ditancia && Math.abs(objeto.x - this.x) >= ditancia){
-					if(objeto.name == "battery"){ 
-						this.cojePila(objeto);
-
-						console.log("hola");
-						//this.objetoAux = objeto;
-					}	
-
-					//AÑADIR AQUI EL RESTO DE OBJETOS CON LOS QUE PUEDE INTERACTUAR
-					//Armario, puerta, cama(meta), llave
-
-					return false; //para el bucle para coger de uno en uno (no va bn :( ) 
-
-				}		
-
-			});
-
 		}
 
 
 		////CORDURA
 
-		if(this.linterna){
+		if(this.linterna || this.zonaSegura){
 			if(this.cordura < this.corduraMax) this.cordura++; //HACERLO CON
 		}
 		else{
@@ -252,28 +233,85 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 	}
 
 
-	cojePila(battery){
-
-
-		console.log(this.pilas.length);
-
-		if( battery.carga > 0 && this.pilas.length < 3){ //Solo puede llevar tres pilas y solo la cojo si tiene carga
-			this.pilas.push(battery);
-			
-			//AQUI SE METERIAN EN ALGUN ESPECIO DE INVENTARIO (la hago invisible de momento y la mando lejos)
-
-			battery.visible = false;
-			battery.x = 100000;
-			battery.y = 100000;
-
-
-
-			//Y PONER SONIDO
-		}
-	}
-
 
 	
+	cojePila(sprte1, sprite2){//this.pila1, this.player,
 
+
+		console.log("AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
+
+		if(this.eKey.isDown){ 
+
+
+			if( sprte1.carga > 0 && this.pilas.length < 3){ //Solo puede llevar tres pilas y solo la cojo si tiene carga
+				this.pilas.push(sprte1);
+				
+				//AQUI SE METERIAN EN ALGUN ESPECIO DE INVENTARIO (la hago invisible de momento y la mando lejos)
+
+				sprte1.visible = false;
+				sprte1.x = 100000;
+				sprte1.y = 100000;
+
+
+				//Y PONER SONIDO
+			}
+		}
+		
+	}
+
+	interactuarArmario(sprite1, sprite2){ // armario, this.player
+		
+		if(this.eKey.isDown){
+			this.linterna = false;
+			this.luz.play('offLuz');
+			this.zonaSegura = !this.zonaSegura;
+			if(this.zonaSegura){
+				sprite1.play('open');
+				this.scene.input.keyboard.removeKey('W');
+				this.scene.input.keyboard.removeKey('A');
+				this.scene.input.keyboard.removeKey('S');
+				this.scene.input.keyboard.removeKey('D');
+				this.scene.input.keyboard.removeKey('F');
+				sprite2.visible = false;
+			}
+			else{
+				sprite1.play('close');
+				this.wKey = this.scene.input.keyboard.addKey('W');
+				this.aKey = this.scene.input.keyboard.addKey('A');
+				this.sKey = this.scene.input.keyboard.addKey('S');
+				this.dKey = this.scene.input.keyboard.addKey('D');
+				this.fKey = this.scene.input.keyboard.addKey('F');
+				sprite2.visible = true;
+			}
+
+			this.canPressF = false;
+			setTimeout(() => { 
+				this.canPressF = true;
+				sprite1.play('closed') ;
+			}, 1000);
+		}
+	
+		this.canPressF = true;
+	}
+
+	
+    dormir(sprte1, sprite2){//cama, this.player,
+
+
+		if(this.eKey.isDown){ 
+
+			sprte1.play('conFilemon')
+			this.visible = false;
+			this.linterna = false;
+			this.luz.play('offLuz');
+	
+			this.scene.cameras.main.fadeOut(1000, 0, 0, 0)
+			this.scene.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
+				this.scene.scene.start('gameOver'); //Cambiamos a la escena de juego
+			});
+		}
+		
+	}
+    
 
 }

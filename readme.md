@@ -1,7 +1,7 @@
 # Que viene el COCO!
 > Videojuego desarrollado mediante tecnologías web, proyecto de la asignatura DVI impartida por la facultad de Informática UCM.
 
-## Descripcioón
+## Descripción
 
 En este jugo se toma el rol de un niño pequeño que tiene que meterse en la cama antes de que llegue el COCO y se lo coma. Tendrá que recorrer su casa a oscuras con la ayuda de una linterna que necesitará mantener encendida para no pasar miedo y perder cordura, pero cuidado, las pilas de la linterna se pueden agotar, y tendrá que buscar más para mantener la luz. 
 
@@ -9,9 +9,18 @@ A través de los pasillos de su casa y escondiéndose de figuras extrañas, tend
 
 ## Capturas/bocetos
 
-```
-Por completar...
-```
+
+![ventana de inicio](https://github.com/laurma40/proyecto_DVI/blob/pagina/assets/capturas/ventanaInicio.png)
+
+![ventana de juego](https://github.com/laurma40/proyecto_DVI/blob/pagina/assets/capturas/ventanaJuego1.png)
+
+![ventana de juego](https://github.com/laurma40/proyecto_DVI/blob/pagina/assets/capturas/ventanaJuego2.png)
+
+![ventana de juego](https://github.com/laurma40/proyecto_DVI/blob/pagina/assets/capturas/ventanaMovimientos.gif)
+
+![ventana de juego](https://github.com/laurma40/proyecto_DVI/blob/pagina/assets/capturas/ventanaPila.gif)
+
+![ventana de juego](https://github.com/laurma40/proyecto_DVI/blob/pagina/assets/capturas/ventanaLinterna.gif)
 
 ## Página web
 

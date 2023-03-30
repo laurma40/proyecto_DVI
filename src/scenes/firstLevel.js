@@ -90,6 +90,7 @@ export default class firstLevel extends Phaser.Scene {
 	}
 	cambioLateralesIncio(){
 		if(this.player.wKey.isDown){
+			this.muroInteriorLayer.setVisible(true);
 			this.muroExteriorLayer.setVisible(true);
 		}else if(this.player.sKey.isDown){
 			this.muroExteriorLayer.setVisible(false);
@@ -100,6 +101,7 @@ export default class firstLevel extends Phaser.Scene {
 			this.muroInteriorLayer.setVisible(false);
 		}else if(this.player.sKey.isDown){
 			this.muroInteriorLayer.setVisible(true);
+			this.muroExteriorLayer.setVisible(true);
 		}
 	}
 	entradaHabitacion(){

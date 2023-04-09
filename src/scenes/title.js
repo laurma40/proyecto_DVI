@@ -6,6 +6,7 @@ export default class Title extends Phaser.Scene {
     
 	constructor() {
 		super({ key: 'title' });
+		this.soundOn = true;
 	}
 
 	/**
@@ -22,13 +23,24 @@ export default class Title extends Phaser.Scene {
 		this.load.image('retry', 'assets/retry12.png');
 		this.load.image('retry2', 'assets/retry22.png');
 
+		this.load.image('soundon', 'assets/sound_on.png');
+		this.load.image('soundoff', 'assets/sound_off.png');
 
+		this.load.audio('titlesong', ['assets/audio/titlesong.mp3', 'assets/audio/titlesong.ogg']);
+		this.load.audio('rain', 'assets/audio/zapsplat_nature_thunder_distant_or_high_above_very_light_rain_001_45552.mp3');
 	}
 	
 	/**
 	* Creación de los elementos de la escena principal de juego
 	*/
 	create() {
+
+		this.music = this.sound.add('titlesong',0.2,true);
+		this.rain = this.sound.add('rain',1,true);
+
+		this.rain.play();
+    	this.music.play();
+
 		//Pintamos un fondo
 		var back = this.add.image(this.sys.game.canvas.width/2, this.sys.game.canvas.height/2, 'inicio');
         back.setScale(0.75);
@@ -41,8 +53,6 @@ export default class Title extends Phaser.Scene {
 		var sprite = this.add.image(this.sys.game.canvas.width/2, this.sys.game.canvas.height/2-20, 'start')
         sprite.setScale(0.125);
 
-		
-
 		sprite.setInteractive(); // Hacemos el sprite interactivo para que lance eventos
 
 		// Escuchamos los eventos del ratón cuando interactual con nuestro sprite de "Start"
@@ -51,6 +61,8 @@ export default class Title extends Phaser.Scene {
 	    });
 
 	    sprite.on('pointerup', pointer => {
+			this.music.stop();
+			this.rain.stop();
 			this.scene.start('firstLevel'); //Cambiamos a la escena de juego
 	    });
 
@@ -63,6 +75,34 @@ export default class Title extends Phaser.Scene {
 	    sprite.on('pointerout', () => {
 			console.log("adios")
 			sprite.setTexture(s1.key);
+	    });
+
+		//Pintamos el botón de mutear el sonido
+		var sound1 = this.textures.get('soundon');
+		var sound2 = this.textures.get('soundoff');
+
+		var spriteSound = this.add.image(this.sys.game.canvas.width-20, 20, 'soundon');
+        spriteSound.setScale(0.925);
+
+		spriteSound.setInteractive();
+
+		spriteSound.on('pointerdown', pointer => {
+	    	console.log("pulsando");
+	    });
+
+	    spriteSound.on('pointerup', pointer => {
+			if (this.soundOn) {
+				this.music.stop();
+				this.rain.stop();
+				this.soundOn = false;
+				spriteSound.setTexture(sound2.key);
+			}	
+			else {
+				this.music.play();
+				this.rain.play();
+				this.soundOn = true;
+				spriteSound.setTexture(sound1.key);
+			}
 	    });
 
 	}

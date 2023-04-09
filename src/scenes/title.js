@@ -35,8 +35,10 @@ export default class Title extends Phaser.Scene {
 	*/
 	create() {
 
-		this.music = this.sound.add('titlesong',0.2,true);
-		this.rain = this.sound.add('rain',1,true);
+		this.music = this.sound.add('titlesong',true);
+		this.rain = this.sound.add('rain',true);
+
+		this.music.volume = 0.1;
 
 		this.rain.play();
     	this.music.play();

@@ -14,6 +14,7 @@ export default class firstLevel extends Phaser.Scene {
 	}
 	
 	preload(){
+		this.load.bitmapFont('fuente', 'assets/fuentes/ComicSansMs.png','assets/fuentes/ComicSansMs.xml');
 		this.load.spritesheet('cabezaPesanta', 'assets/spritesheets_1row.png', {frameWidth: 504, frameHeight: 420})
 		this.load.spritesheet('filemon', 'assets/filemon-250-400.png', {frameWidth: 250, frameHeight: 400})
 		this.load.spritesheet('battery', 'assets/SpriteSheet_Batery3.png',{frameWidth: 280, frameHeight: 370})
@@ -33,7 +34,6 @@ export default class firstLevel extends Phaser.Scene {
 	* Creación de los elementos de la escena principal de juego
 	*/
 	create() {
-
 		//crear tilemap
 		this.map = this.make.tilemap({
 			key: 'tilemap',
@@ -49,13 +49,14 @@ export default class firstLevel extends Phaser.Scene {
 		//Este es el orden de Pintado
 		this.colisionesLayer =this.map.createLayer('Colisiones/colisionesMuro',t_muro);
 		this.colisionesLayer.setVisible(false);
+		this.colisionesLayer.setDepth(1);
 		//this.capaAntiguoMapa = this.map.createLayer('mapaCapa', imagenCapa);
 		this.muroInteriorLayer = this.map.createLayer('Muros/muroInterior',t_muro);
+		this.muroInteriorLayer.setDepth(2);
 		this.muroExteriorLayer = this.map.createLayer('Muros/muroExterior',t_muro);
+		this.muroExteriorLayer.setDepth(3);
 		//this.puertasLayer = this.map.createLayer('Puertas',t_puertas);
 		
-		
-		console.log(this);
 		this.colisionesLayer.setCollision(1281);
 		this.colisionesLayer.setTileIndexCallback(1289,this.cambioEntrada,this);
 		this.colisionesLayer.setTileIndexCallback(1297,this.cambioLateralesIncio,this);
@@ -64,6 +65,7 @@ export default class firstLevel extends Phaser.Scene {
 		//this.colisionesLayer.setTileIndexCallback(2601,this.escaleraHabitacion,this);
 		this.mov = this.map.createFromObjects('Objetos',{name: 'player',classType: Filemon, key:'player'});
 		this.player = this.mov[0];
+
 		this.cameras.main.startFollow(this.player);
 		this.physics.add.existing(this.player);
 		this.physics.world.enable(this.player);
@@ -80,13 +82,27 @@ export default class firstLevel extends Phaser.Scene {
 		this.physics.add.overlap(this.bed, this.player, this.player.dormir, null, this.player);
         //this.physics.add.overlap(this.armarios, this.player, this.player.interactuarArmario, null, this.player);
 		this.physics.add.overlap(this.pilas, this.player, this.player.cojePila, null, this.player);
+
+		//crear fuentes
+		this.textoEscribiendose = false;
+		this.retroText = this.add.bitmapText(100,100,'fuente','', 16);
+		this.retroText.setTint(0xffffff);
+		this.retroText.setDepth(4);
 	}
+	update() {
+        // actualizar la posición del texto en función de la posición actual del jugador
+		if (this.retroText) {
+			this.retroText.x = this.cameras.main.scrollX + 10; // posicionar el texto en la esquina superior izquierda, dejando 10 píxeles de margen
+			this.retroText.y = this.cameras.main.scrollY + 10; // posicionar el texto en la esquina superior izquierda, dejando 10 píxeles de margen
+		}
+    }
 	cambioEntrada(){
 		if(this.player.wKey.isDown){
 			this.muroExteriorLayer.setVisible(false);
 		}else if(this.player.sKey.isDown){
 			this.muroExteriorLayer.setVisible(true);
 		}
+		this.escribirTexto("Bienvenido a la habitacion");
 	}
 	cambioLateralesIncio(){
 		if(this.player.wKey.isDown){
@@ -119,5 +135,22 @@ export default class firstLevel extends Phaser.Scene {
 	}
 	puerta(){
 		console.log('Puerta');
+	}
+	escribirTexto(texto) {
+		if (!this.textoEscribiendose) {
+			this.textoEscribiendose = true;
+			if (this.retroText) {
+				var aux = '';  
+				for (var i = 0; i < texto.length; i++) {
+					setTimeout((index) => {
+						aux = aux + texto[index]; 
+						this.retroText.setText(aux);
+						if (index === texto.length - 1) {
+							this.textoEscribiendose = false;
+						}
+					}, i * 100, i);
+				}
+			}
+		}
 	} 
 }

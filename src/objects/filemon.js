@@ -32,7 +32,6 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		this.maxSpeed = 115;
 		this.minSpeed = 70;
 		this.speed = this.maxSpeed;		
-	
 
 		// Creamos las animaciones de cabeza de pesanta
 		this.scene.anims.create({
@@ -100,6 +99,12 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		this.canPressA = true;
 		this.canPressS = true;
 		this.canPressD = true;
+
+		scene.load.audio('sonlinterna', 'assets/audio/zapsplat_household_torch_flashlight_maglite_switch_on_or_off_001.mp3');
+
+		//this.sonidoLinterna = scene.sound.add('sonlinterna');
+		//this.sonidoLinterna.play();	
+		
 
 		this.animacionEnCurso = false;
 		

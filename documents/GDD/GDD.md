@@ -1,52 +1,77 @@
-![](Aspose.Words.3dfe8fbc-37f9-4d9d-b1b3-33de3fc12f0b.003.png)
+﻿![](Aspose.Words.574b7b0e-87bb-4324-96ef-e3c92c4bf79a.001.jpeg)
+
+
+
+![](Aspose.Words.574b7b0e-87bb-4324-96ef-e3c92c4bf79a.002.jpeg)
+
+
+
+![](Aspose.Words.574b7b0e-87bb-4324-96ef-e3c92c4bf79a.003.png)
+
+
+
+
 
 **DOCUMENTO:** *Game Design Document*
 
 **AUTHOR/S**: Julia Fluiters Pereira, Laura Martínez Tomás, Víctor Giménez Chillada y Francisco Javier Antoranz Esteban
 
+
+
+
+
+
+
+
+
+
 <a name="_heading=h.ep13uwvl0dmf"></a>**ÍNDICE**
 
-[**1. INTRODUCCIÓN**](#_heading=h.30j0zll)
+[**1. INTRODUCCIÓN	2**](#_heading=h.30j0zll)**
 
-[1.1 GAME CONCEPT](#_heading=h.1fob9te)
+[1.1 GAME CONCEPT	2](#_heading=h.1fob9te)
 
-[1.1.1 INFORMACIÓN BÁSICA](#_heading=h.3znysh7)
+[1.1.1 INFORMACIÓN BÁSICA	2](#_heading=h.3znysh7)
 
-[1.1.2 DESCRIPCIÓN](#_heading=h.2et92p0)
+[1.1.2 DESCRIPCIÓN	2](#_heading=h.2et92p0)
 
-[1.1.3 CARACTERÍSTICAS PRINCIPALES](#_heading=h.tyjcwt)
+[1.1.3 CARACTERÍSTICAS PRINCIPALES	2](#_heading=h.tyjcwt)
 
-[1.1.4 RIESGOS](#_heading=h.3dy6vkm)
+[1.1.4 RIESGOS	2](#_heading=h.3dy6vkm)
 
-[1.2 ESTÉTICA](#_heading=h.1t3h5sf)
+[1.2 ESTÉTICA	3](#_heading=h.1t3h5sf)
 
-[1.2.1 ARTE](#_heading=h.4d34og8)
+[1.2.1 ARTE	3](#_heading=h.4d34og8)
 
-[1.2.2 MÚSICA Y SONIDO](#_heading=h.2s8eyo1)
+[1.2.2 MÚSICA Y SONIDO	5](#_heading=h.2s8eyo1)
 
-[**2. MECÁNICAS**](#_heading=h.17dp8vu)
+[**2. MECÁNICAS	6**](#_heading=h.17dp8vu)
 
-[2.1 FLUJO DEL JUEGO](#_heading=h.3rdcrjn)
+[2.1 FLUJO DEL JUEGO	6](#_heading=h.3rdcrjn)
 
-[2.2 MUNDO](#_heading=h.26in1rg)
+[2.2 MUNDO	6](#_heading=h.26in1rg)
 
-[2.3 JUGADOR](#_heading=h.lnxbz9)
+[2.3 JUGADOR	6](#_heading=h.lnxbz9)
 
-[2.4 ENEMIGOS](#_heading=h.35nkun2)
+[2.4 ENEMIGOS	7](#_heading=h.35nkun2)
 
-[2.5 COMBATE](#_heading=h.1ksv4uv)
+[2.5 COMBATE	7](#_heading=h.1ksv4uv)
 
-[2.6 OBJETOS / ELEMENTOS](#_heading=h.44sinio)
+[2.6 OBJETOS / ELEMENTOS	7](#_heading=h.44sinio)
 
-[**3. CONTENIDO DE MUESTRA**](#_heading=h.1y810tw)
+[2.7 NIVELES	8](#_heading=h.4ri9jvhbibys)
 
-[**4. INTERFAZ**](#_heading=h.4i7ojhp)
+[2.8 ACERTIJOS	9](#_heading=h.st4d8mtrrmd0)
 
-[4.1 GUI](#_heading=h.2xcytpi)
+[**3. CONTENIDO DE MUESTRA	9**](#_heading=h.1y810tw)
 
-[4.2 CONTROLES](#_heading=h.1ci93xb)
+[**4. INTERFAZ	12**](#_heading=h.4i7ojhp)
 
-[**5. REFERENCIAS**](#_heading=h.3whwml4)
+[4.1 GUI	12](#_heading=h.2xcytpi)
+
+[4.2 CONTROLES	12](#_heading=h.1ci93xb)
+
+[**5. REFERENCIAS	13**](#_heading=h.3whwml4)
 
 
 # <a name="_heading=h.30j0zll"></a>1. **INTRODUCCIÓN**
@@ -101,7 +126,7 @@ Algunos bocetos y diseños:
 
 **El Coco**
 
-![](Aspose.Words.3dfe8fbc-37f9-4d9d-b1b3-33de3fc12f0b.004.jpeg)![](Aspose.Words.3dfe8fbc-37f9-4d9d-b1b3-33de3fc12f0b.005.png)
+![](Aspose.Words.574b7b0e-87bb-4324-96ef-e3c92c4bf79a.004.jpeg)![](Aspose.Words.574b7b0e-87bb-4324-96ef-e3c92c4bf79a.005.png)
 
 
 
@@ -112,19 +137,21 @@ Algunos bocetos y diseños:
 
 **Cabeza de Pesanta**
 
-![](Aspose.Words.3dfe8fbc-37f9-4d9d-b1b3-33de3fc12f0b.006.png)
+![](Aspose.Words.574b7b0e-87bb-4324-96ef-e3c92c4bf79a.006.png)
 
 **Filemón**
 
-![](Aspose.Words.3dfe8fbc-37f9-4d9d-b1b3-33de3fc12f0b.007.png)
+![](Aspose.Words.574b7b0e-87bb-4324-96ef-e3c92c4bf79a.007.png)
 
-![](Aspose.Words.3dfe8fbc-37f9-4d9d-b1b3-33de3fc12f0b.008.png)
+![](Aspose.Words.574b7b0e-87bb-4324-96ef-e3c92c4bf79a.008.png)
 
-![](Aspose.Words.3dfe8fbc-37f9-4d9d-b1b3-33de3fc12f0b.009.png)
+![](Aspose.Words.574b7b0e-87bb-4324-96ef-e3c92c4bf79a.009.png)
 
-![](Aspose.Words.3dfe8fbc-37f9-4d9d-b1b3-33de3fc12f0b.010.png)
+![](Aspose.Words.574b7b0e-87bb-4324-96ef-e3c92c4bf79a.010.png)
 ### <a name="_heading=h.2s8eyo1"></a>1.2.2 MÚSICA Y SONIDO
-*Por determinar*
+La música, alguna ha sido creada por miembros del equipo. Aunque la mayoría de los sonidos han sido seleccionados de manera meticulosa de sonidos de libre distribución, así como alguna música, de manera que generen el ambiente deseado, es decir, tensión.
+
+Para cuando el jugador pierde la partida sale un sonido de chillido, dando a entender que el protagonista ha perdido la cordura y el menú que sale refiriéndose a que se ha perdido la partida es el sonido de un televisor sin señal, para generar tensión.
 
 # <a name="_heading=h.jqosf0hqpkrc"></a>
 # <a name="_heading=h.17dp8vu"></a>2. **MECÁNICAS**
@@ -137,36 +164,36 @@ La historia se desarrolla en la casa de Filemón por la noche, algo grande y con
 
 El tipo de cámara que se ha usado es la vista TOP-DOWN, inspirada en la cámara de juegos como *Undertale*, uno de los juegos referenciados. Hemos optado por esta ya que juegos con espacios cerrados es bastante útil y consiste en un modelo visto de manera que parece que el eje vertical ha sido inclinado y se ve algo más del suelo.
 ## <a name="_heading=h.lnxbz9"></a>2.3 JUGADOR
-El jugador maneja a Filemón, el protagonista del juego, un niño pequeño y asustadizo que busca el camino de vuelta a su cama en mitad de la noche.![](Aspose.Words.3dfe8fbc-37f9-4d9d-b1b3-33de3fc12f0b.011.png)
+El jugador maneja a Filemón, el protagonista del juego, un niño pequeño y asustadizo que busca el camino de vuelta a su cama en mitad de la noche.![](Aspose.Words.574b7b0e-87bb-4324-96ef-e3c92c4bf79a.011.png)
 
 Sus distintas interacciones son:
 
 - Encender y apagar la linterna.
 - Recoger y desechar objetos. El jugador tendrá la opción de recoger y desechar los objetos que se encuentre durante el juego.
 - Interactuar con el entorno (esconder, leer, abrir…). Durante el juego, el personaje tendrá la oportunidad de encontrar armarios, que le servirán para esconderse. Además, mientras el jugador se encuentre dentro del armario permanecerá seguro, ya que los enemigos no podrán alcanzarle y podrá regenerar una cantidad fija de cordura (no muy alta para no desbalancear el juego), sin gastar pilas de la linterna. También se podrá encontrar habitaciones o lugares concretos que sean seguros y que cumplirán la misma función que los armarios. Por otro lado, si el jugador se encuentra con algún enemigo fuera de las zonas seguras, su cordura bajará rápidamente.
-
+- Velocidad cambiante según la luz. El jugador se moverá más rápido a oscuras (115), y más despacio con la luz encendida (70).  
 
 ## <a name="_heading=h.35nkun2"></a>2.4 ENEMIGOS
 **Coco**
 
-|<p>![](Aspose.Words.3dfe8fbc-37f9-4d9d-b1b3-33de3fc12f0b.012.png)</p><p>*Provisional*</p>|Enemigo principal, un simple encuentro disminuirá considerablemente tu cordura. De momento, no se tiene pensado que haga una aparición como tal, sólo se mencionará.|
+|<p>![](Aspose.Words.574b7b0e-87bb-4324-96ef-e3c92c4bf79a.012.png)</p><p>*Provisional*</p>|Enemigo principal, un simple encuentro disminuirá considerablemente tu cordura. De momento, no se tiene pensado que haga una aparición como tal, sólo se mencionará.|
 | - | - |
 
 **Cabezas De Pesanta**
 
-|![](Aspose.Words.3dfe8fbc-37f9-4d9d-b1b3-33de3fc12f0b.013.png)|Enemigos más débiles que el COCO, pero harán de tu camino una pesadilla. Rápidos e insistentes. Son más rápidos que Filemón con linterna, pero más lentos que sin linterna. Siguen una ruta predeterminada y aparecen en distintos puntos de la casa y acercarse a este implicaría que la cordura de Filemón bajaría más rápido que cuando no se encuentra con luz. Hay que evitarlos. No es posible derrotarlos sólo se puede huir de ellos.|
+|![](Aspose.Words.574b7b0e-87bb-4324-96ef-e3c92c4bf79a.013.png)|Enemigos más débiles que el COCO, pero harán de tu camino una pesadilla. Rápidos e insistentes. Son más rápidos que Filemón con linterna, pero más lentos que sin linterna (100). Siguen una ruta predeterminada y aparecen en distintos puntos de la casa y acercarse a este implicaría que la cordura de Filemón bajaría más rápido que cuando no se encuentra con luz. Hay que evitarlos. No es posible derrotarlos sólo se puede huir de ellos. |
 | :- | - |
 ## <a name="_heading=h.1ksv4uv"></a>2.5 COMBATE
 No existe ningún tipo de combate, hay que evitar a los enemigos.
 ## <a name="_heading=h.44sinio"></a>2.6 OBJETOS / ELEMENTOS
 **Pila**
 
-|![](Aspose.Words.3dfe8fbc-37f9-4d9d-b1b3-33de3fc12f0b.014.png)|Objeto que permite prolongar la duración de la luz de la linterna. Se encuentran pilas repartidas a lo largo de toda la casa.|
+|![](Aspose.Words.574b7b0e-87bb-4324-96ef-e3c92c4bf79a.014.png)|Objeto que permite prolongar la duración de la luz de la linterna. Se encuentran pilas repartidas a lo largo de toda la casa. La pila tiene una carga por defecto de 400 unidades que desciende de uno en uno en cada actualización del juego (frame). |
 | - | - |
 
 **Linterna**
 
-|![](Aspose.Words.3dfe8fbc-37f9-4d9d-b1b3-33de3fc12f0b.015.png)|En el juego se podrá contar con una linterna que se irá apagando a medida que la usas. Será necesario el uso de pilas para encender la linterna, además, estas sólo mantendrán la linterna encendida durante un periodo de tiempo limitado. La luz de la linterna aumentará la cordura del personaje gradualmente, en cambio, mientras el personaje está a oscuras el indicador de cordura bajará, pero también se beneficiará de un aumento de la velocidad de movimiento.|
+|![](Aspose.Words.574b7b0e-87bb-4324-96ef-e3c92c4bf79a.015.png)|En el juego se podrá contar con una linterna que se irá apagando a medida que la usas. Será necesario el uso de pilas para encender la linterna, además, estas sólo mantendrán la linterna encendida durante un periodo de tiempo limitado. La luz de la linterna aumentará la cordura del personaje gradualmente, en cambio, mientras el personaje está a oscuras el indicador de cordura bajará, pero también se beneficiará de un aumento de la velocidad de movimiento.|
 | :- | - |
 
 **Inventario**
@@ -181,36 +208,54 @@ No existe ningún tipo de combate, hay que evitar a los enemigos.
 
 **Cama**
 
-|![](Aspose.Words.3dfe8fbc-37f9-4d9d-b1b3-33de3fc12f0b.016.png)|El objeto más importante del juego ya que con ello concluye la noche y termina el juego o pasa a la siguiente noche.|
+|![](Aspose.Words.574b7b0e-87bb-4324-96ef-e3c92c4bf79a.016.png)|El objeto más importante del juego ya que con ello concluye la noche y termina el juego o pasa a la siguiente noche.|
 | :- | - |
 
 **Cordura**
 
 
-|<p>![](Aspose.Words.3dfe8fbc-37f9-4d9d-b1b3-33de3fc12f0b.017.png)</p><p>![](Aspose.Words.3dfe8fbc-37f9-4d9d-b1b3-33de3fc12f0b.018.png)</p><p>*En la parte derecha arriba del juego*</p>|Es el elemento más importante ya que baja más cuanto más tiempo estés en la oscuridad o estés cerca de los enemigos.|
+|<p>![](Aspose.Words.574b7b0e-87bb-4324-96ef-e3c92c4bf79a.017.png)</p><p>![](Aspose.Words.574b7b0e-87bb-4324-96ef-e3c92c4bf79a.018.png)</p><p>*En la parte derecha arriba del juego*</p>|<p>Es el elemento más importante ya que baja más cuanto más tiempo estés en la oscuridad o estés cerca de los enemigos.</p><p>La cordura desciende de uno en uno en cada actualización del juego (frame), siendo el total 4000, si se alcanza este nivel aún si se tiene la luz encendida no aumenta más. </p><p></p>|
 | :- | :- |
+## <a name="_heading=h.4ri9jvhbibys"></a>2.7 NIVELES 
+Esta es una idea inicial de los primeros niveles del juego, se irán incorporando bocetos  los acertijos y caminos según se vayan desarrollando.
 
+- Nivel 1 
+
+El nivel uno es una primera toma de contacto con el juego por lo que no hay ningún acertijo o monstruo, tan solo consiste en probar la linterna cogiendo las pilas, el armario y llegar a la cama. 
+
+- Nivel 2 
+
+El segundo nivel añade dificultad con respecto al anterior, a la hora de entrar a la habitación la puerta estará cerrada y se tendrá que encontrar una llave para poder abrirla. La llave estará escondida en una habitación, por lo que para encontrarla será necesario recorrer las distintas habitaciones de la casa. Además se agregará un monstruo que se moverá con una ruta establecida para aumentar la dificultad.
+
+- Nivel 3
+
+En este nivel será más difícil encontrar el camino a la cama, se requerirá resolver acertijos para encontrar la llave que estará mejor escondida y recorrer la casa en más profundidad, teniendo en cuenta que el número de enemigos aumentará..  
+
+## <a name="_heading=h.st4d8mtrrmd0"></a>2.8 ACERTIJOS
+Los acertijos principales consistirán en notas o mensajes que el jugador tendrá que interpretar para encontrar el camino correcto, así como encontrar llaves que abren puertas concretas. Se ha pensado en añadir un sistema de llaves con colores así como puertas con estos mismos colores para distinguir qué llaves abren qué puertas. Además se mostrarán mensajes cuando el jugador intente abrir las puertas de colores bloqueadas, remarcandole el color de la puerta para ayudar a que asocie el color de la puerta con el de la llave.
+
+Todo esto son ideas generales, los acertijos concretos de cada nivel se decidirán y expondrán más adelante en el apartado anterior.
 # <a name="_heading=h.1y810tw"></a>3. **CONTENIDO DE MUESTRA**
 Hasta el momento, sólo tenemos desarrollado lo básico del primer nivel, sin enemigos ni puzzles
 
 El juego comienza en el primer nivel con Filemón en un pasillo a oscuras con su linterna a mano aunque sin batería, por lo que su primer objetivo es conseguir alguna pila para evitar perder demasiado la cordura.
 
-![](Aspose.Words.3dfe8fbc-37f9-4d9d-b1b3-33de3fc12f0b.019.png)
+![](Aspose.Words.574b7b0e-87bb-4324-96ef-e3c92c4bf79a.019.png)
 
 Habrá que avanzar hasta encontrar la cama para, como bien da a intuir el nombre del juego, evitar que el Coco venga a por Filemón. Una vez se encuentre, al igual que con el resto de objetos, se interactúa con la tecla E para terminar la noche con éxito.
 
-![](Aspose.Words.3dfe8fbc-37f9-4d9d-b1b3-33de3fc12f0b.020.png)
+![](Aspose.Words.574b7b0e-87bb-4324-96ef-e3c92c4bf79a.020.png)
 
 Este es el final bueno de la noche porque hay otro final, el malo. Por eso hay que tener cuidado con la cordura si desciende demasiado hasta perderla.
 
-![](Aspose.Words.3dfe8fbc-37f9-4d9d-b1b3-33de3fc12f0b.021.png)
+![](Aspose.Words.574b7b0e-87bb-4324-96ef-e3c92c4bf79a.021.png)
 
 Mapa de la casa con la distribución de las pilas, el jugador y la cama para el primer nivel.
 
-![](Aspose.Words.3dfe8fbc-37f9-4d9d-b1b3-33de3fc12f0b.022.jpeg)
+![](Aspose.Words.574b7b0e-87bb-4324-96ef-e3c92c4bf79a.022.jpeg)
 # <a name="_heading=h.4i7ojhp"></a>4. **INTERFAZ**
 ## <a name="_heading=h.2xcytpi"></a>4.1 GUI
-## ![](Aspose.Words.3dfe8fbc-37f9-4d9d-b1b3-33de3fc12f0b.023.png)
+## ![](Aspose.Words.574b7b0e-87bb-4324-96ef-e3c92c4bf79a.023.png)
 ## <a name="_heading=h.uie2jcf6wdu2"></a><a name="_heading=h.1ci93xb"></a>4.2 CONTROLES
 El juego está diseñado para ordenador y para ser jugado con el teclado y ratón. Los controles los podemos dividir en dos tipos, aunque ambos giran en torno al personaje principal del juego. Tenemos los controles enfocados al movimiento: 
 
@@ -232,9 +277,9 @@ Algunas referencias de videojuegos que nos han ayudado a diseñar diferentes asp
 
 **Undertale** con respecto a la perspectiva desde la que se ve el juego y su arte.
 
-![](Aspose.Words.3dfe8fbc-37f9-4d9d-b1b3-33de3fc12f0b.024.png)
+![](Aspose.Words.574b7b0e-87bb-4324-96ef-e3c92c4bf79a.024.png)
 
-![](Aspose.Words.3dfe8fbc-37f9-4d9d-b1b3-33de3fc12f0b.025.png)
+![](Aspose.Words.574b7b0e-87bb-4324-96ef-e3c92c4bf79a.025.png)
 
 
 
@@ -243,9 +288,9 @@ Algunas referencias de videojuegos que nos han ayudado a diseñar diferentes asp
 
 **Little Nightmares (tanto I como II)** por sus vibes y sensaciones de tensión e incomodidad, así cómo se han diseñado los monstruos de manera grotesca.
 
-![](Aspose.Words.3dfe8fbc-37f9-4d9d-b1b3-33de3fc12f0b.026.png)
+![](Aspose.Words.574b7b0e-87bb-4324-96ef-e3c92c4bf79a.026.png)
 
-![](Aspose.Words.3dfe8fbc-37f9-4d9d-b1b3-33de3fc12f0b.027.png)
+![](Aspose.Words.574b7b0e-87bb-4324-96ef-e3c92c4bf79a.027.png)
 
 
 
@@ -256,7 +301,7 @@ En este enlace se habla más detalladamente de la cordura presente en el juego d
 
 <https://amnesia.fandom.com/es/wiki/Cordura>
 
-![](Aspose.Words.3dfe8fbc-37f9-4d9d-b1b3-33de3fc12f0b.028.png)
+![](Aspose.Words.574b7b0e-87bb-4324-96ef-e3c92c4bf79a.028.png)
 
 Visage
 

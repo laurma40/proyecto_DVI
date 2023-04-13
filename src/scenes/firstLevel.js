@@ -15,13 +15,13 @@ export default class firstLevel extends Phaser.Scene {
 	
 	preload(){
 		this.load.bitmapFont('fuente', 'assets/fuentes/ComicSansMs.png','assets/fuentes/ComicSansMs.xml');
-		this.load.spritesheet('cabezaPesanta', 'assets/spritesheets_1row.png', {frameWidth: 504, frameHeight: 420})
-		this.load.spritesheet('filemon', 'assets/filemon-250-400.png', {frameWidth: 250, frameHeight: 400})
-		this.load.spritesheet('battery', 'assets/SpriteSheet_Batery3.png',{frameWidth: 280, frameHeight: 370})
-		this.load.spritesheet('luz', 'assets/luz.png',{frameWidth: 100, frameHeight: 100})
-		this.load.spritesheet('bed', 'assets/cama_530_330.png', {frameWidth: 530, frameHeight: 330})
+		this.load.spritesheet('cabezaPesanta', 'assets/pesanta-580-500.png', {frameWidth: 580, frameHeight: 500});
+		this.load.spritesheet('filemon', 'assets/filemon-250-400.png', {frameWidth: 250, frameHeight: 400});
+		this.load.spritesheet('battery', 'assets/SpriteSheet_Batery3.png',{frameWidth: 280, frameHeight: 370});
+		this.load.spritesheet('luz', 'assets/luz.png',{frameWidth: 100, frameHeight: 100});
+		this.load.spritesheet('bed', 'assets/cama_530_330.png', {frameWidth: 530, frameHeight: 330});
 
-		this.load.spritesheet('armario', 'assets/armario-125-125.png', {frameWidth: 125, frameHeight: 125})
+		this.load.spritesheet('armario', 'assets/armario-125-125.png', {frameWidth: 125, frameHeight: 125});
 		//Cargamos el archivo JSON necesario para importar el Tilemap
 		this.load.tilemapTiledJSON('tilemap','assets/Tilemap/MapaPiso1Definitivo.json');
 		//Cargamos los tilesets necesarios para poder crear el mapa
@@ -88,6 +88,13 @@ export default class firstLevel extends Phaser.Scene {
 		this.retroText = this.add.bitmapText(100,100,'fuente','', 16);
 		this.retroText.setTint(0xffffff);
 		this.retroText.setDepth(4);
+
+		let path = this.add.path(1200,1754)
+			.lineTo(1200,1969);
+
+		this.cabezaPesanta = new CabezaPesanta(this, 1200, 1760,path);
+		this.physics.add.overlap(this.cabezaPesanta, this.player, this.player.cercaPesanta, null, this.player);
+
 	}
 	update() {
         // actualizar la posición del texto en función de la posición actual del jugador

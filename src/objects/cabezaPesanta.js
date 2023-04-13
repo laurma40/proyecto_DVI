@@ -1,14 +1,14 @@
 export default class CabezaPesanta extends Phaser.GameObjects.Sprite {
 	constructor(scene, x, y, path) {
 		super(scene, x, y, 'cabezaPesanta');
-		this.setScale(0.1);
+		this.setScale(0.12);
 		this.path = path;
 		this.t = 0;
 		this.speed = 100;
 		//this.easing = null;
 		this.x = x;
 		this.y = y;
-		this.scene.add.existing(this); //Añadimos el caballero a la escena
+		this.scene.add.existing(this); 
 
 		// Creamos las animaciones de cabeza de pesanta
 		this.scene.anims.create({
@@ -62,6 +62,19 @@ export default class CabezaPesanta extends Phaser.GameObjects.Sprite {
 		});
 
 		this.play('frontP');
+
+		this.follower = scene.add.follower(path, x, y, this);
+		this.follower.startFollow({
+			duration: 3000,
+			ease: 'Linear',
+			repeat: -1,
+			yoyo: true
+		});
+		this.follower.pathSpeed = 10;
+		this.follower.setAlpha(0);
+
+		this.scene.physics.add.existing(this);
+
 	}
 	/**
 	 * Bucle principal del personaje, actualizamos su posición y ejecutamos acciones según el Input
@@ -72,48 +85,47 @@ export default class CabezaPesanta extends Phaser.GameObjects.Sprite {
 		// Es muy imporante llamar al preUpdate del padre (Sprite), sino no se ejecutará la animación
 		super.preUpdate(t, dt);	
 
-		if (this.path) {
-			this.t += dt*0.001*this.speed;
-			this.t = Phaser.Math.Clamp(this.t, 0, 1);
+		console.log("Coors path: " + this.follower.x + " " + this.follower.y);
+		//console.log("Coors delta path: " + this.follower.path.deltaX + " " + this.follower.path.deltaY);
+		console.log("Coors pesanta: " + this.x + " " + this.y);
 
-			console.log("coords");
-
-			var position = this.path.getPoint(this.t);
-			console.log(position);
-			// Check if sprite's position has incremented or decremented since the last update
-			if (position.x > this.x) {
-			  	this.anims.play('rightP');
-				//this.body.setVelocityX(this.speed*dt/60);
-			} 
-			else if (position.x < this.x) {
-			  	this.anims.play('leftP');
-				//this.body.setVelocityX(-this.speed*dt/60);
-			} 
-			else if (position.y > this.y){
-				this.anims.play('frontP');
-				//this.body.setVelocityY(-this.speed*dt/60);	
-			}
-			else if (position.y < this.y){
-				this.anims.play('backP');
-				//this.body.setVelocityY(this.speed*dt/60);	
-			}
-			else {
-				if (this.anims.currentAnim.key === 'rightP')
-					this.anims.play('standRightP');
-				else if (this.anims.currentAnim.key === 'leftP')
-					this.anims.play('standLeftP');
-				else if (this.anims.currentAnim.key === 'frontP')
-					this.anims.play('standFrontP');
-				else if (this.anims.currentAnim.key === 'backP')
-					this.anims.play('standBackP');
-			}
-			this.x = position.x;
-			this.y = position.y;
-	  
-			this.setPosition(position.x, position.y);
-			if (t === 1) {
-			  this.path = null;
-			}	  
+		// Check if sprite's position has incremented or decremented since the last update
+		if (this.follower.x > this.x) {
+			console.log('right');
+			this.anims.play('rightP', true);
+		} 
+		else if (this.follower.x < this.x) {
+			console.log('left');
+			this.anims.play('leftP', true);
+		} 
+		else if (this.follower.y > this.y){
+			console.log('front');
+			this.anims.play('frontP', true);
 		}
+		else if (this.follower.y < this.y){
+			console.log('back');
+			this.anims.play('backP', true);
+		}
+		else {
+			if (this.anims.currentAnim.key === 'rightP') {
+				console.log('right stand');
+				this.anims.play('standRightP', true);
+			}
+			else if (this.anims.currentAnim.key === 'leftP') {
+				console.log('left stand');
+				this.anims.play('standLeftP', true);
+			}
+			else if (this.anims.currentAnim.key === 'frontP') {
+				console.log('front stand');
+				this.anims.play('standFrontP', true);
+			}
+			else if (this.anims.currentAnim.key === 'backP') {
+				console.log('back stand');
+				this.anims.play('standBackP', true);
+			}
+		}
+
+		this.setPosition(this.follower.x, this.follower.y);
+
 	}
 }

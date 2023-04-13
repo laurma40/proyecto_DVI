@@ -318,5 +318,10 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		
 	}
     
+	cercaPesanta(sprte1, sprite2){//cabeza de Pesanta, this.player,
 
+
+		this.cordura -= 5;
+		
+	}
 }

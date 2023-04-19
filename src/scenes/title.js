@@ -13,28 +13,13 @@ export default class Title extends Phaser.Scene {
 	 * Cargamos todos los assets que vamos a necesitar
 	 */
 	preload(){
-        
-		this.load.image('start', 'assets/start3.png');
-		this.load.image('start2', 'assets/start4.png');
-
-        this.load.image('inicio', 'assets/casaInicio_v2.jpeg');
-
-		this.load.image('over', 'assets/gameOver2.png');
-		this.load.image('retry', 'assets/retry12.png');
-		this.load.image('retry2', 'assets/retry22.png');
-
-		this.load.image('soundon', 'assets/sound_on.png');
-		this.load.image('soundoff', 'assets/sound_off.png');
-
-		this.load.audio('titlesong', ['assets/audio/titlesong.mp3', 'assets/audio/titlesong.ogg']);
-		this.load.audio('rain', 'assets/audio/zapsplat_nature_thunder_distant_or_high_above_very_light_rain_001_45552.mp3');
 	}
 	
 	/**
 	* Creación de los elementos de la escena principal de juego
 	*/
 	create() {
-
+		console.log('title');
 		this.music = this.sound.add('titlesong',true);
 		this.rain = this.sound.add('rain',true);
 

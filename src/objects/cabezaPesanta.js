@@ -70,7 +70,7 @@ export default class CabezaPesanta extends Phaser.GameObjects.Sprite {
 			repeat: -1,
 			yoyo: true
 		});
-		this.follower.pathSpeed = 10;
+		this.follower.pathSpeed = 0.05;
 		this.follower.setAlpha(0);
 
 		this.scene.physics.add.existing(this);

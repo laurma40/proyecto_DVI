@@ -19,7 +19,7 @@ export default class Armario extends Phaser.GameObjects.Sprite {
 		});
 		this.scene.anims.create({
 			key: 'close',
-			frames: scene.anims.generateFrameNumbers('armario', {start:0, end:14}),
+			frames: scene.anims.generateFrameNumbers('armario', {start:14, end:0}),
 			frameRate: 5,
 			repeat: -1
 		});

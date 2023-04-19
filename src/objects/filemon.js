@@ -293,39 +293,50 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 	}
 
 	interactuarArmario(sprite1, sprite2){ // armario, this.player
-		
-		if(this.eKey.isDown){
-			this.linterna = false;
-			this.luz.play('offLuz');
-			this.zonaSegura = !this.zonaSegura;
-			if(this.zonaSegura){
-				sprite1.play('open');
-				this.scene.input.keyboard.removeKey('W');
-				this.scene.input.keyboard.removeKey('A');
-				this.scene.input.keyboard.removeKey('S');
-				this.scene.input.keyboard.removeKey('D');
-				this.scene.input.keyboard.removeKey('F');
-				sprite2.visible = false;
-			}
-			else{
-				sprite1.play('close');
-				this.wKey = this.scene.input.keyboard.addKey('W');
-				this.aKey = this.scene.input.keyboard.addKey('A');
-				this.sKey = this.scene.input.keyboard.addKey('S');
-				this.dKey = this.scene.input.keyboard.addKey('D');
-				this.fKey = this.scene.input.keyboard.addKey('F');
-				sprite2.visible = true;
-			}
-
-			this.canPressF = false;
-			setTimeout(() => { 
-				this.canPressF = true;
-				sprite1.play('closed') ;
-			}, 1000);
-		}
-	
-		this.canPressF = true;
-	}
+        if(!this.animacionEnCurso){
+            this.animacionEnCurso = true;
+            if(this.eKey.isDown){
+                this.linterna = false;
+                this.luz.play('offLuz');
+                this.zonaSegura = !this.zonaSegura;
+                this.eKey.isDown = false;
+                if(this.zonaSegura){
+                    sprite1.play('open');
+                    this.scene.input.keyboard.removeKey('W');
+                    this.scene.input.keyboard.removeKey('A');
+                    this.scene.input.keyboard.removeKey('S');
+                    this.scene.input.keyboard.removeKey('D');
+                    this.scene.input.keyboard.removeKey('F');
+                    setTimeout(() => { 
+                        sprite2.visible = false;
+                        setTimeout(() => { 
+                            sprite1.play('closed') ;
+                            this.animacionEnCurso = false;
+                        }, 1500);
+                    }, 1500);
+                }
+                else{
+                    sprite1.play('close');
+                    setTimeout(() => { 
+                        sprite2.visible = true;
+                        setTimeout(() => { 
+                            sprite1.play('closed') ;
+                            this.wKey = this.scene.input.keyboard.addKey('W');
+                            this.aKey = this.scene.input.keyboard.addKey('A');
+                            this.sKey = this.scene.input.keyboard.addKey('S');
+                            this.dKey = this.scene.input.keyboard.addKey('D');
+                            this.fKey = this.scene.input.keyboard.addKey('F');
+                            this.animacionEnCurso = false;
+                        }, 1500);
+                    }, 1500);
+                }
+            }
+            else{
+                this.animacionEnCurso = false;
+            }
+        }
+    
+    }
 
 	
     dormir(sprte1, sprite2){//cama, this.player,

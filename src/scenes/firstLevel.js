@@ -3,6 +3,8 @@ import CabezaPesanta from "../objects/cabezaPesanta.js";
 import Filemon from "../objects/filemon.js";
 import Armario from "../objects/armario.js";
 import Bed from "../objects/bed.js";
+import Llave from "../objects/llave.js"
+
 /**
  * Escena principal de juego.
  * @extends Phaser.Scenes
@@ -63,10 +65,10 @@ export default class firstLevel extends Phaser.Scene {
 		
 		// Creamos los objetos a través de la capa de objetos del tilemap y la imagen o la clase que queramos
 		this.pilas = this.map.createFromObjects('Objetos', {name: "pila",classType: Battery, key: 'battery' });
-		//this.armarios = this.map.createFromObjects('Objetos', {name: "armario", classType: Armario, key: 'armario'});
+		this.armarios = this.map.createFromObjects('Objetos', {name: "armario", classType: Armario, key: 'armario'});
 		this.bed = this.map.createFromObjects('Objetos', {name: "bed", classType: Bed, key: 'bed'});
 		this.physics.add.overlap(this.bed, this.player, this.player.dormir, null, this.player);
-        //this.physics.add.overlap(this.armarios, this.player, this.player.interactuarArmario, null, this.player);
+        this.physics.add.overlap(this.armarios, this.player, this.player.interactuarArmario, null, this.player);
 		this.physics.add.overlap(this.pilas, this.player, this.player.cojePila, null, this.player);
 
 		//crear fuentes
@@ -82,6 +84,8 @@ export default class firstLevel extends Phaser.Scene {
 		this.cabezaPesanta = new CabezaPesanta(this, 1200, 1760,path);
 		this.physics.add.overlap(this.cabezaPesanta, this.player, this.player.cercaPesanta, null, this.player);
 
+		this.llave = new Llave(this, 1150, 1800,'rojo');
+		this.physics.add.overlap(this.llave, this.player, this.player.cojeObjeto, null, this.player);
 	}
 	update() {
         // actualizar la posición del texto en función de la posición actual del jugador

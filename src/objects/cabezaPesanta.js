@@ -85,42 +85,34 @@ export default class CabezaPesanta extends Phaser.GameObjects.Sprite {
 		// Es muy imporante llamar al preUpdate del padre (Sprite), sino no se ejecutará la animación
 		super.preUpdate(t, dt);	
 
-		console.log("Coors path: " + this.follower.x + " " + this.follower.y);
+		//console.log("Coors path: " + this.follower.x + " " + this.follower.y);
 		//console.log("Coors delta path: " + this.follower.path.deltaX + " " + this.follower.path.deltaY);
-		console.log("Coors pesanta: " + this.x + " " + this.y);
+		//console.log("Coors pesanta: " + this.x + " " + this.y);
 
 		// Check if sprite's position has incremented or decremented since the last update
 		if (this.follower.x > this.x) {
-			console.log('right');
 			this.anims.play('rightP', true);
 		} 
 		else if (this.follower.x < this.x) {
-			console.log('left');
 			this.anims.play('leftP', true);
 		} 
 		else if (this.follower.y > this.y){
-			console.log('front');
 			this.anims.play('frontP', true);
 		}
 		else if (this.follower.y < this.y){
-			console.log('back');
 			this.anims.play('backP', true);
 		}
 		else {
 			if (this.anims.currentAnim.key === 'rightP') {
-				console.log('right stand');
 				this.anims.play('standRightP', true);
 			}
 			else if (this.anims.currentAnim.key === 'leftP') {
-				console.log('left stand');
 				this.anims.play('standLeftP', true);
 			}
 			else if (this.anims.currentAnim.key === 'frontP') {
-				console.log('front stand');
 				this.anims.play('standFrontP', true);
 			}
 			else if (this.anims.currentAnim.key === 'backP') {
-				console.log('back stand');
 				this.anims.play('standBackP', true);
 			}
 		}

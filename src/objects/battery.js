@@ -36,6 +36,18 @@ export default class Battery extends Phaser.GameObjects.Sprite {
 			frameRate: 1,
 			repeat: 0
 		});
+		this.scene.anims.create({
+			key: 'dos',
+			frames: scene.anims.generateFrameNumbers('battery', {start:2, end:2}),
+			frameRate: 1,
+			repeat: 0
+		});
+		this.scene.anims.create({
+			key: 'tres',
+			frames: scene.anims.generateFrameNumbers('battery', {start:3, end:3}),
+			frameRate: 1,
+			repeat: 0
+		});
 
 
 		this.progressBar = new LifeBar(this.scene, this.x - 15, this.y + 20,  this.carga, 20, 3);

@@ -10,7 +10,10 @@ export default class Inventory extends Phaser.GameObjects.Container {
     
 
   addGameObject(gameObject) {
-    this.add(gameObject);
+    if(this.length > 3){
+      this.add(gameObject);
+    }
+   
   }
   
   removeGameObject(gameObject) {
@@ -18,16 +21,18 @@ export default class Inventory extends Phaser.GameObjects.Container {
   }
 
   print(){
-   /* var aux = this.y;
+    var aux = this.y;
     this.each(function(objeto) {
       
+      console.log("inventario lleno");
       objeto.x = this.x;
       objeto.y = this.aux;
+      objeto.setScale(0.08,0.08)
       objeto.visible = true; 
     
       aux = aux + 20; 
     
-    });*/
+    });
   }
 
   

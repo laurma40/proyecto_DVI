@@ -111,7 +111,11 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		
 		this.luz = new Luz(this.scene, this.x, this.y);
 		this.progressBar = new LifeBar(this.scene, this.x + 170, this.y - 180, this.corduraMax, 96, 6);
-		//this.inventario = new Inventory();
+
+
+		//this.pilas[0].x = this.x + 260;
+		//this.pilas[0].y = this.y - 150;
+		this.inventario = new Inventory(this.scene, this.x + 260, this.y - 130);
 	}
 	/**
 	 * Bucle principal del personaje, actualizamos su posición y ejecutamos acciones según el Input
@@ -221,6 +225,7 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 			} 
 		}
 		this.printBattry();
+		this.inventario.print();
 
 		////CORDURA
 
@@ -239,10 +244,8 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		
 	}
 
-
-
 	
-	cojePila(sprte1, sprite2){//this.pila1, this.player,
+	cojePila(sprite1, sprite2){//this.pila1, this.player,
 
 
 		console.log("AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
@@ -250,14 +253,14 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		if(this.eKey.isDown){ 
 
 
-			if( sprte1.carga > 0 && this.pilas.length < 3){ //Solo puede llevar tres pilas y solo la cojo si tiene carga
-				this.pilas.push(sprte1);
+			if( sprite1.carga > 0 && this.pilas.length < 3){ //Solo puede llevar tres pilas y solo la cojo si tiene carga
+				this.pilas.push(sprite1);
 				
 				//AQUI SE METERIAN EN ALGUN ESPECIO DE INVENTARIO (la hago invisible de momento y la mando lejos)
 
-				sprte1.visible = false;
-				sprte1.x = 100000;
-				sprte1.y = 100000;
+				sprite1.visible = false;
+				sprite1.x = 100000;
+				sprite1.y = 100000;
 
 
 				//Y PONER SONIDO
@@ -275,7 +278,18 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 			this.pilas[0].depth = 5;
 			this.pilas[0].visible = true; 
 			this.pilas[0].updateBar();
+
+			if(this.pilas.length == 2){
+				this.pilas[0].play('dos');
+			}else if(this.pilas.length == 3){
+				this.pilas[0].play('tres');
+			}
 		}
+	}
+
+	cojeObjeto(sprite1, sprite2){//objeto(llave), player
+		this.inventario.addGameObject(sprite1);
+	
 	}
 
 	interactuarArmario(sprite1, sprite2){ // armario, this.player

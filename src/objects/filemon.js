@@ -1,5 +1,6 @@
 
 
+import Inventory from "./inventory.js";
 import LifeBar from "./lifeBar.js";
 import Luz from "./luz.js";
 
@@ -109,7 +110,8 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		this.animacionEnCurso = false;
 		
 		this.luz = new Luz(this.scene, this.x, this.y);
-		this.progressBar = new LifeBar(this.scene, this.x + 170, this.y - 180, this.corduraMax );
+		this.progressBar = new LifeBar(this.scene, this.x + 170, this.y - 180, this.corduraMax, 96, 6);
+		//this.inventario = new Inventory();
 	}
 	/**
 	 * Bucle principal del personaje, actualizamos su posición y ejecutamos acciones según el Input
@@ -218,7 +220,7 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 				this.speed = this.maxSpeed;
 			} 
 		}
-
+		this.printBattry();
 
 		////CORDURA
 
@@ -262,6 +264,18 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 			}
 		}
 		
+	}
+	printBattry(){
+
+		if(this.pilas.length > 0){
+
+			this.pilas[0].x = this.x + 260;
+			this.pilas[0].y = this.y - 150;
+			this.pilas[0].setScale(0.08,0.08);
+			this.pilas[0].depth = 5;
+			this.pilas[0].visible = true; 
+			this.pilas[0].updateBar();
+		}
 	}
 
 	interactuarArmario(sprite1, sprite2){ // armario, this.player

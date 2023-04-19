@@ -5,12 +5,14 @@ export default class LifeBar extends Phaser.GameObjects.Graphics {
 	 * @param {number} y - coordenada y
 	*/
 
-	constructor(scene, x, y, valorInicial) { 
+	constructor(scene, x, y, valorInicial, largo, ancho) { 
 		super(scene); 
         this.scene.add.existing(this); 
         this.scene.add.graphics();
         
         this.valorInicial = valorInicial;
+		this.largo = largo;
+		this.ancho = ancho;
 
 
         console.log("BARAAAAAAAAAAAAAAAAAAAAAAAA");
@@ -20,8 +22,8 @@ export default class LifeBar extends Phaser.GameObjects.Graphics {
 		this.depth = 3;
 
 
-		this.lifeText = new Phaser.GameObjects.Text(scene, x - 70, y, valorInicial, { color: '#ffffff', fontSize: '12px' });
-		scene.add.existing(this.lifeText);
+		//this.lifeText = new Phaser.GameObjects.Text(scene, x - 70, y, valorInicial, { color: '#ffffff', fontSize: '12px' });
+		//scene.add.existing(this.lifeText);
 	
 
 	}
@@ -41,9 +43,10 @@ export default class LifeBar extends Phaser.GameObjects.Graphics {
 	updateBar( valor, xNex, yNew ){
 		this.clear();
 		this.fillStyle(0xffffff, 1);
-		this.fillRect(xNex, yNew, 96 * ( valor /  this.valorInicial), 6); // Ajusta la posición de la barra de vida aquí
+		this.fillRect(xNex, yNew, this.largo * ( valor /  this.valorInicial), this.ancho); // Ajusta la posición de la barra de vida aquí
 
-		this.lifeText.setText(valor);
+		//96
+		//this.lifeText.setText(valor);
 		
 	}
 

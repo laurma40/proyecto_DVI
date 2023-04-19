@@ -1,3 +1,4 @@
+import LifeBar from "./lifeBar.js";
 
 export default class Battery extends Phaser.GameObjects.Sprite {
 	/**
@@ -37,6 +38,9 @@ export default class Battery extends Phaser.GameObjects.Sprite {
 		});
 
 
+		this.progressBar = new LifeBar(this.scene, this.x - 15, this.y + 20,  this.carga, 20, 3);
+		this.progressBar.visible = false;
+
 		this.play('on');
 
 	}
@@ -56,12 +60,27 @@ export default class Battery extends Phaser.GameObjects.Sprite {
 		
 		this.carga--; 
 		
-		if(this.carga >= 0){ //si la carga baja de 0 se gasta
+		if(this.carga <= 0){ //si la carga baja de 0 se gasta
 			this.play('off');
+			this.setScale(0.04,0.04);
+			this.depth = 0; 
+			this.progressBar.visible = false;
 		}
+		else{
+			this.progressBar.visible = true;
+			this.progressBar.updateBar(this.carga, this.x - 10 , this.y + 15);
+		}
+		
+		
+
 		
 		console.log(this.carga);
 	}
 
+	updateBar(){
+
+		this.progressBar.updateBar(this.carga, this.x - 10 , this.y + 15);
+	}
 
 }
+

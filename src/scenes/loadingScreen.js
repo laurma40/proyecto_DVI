@@ -78,7 +78,8 @@ export default class loadingScreen extends Phaser.Scene {
 		this.load.spritesheet('battery', 'assets/SpriteSheet_Batery3.png',{frameWidth: 280, frameHeight: 370});
 		this.load.spritesheet('luz', 'assets/luz.png',{frameWidth: 100, frameHeight: 100});
 		this.load.spritesheet('bed', 'assets/cama_530_330.png', {frameWidth: 530, frameHeight: 330});
-		this.load.spritesheet('llave', 'assets/llaves_de_colores.png', {frameWidth: 48, frameHeight: 40});
+		//this.load.spritesheet('llave', 'assets/llaves_de_colores.png', {frameWidth: 48, frameHeight: 40});
+        this.load.spritesheet('llave', 'assets/llaves_de_colores.png', {frameWidth: 30, frameHeight: 20});
 		this.load.spritesheet('armario', 'assets/armario-125-125.png', {frameWidth: 125, frameHeight: 125});
 		//Cargamos el archivo JSON necesario para importar el Tilemap
 		this.load.tilemapTiledJSON('tilemap','assets/Tilemap/MapaPiso1Definitivo.json');

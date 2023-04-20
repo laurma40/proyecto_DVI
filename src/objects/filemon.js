@@ -225,7 +225,9 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 			} 
 		}
 		this.printBattry();
-		this.inventario.print();
+		//this.inventario.print( this.x + 260, this.y - 130);
+		this.inventario.print( this.x + 8, this.y + 12);
+
 
 		////CORDURA
 
@@ -288,7 +290,11 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 	}
 
 	cojeObjeto(sprite1, sprite2){//objeto(llave), player
-		this.inventario.addGameObject(sprite1);
+		if(this.eKey.isDown){ 
+			this.inventario.addGameObject(sprite1);
+			console.log("COJO LLAVE");
+		}
+		
 	
 	}
 

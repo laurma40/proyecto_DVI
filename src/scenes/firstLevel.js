@@ -85,7 +85,16 @@ export default class firstLevel extends Phaser.Scene {
 		this.physics.add.overlap(this.cabezaPesanta, this.player, this.player.cercaPesanta, null, this.player);
 
 		this.llave = new Llave(this, 1150, 1800,'rojo');
+		this.llave2 = new Llave(this, 1100, 1800,'azul');
+		this.llave3 = new Llave(this, 1050, 1800,'gris');
+		this.llave4 = new Llave(this, 1000, 1800,'marron');
+
 		this.physics.add.overlap(this.llave, this.player, this.player.cojeObjeto, null, this.player);
+		this.physics.add.overlap(this.llave2, this.player, this.player.cojeObjeto, null, this.player);
+		this.physics.add.overlap(this.llave3, this.player, this.player.cojeObjeto, null, this.player);
+		this.physics.add.overlap(this.llave4, this.player, this.player.cojeObjeto, null, this.player);
+
+
 	}
 	update() {
         // actualizar la posición del texto en función de la posición actual del jugador

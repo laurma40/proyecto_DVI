@@ -11,55 +11,43 @@ export default class loadingScreen extends Phaser.Scene {
 	preload(){
         var progressBar = this.add.graphics();
         var progressBox = this.add.graphics();
-        progressBox.fillStyle(0x222222, 0.5);
-        progressBox.fillRect(130, 200, 320, 50);
-        
-        var silkscreen_font = new FontFace('Silkscreen_Regular', 'url(fonts/silkscreen-regular-webfont.woff2)');
 
         var width = this.sys.game.canvas.width;
         var height = this.sys.game.canvas.height;
+
+        progressBox.fillStyle(0x222222, 0.5);
+        progressBox.fillRect(width/2-150, 200, 300, 25);
+        
+        var silkscreen_font = new FontFace('Silkscreen_Regular', 'url(fonts/silkscreen-regular-webfont.woff2)');
+
         var loadingText = this.make.text({
-            x: width / 2 - 10,
-            y: height / 2 - 10,
-            text: 'Loading...',
-            style: {
-                fontFamily: 'silkscreenregular',
-                fontSize: '12px'
-            }
+            x: width / 2 - 40,
+            y: height / 2 - 20,
+            text: 'Cargando...',
+            style: { fontFamily: 'silkscreenregular', fontSize: '12px' }
         });
-        loadingText.setOrigin(0.5, 0.5);
         
         var percentText = this.make.text({
-            x: width / 2 - 10,
-            y: height / 2 + 25,
-            text: '0%',
-            style: {
-                fontFamily: 'silkscreenregular',
-                fontSize: '16px'
-            }
+            x: width / 2 - 18,
+            y: height / 2 + 2,
+            style: { fontFamily: 'silkscreenregular', fontSize: '16px' }
         });
-        percentText.setOrigin(0.5, 0.5);
         
         var assetText = this.make.text({
-            x: width / 2 - 10,
-            y: height / 2 + 60,
-            text: '',
-            style: {
-                fontFamily: 'silkscreenregular',
-                fontSize: '10px'
-            }
+            x: width / 2 - 148,
+            y: height / 2 + 25,
+            style: { fontFamily: 'silkscreenregular', fontSize: '6px' }
         });
-        assetText.setOrigin(0.5, 0.5);
         
         this.load.on('progress', function (value) {
             percentText.setText(parseInt(value * 100) + '%');
             progressBar.clear();
             progressBar.fillStyle(0xffffff, 1);
-            progressBar.fillRect(140, 210, 300 * value, 30);
+            progressBar.fillRect(width/2-145, 205, 290 * value, 15);
         });
         
         this.load.on('fileprogress', function (file) {
-            assetText.setText('Loading asset: ' + file.key);
+            assetText.setText('Cargando asset: ' + file.key);
         });
         this.load.on('complete', function () {
             progressBar.destroy();
@@ -70,6 +58,8 @@ export default class loadingScreen extends Phaser.Scene {
         });
         
         //Assets de 'title'
+        this.load.image('fondo-present', 'assets/fondo-present.png');
+        this.load.image('logo', 'assets/logo-studio2.png');
         this.load.image('start', 'assets/start3.png');
 		this.load.image('start2', 'assets/start4.png');
         this.load.image('inicio', 'assets/casaInicio_v2.jpeg');
@@ -96,14 +86,75 @@ export default class loadingScreen extends Phaser.Scene {
 		this.load.image('nuevosMuros','assets/Tilemap/nuevosMuros.jpeg');
 		//this.load.image('puertas','../../assets/Tilemap/puertas.png');
 		this.load.image('mapaImg','assets/Tilemap/mapaCapa.png');
-
-        
+       
 	}
 	
 	/**
 	* Creación de los elementos de la escena principal de juego
 	*/
 	create() {
-        this.scene.start('title'); //Cambiamos a la escena de juego
+        this.rain = this.sound.add('rain',true);
+        this.rain.play();
+
+        var image = this.add.image(this.sys.game.canvas.width/2,this.sys.game.canvas.height/2, 'logo');
+        image.setAlpha(0); // establece la transparencia a 0 al inicio
+        image.setScale(0.5);
+
+        var text = this.add.text(400, 300, 'Presenta', { fontFamily: 'silkscreenregular', fontSize: '32px', fill: '#ffffff' });
+        text.setOrigin(0.5);
+        text.setVisible(false); // establece la visibilidad en false
+        text.setDepth(1); // asegura que el texto aparezca sobre la imagen
+
+        var imagePresent = this.add.image(this.sys.game.canvas.width/2,this.sys.game.canvas.height/2, 'fondo-present');
+        imagePresent.setOrigin(0.5);
+        imagePresent.setScale(0.1);
+        imagePresent.setVisible(false); // establece la visibilidad en false
+        imagePresent.setDepth(1);
+
+        var imgTweens = this.tweens.add({
+            targets: image,
+            alpha: 1,
+            duration: 2000, // duración de la animación en milisegundos
+            ease: 'Linear', // tipo de interpolación de la animación
+            yoyo: true, // hace que la animación se reproduzca en sentido inverso
+            onComplete: function () {
+                var textTweens = this.tweens.add({
+                    targets: text,
+                    alpha: {
+                        from: 0,
+                        to: 1
+                    },
+                    duration: 2000, // duración de la animación en milisegundos
+                    ease: 'Linear', // tipo de interpolación de la animación
+                    yoyo: true, // hace que la animación se reproduzca en sentido inverso
+                    onComplete: function () {
+                        setTimeout(function () {
+                            var presentTweens = this.tweens.add({
+                                targets: imagePresent,
+                                alpha: {
+                                    from: 0,
+                                    to: 1
+                                },
+                                duration: 4000, // duración de la animación en milisegundos
+                                ease: 'Linear', // tipo de interpolación de la animación
+                                yoyo: true, // hace que la animación se reproduzca en sentido inverso
+                                onComplete: function () {
+                                    setTimeout(function () {
+                                        this.rain.stop();
+                                        this.scene.start('title');
+                                    }.bind(this), 1000); // espera 1 segundo antes de cambiar de escena
+                                },
+                                onCompleteScope: this // asegura que la segunda animación se agregue al objeto correcto
+                            });
+                            imagePresent.setVisible(true); // cambia la visibilidad del texto a true
+                        }.bind(this), 1000); // espera 1 segundo antes de cambiar de escena
+                    },
+                    onCompleteScope: this // asegura que la segunda animación se agregue al objeto correcto
+                });
+                text.setVisible(true); // cambia la visibilidad del texto a true
+            },
+            onCompleteScope: this // asegura que la segunda animación se agregue al objeto correcto
+
+        });
 	}
 }

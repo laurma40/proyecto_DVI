@@ -659,9 +659,11 @@
                  "y":0
                 }],
          "name":"Muros",
+         "offsetx":3,
+         "offsety":0,
          "opacity":1,
          "type":"group",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -744,18 +746,6 @@
                 }, 
                 {
                  "height":0,
-                 "id":8,
-                 "name":"armario",
-                 "point":true,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":1340,
-                 "y":1820
-                }, 
-                {
-                 "height":0,
                  "id":12,
                  "name":"bed",
                  "point":true,
@@ -777,6 +767,42 @@
                  "width":0,
                  "x":1198,
                  "y":2204
+                }, 
+                {
+                 "height":0,
+                 "id":17,
+                 "name":"armario",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":1738.66666666667,
+                 "y":1400
+                }, 
+                {
+                 "height":0,
+                 "id":18,
+                 "name":"puertaRed",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":661.333333333333,
+                 "y":1753.33333333333
+                }, 
+                {
+                 "height":0,
+                 "id":22,
+                 "name":"puertaBlue",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":1741.33333333333,
+                 "y":1752
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -785,7 +811,7 @@
          "y":0
         }],
  "nextlayerid":12,
- "nextobjectid":14,
+ "nextobjectid":23,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.10.0",

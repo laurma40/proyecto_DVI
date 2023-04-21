@@ -66,6 +66,12 @@ export default class loadingScreen extends Phaser.Scene {
 		this.load.image('over', 'assets/gameOver2.png');
 		this.load.image('retry', 'assets/retry12.png');
 		this.load.image('retry2', 'assets/retry22.png');
+        this.load.image('complete', 'assets/complete.png');
+        this.load.image('home1', 'assets/home1.png');
+        this.load.image('home2', 'assets/home2.png');
+        this.load.image('next1', 'assets/next1.png');
+        this.load.image('next2', 'assets/next2.png');
+
 		this.load.image('soundon', 'assets/sound_on.png');
 		this.load.image('soundoff', 'assets/sound_off.png');
 		this.load.audio('titlesong', ['assets/audio/titlesong.mp3', 'assets/audio/titlesong.ogg']);

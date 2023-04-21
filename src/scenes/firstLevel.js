@@ -22,6 +22,10 @@ export default class firstLevel extends Phaser.Scene {
 	* Creación de los elementos de la escena principal de juego
 	*/
 	create() {
+
+		this.sonido();
+		this.shortCut();
+
 		//crear tilemap
 		this.map = this.make.tilemap({
 			key: 'tilemap',
@@ -158,4 +162,47 @@ export default class firstLevel extends Phaser.Scene {
 			}
 		}
 	} 
+
+	sonido(){
+
+		this.music = this.sound.add('titlesong',true);
+		this.rain = this.sound.add('rain',true);
+
+		this.music.volume = 0.1;
+		this.rain.play();
+		this.music.play();
+
+		this.input.keyboard.on('keydown-M', function (event) {
+			console.log('La tecla M ha sido presionada');
+			if (this.soundOn) {
+				this.sound.stopAll();
+				this.soundOn = false;
+			  } else {
+				this.sound.resumeAll();
+				this.rain.play();
+				this.music.play();
+				this.soundOn = true;
+			  }
+		}.bind(this));
+	
+	}
+
+	shortCut(){
+
+		this.input.keyboard.on('keydown-N', function (event) {
+
+
+			this.sound.stopAll();
+			this.sound.resumeAll();
+
+			console.log('La tecla N ha sido presionada');
+			this.cameras.main.fadeOut(1000, 0, 0, 0)
+			this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
+				this.scene.start('nextLevel', {nivel: this.key}); //Cambiamos a la escena de juego
+			});
+		}.bind(this));
+
+		
+	}
+
 }

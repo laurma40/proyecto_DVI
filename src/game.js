@@ -2,6 +2,7 @@ import FirstLevel from './scenes/firstLevel.js';
 import GameOver from './scenes/gameOver.js';
 import Title from './scenes/title.js';
 import Loading from './scenes/loadingScreen.js';
+import NextLevel from './scenes/nexLevel.js';
 /**
  * Inicio del juego en Phaser. Creamos el archivo de configuración del juego y creamos
  * la clase Game de Phaser, encargada de crear e iniciar el juego.
@@ -31,7 +32,7 @@ let config = {
         },
 		zoom: 1
     },
-    scene: [Loading, Title, FirstLevel, GameOver],
+    scene: [Loading, Title, FirstLevel, GameOver, NextLevel],
     physics: { 
         default: 'arcade', 
         arcade: { 

@@ -357,7 +357,7 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 	
 			this.scene.cameras.main.fadeOut(1000, 0, 0, 0)
 			this.scene.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
-				this.scene.scene.start('gameOver'); //Cambiamos a la escena de juego
+				this.scene.scene.start('nextLevel', {nivel: this.scene.key}); //Cambiamos a la escena de juego
 			});
 		}
 		

@@ -198,7 +198,7 @@ export default class firstLevel extends Phaser.Scene {
 			console.log('La tecla N ha sido presionada');
 			this.cameras.main.fadeOut(1000, 0, 0, 0)
 			this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
-				this.scene.start('nextLevel', {nivel: this.key}); //Cambiamos a la escena de juego
+				this.scene.start('nextLevel', {nivel: this.scene.key}); //Cambiamos a la escena de juego
 			});
 		}.bind(this));
 

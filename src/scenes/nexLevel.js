@@ -10,6 +10,7 @@ export default class NextLevel extends Phaser.Scene {
 
 	init(data) {
         this.currentLevel = data.nivel;
+        console.log(this.currentLevel);
     }
 
 	create() {
@@ -62,7 +63,7 @@ export default class NextLevel extends Phaser.Scene {
 
 	    });
 
-        
+
         home.on('pointerup', pointer => {
 			this.scene.start('title');
 	    });

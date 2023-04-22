@@ -76,6 +76,11 @@ export default class loadingScreen extends Phaser.Scene {
 		this.load.image('soundoff', 'assets/sound_off.png');
 		this.load.audio('titlesong', ['assets/audio/titlesong.mp3', 'assets/audio/titlesong.ogg']);
 		this.load.audio('rain', 'assets/audio/zapsplat_nature_thunder_distant_or_high_above_very_light_rain_001_45552.mp3');
+        this.load.audio('sonlinterna', 'assets/audio/zapsplat_household_torch_flashlight_maglite_switch_on_or_off_001.mp3');
+        this.load.audio('sonCoger', 'assets/audio/zapsplat_foley_money_bank_note_polymer_grab_snatch_hand_002_76013.mp3');
+        this.load.audio('sonGrito', 'assets/audio/human-18-month-toddler-boy-scream-001.mp3');
+
+
 
         //Assets de 'firstLevel'
         this.load.bitmapFont('fuente', 'assets/fuentes/ComicSansMs.png','assets/fuentes/ComicSansMs.xml');

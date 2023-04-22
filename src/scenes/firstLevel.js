@@ -165,24 +165,30 @@ export default class firstLevel extends Phaser.Scene {
 
 	sonido(){
 
+		this.sound.stopAll();
+		this.soundOn = this.scene.get('title').soundOn;
+
 		this.music = this.sound.add('titlesong',true);
 		this.rain = this.sound.add('rain',true);
-
 		this.music.volume = 0.1;
-		this.rain.play();
-		this.music.play();
 
+		if(this.soundOn){
+			this.rain.play();
+			this.music.play();
+		}
 		this.input.keyboard.on('keydown-M', function (event) {
 			console.log('La tecla M ha sido presionada');
 			if (this.soundOn) {
-				this.sound.stopAll();
+				this.sound.setMute(true);
 				this.soundOn = false;
+				this.soundOn = this.scene.get('title').soundOn = false;
 			  } else {
-				this.sound.resumeAll();
+				this.sound.setMute(false);
 				this.rain.play();
 				this.music.play();
 				this.soundOn = true;
-			  }
+				this.soundOn = this.scene.get('title').soundOn = true;
+			}
 		}.bind(this));
 	
 	}
@@ -193,7 +199,6 @@ export default class firstLevel extends Phaser.Scene {
 
 
 			this.sound.stopAll();
-			this.sound.resumeAll();
 
 			console.log('La tecla N ha sido presionada');
 			this.cameras.main.fadeOut(1000, 0, 0, 0)

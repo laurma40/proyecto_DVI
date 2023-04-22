@@ -25,8 +25,11 @@ export default class Title extends Phaser.Scene {
 
 		this.music.volume = 0.1;
 
-		this.rain.play();
-    	this.music.play();
+		if(this.soundOn){
+			this.rain.play();
+    		this.music.play();
+		}
+		
 
 		//Pintamos un fondo
 		var back = this.add.image(this.sys.game.canvas.width/2, this.sys.game.canvas.height/2, 'inicio');
@@ -68,7 +71,8 @@ export default class Title extends Phaser.Scene {
 		var sound1 = this.textures.get('soundon');
 		var sound2 = this.textures.get('soundoff');
 
-		var spriteSound = this.add.image(this.sys.game.canvas.width-20, 20, 'soundon');
+		if(this.soundOn)var spriteSound = this.add.image(this.sys.game.canvas.width-20, 20, 'soundon');
+		else var spriteSound = this.add.image(this.sys.game.canvas.width-20, 20, 'soundoff');
         spriteSound.setScale(0.925);
 
 		spriteSound.setInteractive();
@@ -79,14 +83,14 @@ export default class Title extends Phaser.Scene {
 
 	    spriteSound.on('pointerup', pointer => {
 			if (this.soundOn) {
-				this.music.stop();
-				this.rain.stop();
+				this.sound.setMute(true);
 				this.soundOn = false;
 				spriteSound.setTexture(sound2.key);
 			}	
 			else {
-				this.music.play();
+				this.sound.setMute(false);
 				this.rain.play();
+				this.music.play();
 				this.soundOn = true;
 				spriteSound.setTexture(sound1.key);
 			}

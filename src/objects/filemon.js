@@ -101,20 +101,19 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		this.canPressS = true;
 		this.canPressD = true;
 
-		scene.load.audio('sonlinterna', 'assets/audio/zapsplat_household_torch_flashlight_maglite_switch_on_or_off_001.mp3');
+		this.sonidoLinterna = scene.sound.add('sonlinterna');
+		this.sonidoLinterna.volume = 0.1;
 
-		//this.sonidoLinterna = scene.sound.add('sonlinterna');
-		//this.sonidoLinterna.play();	
-		
+		this.sonidoCoger = scene.sound.add('sonCoger');
+		this.sonidoCoger.volume = 0.1;
+
+		this.sonidoGrito = scene.sound.add('sonGrito');
+		this.sonidoGrito.volume = 0.08;
 
 		this.animacionEnCurso = false;
 		
 		this.luz = new Luz(this.scene, this.x, this.y);
 		this.progressBar = new LifeBar(this.scene, this.x + 170, this.y - 180, this.corduraMax, 96, 6);
-
-
-		//this.pilas[0].x = this.x + 260;
-		//this.pilas[0].y = this.y - 150;
 		this.inventario = new Inventory(this.scene, this.x + 260, this.y - 130);
 	}
 	/**
@@ -188,6 +187,9 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		
 		//Encender y apagar linterna -> se pulsa el boton de encender y tenemos pilas
 		if(this.fKey.isDown && this.pilas.length != 0 && this.canPressF){ 
+
+			this.sonidoLinterna.play();	
+
 			this.linterna = !this.linterna;
 			console.log("linterna " + this.linterna);
 
@@ -217,15 +219,22 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 				this.pilas[0].y = this.y + 10;
 				this.pilas[0].visible = true;
 				this.pilas.shift();//suelto la pila en primera posición
+
+				this.sonidoCoger.play();
+
 			}
 			if(this.pilas.length == 0){
+
+				this.sonidoLinterna.play();	
+				this.sonidoCoger.play();
+
+
 				this.linterna = false;
 				this.luz.play('offLuz');
 				this.speed = this.maxSpeed;
 			} 
 		}
 		this.printBattry();
-		//this.inventario.print( this.x + 260, this.y - 130);
 		this.inventario.print( this.x + 8, this.y + 12);
 
 
@@ -238,7 +247,21 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 			if(this.cordura > 0) this.cordura--; //USAR DT¿?
 			else{
 				//LLAMAR A SCENE GAME OVER 
+
+				this.scene.sound.stopAll();
+
+				this.sonidoGrito.play();
 				this.scene.scene.start('gameOver'); //Cambiamos a la escena de juego
+
+
+
+				/*
+				this.sonidoGrito.play();
+				this.scene.cameras.main.fadeOut(500, 0, 0, 0)
+				this.scene.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
+					this.scene.scene.start('gameOver'); //Cambiamos a la escena de juego
+				});
+				*/
 			}
 
 		}
@@ -258,14 +281,12 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 			if( sprite1.carga > 0 && this.pilas.length < 3){ //Solo puede llevar tres pilas y solo la cojo si tiene carga
 				this.pilas.push(sprite1);
 				
-				//AQUI SE METERIAN EN ALGUN ESPECIO DE INVENTARIO (la hago invisible de momento y la mando lejos)
-
+				
 				sprite1.visible = false;
 				sprite1.x = 100000;
 				sprite1.y = 100000;
 
-
-				//Y PONER SONIDO
+				this.sonidoCoger.play();
 			}
 		}
 		
@@ -291,6 +312,7 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 
 	cojeObjeto(sprite1, sprite2){//objeto(llave), player
 		if(this.eKey.isDown){ 
+			this.sonidoCoger.play();
 			this.inventario.addGameObject(sprite1);
 			console.log("COJO LLAVE");
 		}

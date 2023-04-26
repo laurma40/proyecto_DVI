@@ -25,6 +25,7 @@ export default class firstLevel extends Phaser.Scene {
 
 		this.sonido();
 		this.shortCut();
+		this.pauseMenu();
 
 		//crear tilemap
 		this.map = this.make.tilemap({
@@ -167,13 +168,9 @@ export default class firstLevel extends Phaser.Scene {
 
 		this.sound.stopAll();
 
-		this.music = this.sound.add('titlesong',true);
 		this.rain = this.sound.add('rain',true);
-		this.music.volume = 0.1;
 
-	
 		this.rain.play();
-		this.music.play();
 
 		this.input.keyboard.on('keydown-M', function (event) {
 			console.log('La tecla M ha sido presionada');
@@ -182,7 +179,6 @@ export default class firstLevel extends Phaser.Scene {
 			  } else {
 				this.sound.setMute(false);
 				this.rain.play();
-				this.music.play();
 			}
 		}.bind(this));
 	
@@ -191,7 +187,6 @@ export default class firstLevel extends Phaser.Scene {
 	shortCut(){
 
 		this.input.keyboard.on('keydown-N', function (event) {
-
 
 			this.sound.stopAll();
 
@@ -203,6 +198,17 @@ export default class firstLevel extends Phaser.Scene {
 		}.bind(this));
 
 		
+	}
+
+	pauseMenu() {
+
+		this.input.keyboard.on('keydown-P', function (event) {
+
+			this.scene.pause(this);
+			this.scene.launch('pauseMenu');
+
+		}.bind(this));
+
 	}
 
 }

@@ -98,7 +98,6 @@ export default class loadingScreen extends Phaser.Scene {
 		this.load.image('nuevosMuros','assets/Tilemap/nuevosMuros.jpeg');
 		//this.load.image('puertas','../../assets/Tilemap/puertas.png');
 		this.load.image('mapaImg','assets/Tilemap/mapaCapa.png');
-       
 	}
 	
 	/**
@@ -107,6 +106,8 @@ export default class loadingScreen extends Phaser.Scene {
 	create() {
         this.rain = this.sound.add('rain',true);
         this.rain.play();
+
+        this.skip();
 
         var image = this.add.image(this.sys.game.canvas.width/2,this.sys.game.canvas.height/2, 'logo');
         image.setAlpha(0); // establece la transparencia a 0 al inicio
@@ -168,5 +169,17 @@ export default class loadingScreen extends Phaser.Scene {
             onCompleteScope: this // asegura que la segunda animación se agregue al objeto correcto
 
         });
+	}
+
+    
+	skip() {
+
+		this.input.keyboard.on('keydown-B', function (event) {
+
+            this.rain.stop();
+            this.scene.start('title');
+
+		}.bind(this));
+
 	}
 }

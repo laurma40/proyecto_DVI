@@ -79,8 +79,8 @@ export default class loadingScreen extends Phaser.Scene {
         this.load.audio('sonlinterna', 'assets/audio/zapsplat_household_torch_flashlight_maglite_switch_on_or_off_001.mp3');
         this.load.audio('sonCoger', 'assets/audio/zapsplat_foley_money_bank_note_polymer_grab_snatch_hand_002_76013.mp3');
         this.load.audio('sonGrito', 'assets/audio/human-18-month-toddler-boy-scream-001.mp3');
-
-
+        this.load.image('cursorCustom', 'assets/vertopal.com_cursorHover.png');
+        this.load.image('controllers', 'assets/controles.png');
 
         //Assets de 'firstLevel'
         this.load.bitmapFont('fuente', 'assets/fuentes/ComicSansMs.png','assets/fuentes/ComicSansMs.xml');

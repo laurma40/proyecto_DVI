@@ -37,8 +37,8 @@ export default class NextLevel extends Phaser.Scene {
         var next = this.add.image(this.sys.game.canvas.width/2, this.sys.game.canvas.height/2+90, 'next1')
         next.setScale(0.04);
 
-        next.setInteractive(); 
-		home.setInteractive(); 
+        next.setInteractive({ cursor: 'url(assets/vertopal.com_cursorHover.png), pointer' });
+		home.setInteractive({ cursor: 'url(assets/vertopal.com_cursorHover.png), pointer' });
 
 	    next.on('pointerup', pointer => {
 			//this.scene.start('firstLevel'); //Cambiamos a la escena de juego

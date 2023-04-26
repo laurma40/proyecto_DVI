@@ -40,9 +40,11 @@ export default class Title extends Phaser.Scene {
 		var sprite = this.add.image(this.sys.game.canvas.width/2, this.sys.game.canvas.height/2-20, 'start')
         sprite.setScale(0.125);
 
-		sprite.setInteractive(); // Hacemos el sprite interactivo para que lance eventos
+		// Hacemos el sprite interactivo para que lance eventos
+		sprite.setInteractive({ cursor: 'url(assets/vertopal.com_cursorHover.png), pointer' });
 
 		// Escuchamos los eventos del ratón cuando interactual con nuestro sprite de "Start"
+
 	    sprite.on('pointerdown', pointer => {
 	    	console.log("pulsando");
 	    });
@@ -72,7 +74,7 @@ export default class Title extends Phaser.Scene {
 		else var spriteSound = this.add.image(this.sys.game.canvas.width-20, 20, 'soundoff');
         spriteSound.setScale(0.925);
 
-		spriteSound.setInteractive();
+		spriteSound.setInteractive({ cursor: 'url(assets/vertopal.com_cursorHover.png), pointer' });
 
 		spriteSound.on('pointerdown', pointer => {
 	    	console.log("pulsando");

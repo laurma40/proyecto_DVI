@@ -36,8 +36,8 @@ export default class GameOver extends Phaser.Scene {
 		var sprite = this.add.image(this.sys.game.canvas.width/2, this.sys.game.canvas.height/2-20, 'retry')
         sprite.setScale(0.025);
 
-
-		sprite.setInteractive(); // Hacemos el sprite interactivo para que lance eventos
+		// Hacemos el sprite interactivo para que lance eventos
+		sprite.setInteractive({ cursor: 'url(assets/vertopal.com_cursorHover.png), pointer' });
 
 		// Escuchamos los eventos del ratón cuando interactual con nuestro sprite de "Start"
 	    sprite.on('pointerdown', pointer => {

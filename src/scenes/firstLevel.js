@@ -168,7 +168,7 @@ export default class firstLevel extends Phaser.Scene {
 
 		this.sound.stopAll();
 
-		this.rain = this.sound.add('rain',true);
+		this.rain = this.sound.add('rain', { loop: true });
 
 		this.rain.play();
 

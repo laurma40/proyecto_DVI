@@ -20,10 +20,21 @@ export default class GameOver extends Phaser.Scene {
 	* Creación de los elementos de la escena principal de juego
 	*/
 	create() {
+
+		this.sonido();
+
+		this.sonidoInter = this.sound.add('sonGameOver', { loop: true });
+		this.sonidoInter.volume = 0.1;
+		this.sonidoInter.play();
+		this.sonidoInter.rate = 0.5;
+
+
+
 		//Pintamos un fondo
-		var back = this.add.image(this.sys.game.canvas.width/2, this.sys.game.canvas.height/2, 'inicio');
+		var back = this.add.image(this.sys.game.canvas.width/2, this.sys.game.canvas.height/2, 'tv');
         back.setScale(0.75);
-        
+		back.setAlpha(0.60);
+
 
 		//Pintamos un botón de Empezar
 		var overView = this.add.image(this.sys.game.canvas.width/2, this.sys.game.canvas.height/2-20, 'over')
@@ -61,5 +72,19 @@ export default class GameOver extends Phaser.Scene {
 
 	    });
 
+	}
+
+	sonido(){
+
+		this.input.keyboard.on('keydown-M', function (event) {
+			console.log('La tecla M ha sido presionada');
+			if (!this.sound.mute) {
+				this.sound.setMute(true);
+			  } else {
+				this.sound.setMute(false);
+				this.sonidoInter.play();
+			}
+		}.bind(this));
+	
 	}
 }

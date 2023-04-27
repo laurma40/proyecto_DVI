@@ -5,7 +5,7 @@ export default class Puertas extends Phaser.GameObjects.Sprite {
 	 * @param {number} y - coordenada y
 	*/
 
-    constructor(scene, x, y, color, lateral) { 
+    constructor(scene, x, y, color, frontal) { 
 		super(scene, x, y, 'puertas'); // todo menos la escena son opcionales
 		this.setScale(0.8,0.8);
 		this.scene.add.existing(this); //Añadimos el armario a la escena
@@ -13,7 +13,7 @@ export default class Puertas extends Phaser.GameObjects.Sprite {
 		this.body.immovable = true;
 
 		this.color = color;
-		this.setVisible(lateral);
+		this.setVisible(frontal);
 
         this.scene.anims.create({
 			key: 'closeRed',

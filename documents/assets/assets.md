@@ -82,6 +82,8 @@ El resto de assets:
 |[start4.png](https://github.com/laurma40/proyecto_DVI/blob/pagina/assets/start4.png)|Julia Fluiters Pereira|
 |[ventanaInicio.png](https://github.com/laurma40/proyecto_DVI/blob/pagina/assets/ventanaInicio.png)|Laura Martínez Tomás y Julia Fluiters Pereira|
 |[ventanaJuego1.png](https://github.com/laurma40/proyecto_DVI/blob/pagina/assets/ventanaJuego1.png) y [ventanaJuego2.png](https://github.com/laurma40/proyecto_DVI/blob/pagina/assets/ventanaJuego2.png)|<p>Captura de los recursos utilizados anteriormente</p><p></p>|
+|[llaves_de_colores.png](https://github.com/laurma40/proyecto_DVI/blob/pagina/assets/llaves_de_colores2.png)|Julia Fluiters Pereira y Víctor Giménez Chillada|
+|[puertasSprite.png](https://github.com/laurma40/proyecto_DVI/blob/pagina/assets/puertasSprite.png)|Francisco Javier Antoranz Esteban|
 
 
 También se han hecho ediciones de imágenes reales para pixel art:

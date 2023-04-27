@@ -111,6 +111,10 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		this.sonidoGrito.volume = 0.08;
 
 		this.animacionEnCurso = false;
+		this.puertaRojaBloqueada = true;
+		this.puertaAzulBloqueada = true;
+		this.puertaGrisBloqueada = true;
+		this.puertaMarronBloqueada = true;
 		
 		this.luz = new Luz(this.scene, this.x, this.y);
 		this.progressBar = new LifeBar(this.scene, this.x + 170, this.y - 180, this.corduraMax, 96, 6);
@@ -390,5 +394,62 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 
 		this.cordura -= 5;
 		
+	}
+
+	abrirPuerta(sprite1, sprite2){
+		switch(sprite1.getColor()){
+            case 'azul':
+				console.log("Puerta Azul")
+                if(this.puertaAzulBloqueada){
+					if(this.eKey.isDown){
+						if(this.inventario.getLlave("azul")){
+							sprite1.body.enable = false;
+							this.puertaAzulBloqueada = false;
+							sprite1.play("openDoor");
+						}
+						
+					}
+				}
+                break;
+            case 'gris':
+				console.log("Puerta Gris")
+                if(this.puertaGrisBloqueada){
+					if(this.eKey.isDown){
+						if(this.inventario.getLlave("gris")){
+							sprite1.body.enable = false;
+							this.puertaGrisBloqueada = false;
+							sprite1.play("openDoor");
+						}
+						
+					}
+				}
+                break;
+            case 'marron':
+				console.log("Puerta Marron")
+                if(this.puertaMarronBloqueada){
+					if(this.eKey.isDown){
+						if(this.inventario.getLlave("marron")){
+							sprite1.body.enable = false;
+							this.puertaMarronBloqueada = false;
+							sprite1.play("openDoor");
+						}
+						
+					}
+				}
+                break;
+            case 'rojo':
+				console.log("Puerta Roja")
+                if(this.puertaRojaBloqueada){
+					if(this.eKey.isDown){
+						if(this.inventario.getLlave("rojo")){
+							sprite1.body.enable = false;
+							this.puertaRojaBloqueada = false;
+							sprite1.play("openDoor");
+						}
+						
+					}
+				}
+                break;
+        }
 	}
 }

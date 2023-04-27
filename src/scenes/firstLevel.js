@@ -4,6 +4,7 @@ import Filemon from "../objects/filemon.js";
 import Armario from "../objects/armario.js";
 import Bed from "../objects/bed.js";
 import Llave from "../objects/llave.js"
+import Puertas from "../objects/puertas.js"
 
 /**
  * Escena principal de juego.
@@ -45,7 +46,7 @@ export default class firstLevel extends Phaser.Scene {
 		this.colisionesLayer.setDepth(1);
 		//this.capaAntiguoMapa = this.map.createLayer('mapaCapa', imagenCapa);
 		this.muroInteriorLayer = this.map.createLayer('Muros/muroInterior',t_muro);
-		this.muroInteriorLayer.setDepth(2);
+		this.muroInteriorLayer.setDepth(1.8);
 		this.muroExteriorLayer = this.map.createLayer('Muros/muroExterior',t_muro);
 		this.muroExteriorLayer.setDepth(3);
 		//this.puertasLayer = this.map.createLayer('Puertas',t_puertas);
@@ -72,9 +73,12 @@ export default class firstLevel extends Phaser.Scene {
 		this.pilas = this.map.createFromObjects('Objetos', {name: "pila",classType: Battery, key: 'battery' });
 		this.armarios = this.map.createFromObjects('Objetos', {name: "armario", classType: Armario, key: 'armario'});
 		this.bed = this.map.createFromObjects('Objetos', {name: "bed", classType: Bed, key: 'bed'});
+		this.puertaMarron = new Puertas(this, 661, 1714, "marron", true);
+		this.puertaMarron.setDepth(1.9);
 		this.physics.add.overlap(this.bed, this.player, this.player.dormir, null, this.player);
         this.physics.add.overlap(this.armarios, this.player, this.player.interactuarArmario, null, this.player);
 		this.physics.add.overlap(this.pilas, this.player, this.player.cojePila, null, this.player);
+		this.physics.add.collider(this.puertaMarron, this.player, this.player.abrirPuerta, null, this.player);
 
 		//crear fuentes
 		this.textoEscribiendose = false;
@@ -147,8 +151,10 @@ export default class firstLevel extends Phaser.Scene {
 	entradaHabitacion(){
 		if(this.player.wKey.isDown || this.player.aKey.isDown){
 			this.muroInteriorLayer.setVisible(false);
+			this.puertaMarron.setVisible(false);
 		}else if(this.player.sKey.isDown || this.player.dKey.isDown){
 			this.muroInteriorLayer.setVisible(true);
+			this.puertaMarron.setVisible(true);
 		}
 	};
 	escaleraHabitacion(){

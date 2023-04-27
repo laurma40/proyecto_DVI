@@ -36,6 +36,15 @@ export default class Inventory extends Phaser.GameObjects.Container {
     }, this);
 
   }
+  getLlave(colorBuscado){
+    let encontrado = false;
+    this.iterate(function(elemento) {
+      if(elemento.getColorLlave() == colorBuscado){
+        encontrado = true;
+      }
+    }, this);
+    return encontrado;
+  }
 
   
 

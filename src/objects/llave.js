@@ -18,25 +18,25 @@ export default class Llave extends Phaser.GameObjects.Sprite {
 
 		// Creamos las animaciones de nuestra caja
 		this.scene.anims.create({
-			key: 'azul',
+			key: 'gris',
 			frames: scene.anims.generateFrameNumbers('llave', {start:0, end:0}),
 			frameRate: 1,
 			repeat: 0
 		});
 		this.scene.anims.create({
-			key: 'gris',
+			key: 'marron',
 			frames: scene.anims.generateFrameNumbers('llave', {start:1, end:1}),
 			frameRate: 1,
 			repeat: 0
 		});
         this.scene.anims.create({
-			key: 'marron',
+			key: 'rojo',
 			frames: scene.anims.generateFrameNumbers('llave', {start:2, end:2}),
 			frameRate: 1,
 			repeat: 0
 		});
         this.scene.anims.create({
-			key: 'rojo',
+			key: 'azul',
 			frames: scene.anims.generateFrameNumbers('llave', {start:3, end:3}),
 			frameRate: 1,
 			repeat: 0
@@ -58,6 +58,10 @@ export default class Llave extends Phaser.GameObjects.Sprite {
                 break;
         }
 
+	}
+
+	getColorLlave(){
+		return this.color;
 	}
 
 	/**

@@ -5,11 +5,15 @@ export default class Puertas extends Phaser.GameObjects.Sprite {
 	 * @param {number} y - coordenada y
 	*/
 
-    constructor(scene, x, y) { 
+    constructor(scene, x, y, color, lateral) { 
 		super(scene, x, y, 'puertas'); // todo menos la escena son opcionales
-		this.setScale(1,1);
+		this.setScale(0.8,0.8);
 		this.scene.add.existing(this); //Añadimos el armario a la escena
 		this.scene.physics.add.existing(this);
+		this.body.immovable = true;
+
+		this.color = color;
+		this.setVisible(lateral);
 
         this.scene.anims.create({
 			key: 'closeRed',
@@ -36,12 +40,32 @@ export default class Puertas extends Phaser.GameObjects.Sprite {
 			repeat: 0
 		});
         this.scene.anims.create({
-			key: 'close',
+			key: 'openDoor',
 			frames: scene.anims.generateFrameNumbers('puertas', {start:4, end:4}),
 			frameRate: 1,
 			repeat: 0
 		});
+
+		switch(color){
+            case 'azul':
+                this.play('closeBlue');
+                break;
+            case 'gris':
+                this.play('closeGrey');
+                break;
+            case 'marron':
+                this.play('closeBrown');
+                break;
+            case 'rojo':
+                this.play('closeRed');
+                break;
+        }
+
     }
+
+	getColor(){
+		return this.color;
+	}
     /**
 	 * Bucle principal de la caja, comprobamos la velocidad para reducirla y setearla a 0 en ciertos umbrales
 	 * Así no se movera de manera infinita cuando la golpeemos

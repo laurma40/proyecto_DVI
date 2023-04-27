@@ -105,3 +105,6 @@ Todos los recursos de audio que se han recopilado hasta el momento proceden de l
 |Monstro 2|<https://www.zapsplat.com/music/monster-ogre-single-weak-snarl/>|
 |Grito|<https://www.zapsplat.com/music/18-month-old-toddler-scream-1/>|
 |LLuvia |<https://www.zapsplat.com/music/distant-thunder-and-lightning-with-very-light-rain/>|
+|Victoria |<https://www.zapsplat.com/music/game-sound-fast-glissando-win-award-2/>|
+|Interferencias |<https://www.zapsplat.com/music/cb-radio-walkie-talkie-interference-crackle-1/>|
+

@@ -82,6 +82,16 @@ export default class firstLevel extends Phaser.Scene {
 		this.retroText.setTint(0xffffff);
 		this.retroText.setDepth(4);
 
+		//boton ppausa
+		this.botonPausa = this.add.image(this.sys.game.canvas.width-20, 20, 'noPausado');
+		this.botonPausa.setInteractive({ cursor: 'url(assets/vertopal.com_cursorHover.png), pointer' });
+		this.botonPausa.on('pointerup', pointer => {
+			this.scene.pause(this);
+			this.scene.launch('pauseMenu');
+	    });
+		this.botonPausa.setScale(0.25);
+		this.botonPausa.setDepth(5);
+
 		let path = this.add.path(1200,1754)
 			.lineTo(1200,1900)
 			.lineTo(1400,1900);
@@ -99,13 +109,17 @@ export default class firstLevel extends Phaser.Scene {
 		this.physics.add.overlap(this.llave3, this.player, this.player.cojeObjeto, null, this.player);
 		this.physics.add.overlap(this.llave4, this.player, this.player.cojeObjeto, null, this.player);
 
-
 	}
 	update() {
         // actualizar la posición del texto en función de la posición actual del jugador
 		if (this.retroText) {
 			this.retroText.x = this.cameras.main.scrollX + 10; // posicionar el texto en la esquina superior izquierda, dejando 10 píxeles de margen
 			this.retroText.y = this.cameras.main.scrollY + 10; // posicionar el texto en la esquina superior izquierda, dejando 10 píxeles de margen
+		}
+
+		if (this.botonPausa) {
+			this.botonPausa.x = this.cameras.main.scrollX + this.sys.game.canvas.width-20; // posicionar el texto en la esquina superior izquierda, dejando 10 píxeles de margen
+			this.botonPausa.y = this.cameras.main.scrollY + 25; // posicionar el texto en la esquina superior izquierda, dejando 10 píxeles de margen
 		}
     }
 	cambioEntrada(){
@@ -202,10 +216,10 @@ export default class firstLevel extends Phaser.Scene {
 
 	pauseMenu() {
 
-		this.input.keyboard.on('keydown-P', function (event) {
+		this.input.keyboard.on('keydown-ESC', function (event) {
 
 			this.scene.pause(this);
-			this.scene.launch('pauseMenu');
+			this.scene.launch('pauseMenu', {pausado: this.pausa});
 
 		}.bind(this));
 

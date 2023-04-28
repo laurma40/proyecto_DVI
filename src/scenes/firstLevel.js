@@ -114,6 +114,7 @@ export default class firstLevel extends Phaser.Scene {
 		this.physics.add.overlap(this.llave3, this.player, this.player.cojeObjeto, null, this.player);
 		this.physics.add.overlap(this.llave4, this.player, this.player.cojeObjeto, null, this.player);
 
+		this.ultimaLetra = false;
 	}
 	update() {
         // actualizar la posición del texto en función de la posición actual del jugador
@@ -126,14 +127,21 @@ export default class firstLevel extends Phaser.Scene {
 			this.botonPausa.x = this.cameras.main.scrollX + this.sys.game.canvas.width-20; // posicionar el texto en la esquina superior izquierda, dejando 10 píxeles de margen
 			this.botonPausa.y = this.cameras.main.scrollY + 25; // posicionar el texto en la esquina superior izquierda, dejando 10 píxeles de margen
 		}
+		if(this.textoEscribiendose === false && this.ultimaLetra === true ){
+			this.time.delayedCall(2000, this.resetText, [], this);
+		}
     }
+	resetText(){
+		this.retroText.setText("");
+		this.ultimaLetra=false;
+	}
 	cambioEntrada(){
 		if(this.player.wKey.isDown){
 			this.muroExteriorLayer.setVisible(false);
 		}else if(this.player.sKey.isDown){
 			this.muroExteriorLayer.setVisible(true);
 		}
-		//this.escribirTexto("Bienvenido a la habitacion");
+		this.escribirTexto("Bienvenido a la habitacion");
 	}
 	cambioLateralesIncio(){
 		if(this.player.wKey.isDown){
@@ -178,6 +186,7 @@ export default class firstLevel extends Phaser.Scene {
 						this.retroText.setText(aux);
 						if (index === texto.length - 1) {
 							this.textoEscribiendose = false;
+							this.ultimaLetra=true;
 						}
 					}, i * 100, i);
 				}

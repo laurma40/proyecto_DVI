@@ -108,7 +108,10 @@ export default class firstLevel extends Phaser.Scene {
 		this.llave2 = new Llave(this, 1100, 1800,'azul');
 		this.llave3 = new Llave(this, 1050, 1800,'gris');
 		this.llave4 = new Llave(this, 1000, 1800,'marron');
-
+		//Llave nivel 2 --> 510, 1537
+		//Llave nivel 3 --> 1613, 1701(salon) && 684, 1456 (billar)
+		//Llave nivel 4 --> 1761, 1024 && 684, 1456 (billar) && 626, 565(entrada nieve)
+		//Llave nivel 5 --> 1636, 1524 && 1898, 1026 (cocina) && 1272, 433(nieve) && 2054,1569
 		this.physics.add.overlap(this.llave, this.player, this.player.cojeObjeto, null, this.player);
 		this.physics.add.overlap(this.llave2, this.player, this.player.cojeObjeto, null, this.player);
 		this.physics.add.overlap(this.llave3, this.player, this.player.cojeObjeto, null, this.player);

@@ -83,6 +83,9 @@ export default class loadingScreen extends Phaser.Scene {
         this.load.audio('sonGrito', 'assets/audio/human-18-month-toddler-boy-scream-001.mp3');
         this.load.audio('sonGameOver', 'assets/audio/tradio_interference.mp3');
         this.load.audio('sonWin', 'assets/audio/win.mp3');
+        this.load.audio('sonPuerta', 'assets/audio/zapsplat_household_door_wooden_old_slightly_rotten_close_004_97951.mp3');
+        this.load.audio('sonPesanta', 'assets/audio/zapsplat_horror_monster_ogre_single_weak_snarl_97943.mp3');
+
 
         this.load.image('cursorCustom', 'assets/vertopal.com_cursorHover.png');
         this.load.image('controllers', 'assets/controles.png');

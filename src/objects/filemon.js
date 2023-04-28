@@ -102,19 +102,18 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		this.canPressD = true;
 
 		this.sonidoLinterna = scene.sound.add('sonlinterna');
-		this.sonidoLinterna.volume = 0.1;
+		this.sonidoLinterna.volume = 0.3;
 
 		this.sonidoCoger = scene.sound.add('sonCoger');
-		this.sonidoCoger.volume = 0.1;
+		this.sonidoCoger.volume = 0.3;
 
 		this.sonidoGrito = scene.sound.add('sonGrito');
 		this.sonidoGrito.volume = 0.08;
 
+		this.sonidoPuerta = scene.sound.add('sonPuerta');
+		this.sonidoPuerta.volume = 0.3;
+
 		this.animacionEnCurso = false;
-		this.puertaRojaBloqueada = true;
-		this.puertaAzulBloqueada = true;
-		this.puertaGrisBloqueada = true;
-		this.puertaMarronBloqueada = true;
 		
 		this.luz = new Luz(this.scene, this.x, this.y);
 		this.progressBar = new LifeBar(this.scene, this.x + 170, this.y - 180, this.corduraMax, 96, 6);
@@ -187,7 +186,6 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 
 		////LINTERNA encender y apagar
 		
-		this.luz.setPosition(this.x, this.y);
 		
 		//Encender y apagar linterna -> se pulsa el boton de encender y tenemos pilas
 		if(this.fKey.isDown && this.pilas.length != 0 && this.canPressF){ 
@@ -210,7 +208,7 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 
 			this.canPressF = false;
 			// Esperar un segundo antes de volver a escuchar la tecla E porque si no no se pulsa bien
-			setTimeout(() => { this.canPressF = true; }, 100); //esto lo mejora pero no lo arregla del todo
+			setTimeout(() => { this.canPressF = true; }, 100); // no lo corregimos del todo paar dar más ambiente
 		}
 		
 		//Descargamos pila 
@@ -231,8 +229,6 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 
 				this.sonidoLinterna.play();	
 				this.sonidoCoger.play();
-
-
 				this.linterna = false;
 				this.luz.play('offLuz');
 				this.speed = this.maxSpeed;
@@ -253,19 +249,8 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 				//LLAMAR A SCENE GAME OVER 
 
 				this.scene.sound.stopAll();
-
 				this.sonidoGrito.play();
 				this.scene.scene.start('gameOver'); //Cambiamos a la escena de juego
-
-
-
-				/*
-				this.sonidoGrito.play();
-				this.scene.cameras.main.fadeOut(500, 0, 0, 0)
-				this.scene.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
-					this.scene.scene.start('gameOver'); //Cambiamos a la escena de juego
-				});
-				*/
 			}
 
 		}
@@ -276,11 +261,7 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 	
 	cojePila(sprite1, sprite2){//this.pila1, this.player,
 
-
-		console.log("AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
-
 		if(this.eKey.isDown){ 
-
 
 			if( sprite1.carga > 0 && this.pilas.length < 3){ //Solo puede llevar tres pilas y solo la cojo si tiene carga
 				this.pilas.push(sprite1);
@@ -392,64 +373,25 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 	cercaPesanta(sprte1, sprite2){//cabeza de Pesanta, this.player,
 
 
-		this.cordura -= 5;
+		this.cordura -= 10;
 		
 	}
 
 	abrirPuerta(sprite1, sprite2){
-		switch(sprite1.getColor()){
-            case 'azul':
-				console.log("Puerta Azul")
-                if(this.puertaAzulBloqueada){
-					if(this.eKey.isDown){
-						if(this.inventario.getLlave("azul")){
-							sprite1.body.enable = false;
-							this.puertaAzulBloqueada = false;
-							sprite1.play("openDoor");
-						}
-						
-					}
+
+		console.log("Puerta " + sprite1.color);
+		if(sprite1.bloqueada){
+			if(this.eKey.isDown){
+				if(this.inventario.getLlave(sprite1.color)){
+					sprite1.body.enable = false;
+					sprite1.bloqueada = false;
+					this.sonidoPuerta.play();
+					sprite1.play("openDoor");
 				}
-                break;
-            case 'gris':
-				console.log("Puerta Gris")
-                if(this.puertaGrisBloqueada){
-					if(this.eKey.isDown){
-						if(this.inventario.getLlave("gris")){
-							sprite1.body.enable = false;
-							this.puertaGrisBloqueada = false;
-							sprite1.play("openDoor");
-						}
-						
-					}
-				}
-                break;
-            case 'marron':
-				console.log("Puerta Marron")
-                if(this.puertaMarronBloqueada){
-					if(this.eKey.isDown){
-						if(this.inventario.getLlave("marron")){
-							sprite1.body.enable = false;
-							this.puertaMarronBloqueada = false;
-							sprite1.play("openDoor");
-						}
-						
-					}
-				}
-                break;
-            case 'rojo':
-				console.log("Puerta Roja")
-                if(this.puertaRojaBloqueada){
-					if(this.eKey.isDown){
-						if(this.inventario.getLlave("rojo")){
-							sprite1.body.enable = false;
-							this.puertaRojaBloqueada = false;
-							sprite1.play("openDoor");
-						}
-						
-					}
-				}
-                break;
-        }
+				else{ sprite1.escribirTexto(); }
+				
+			}
+		}
+
 	}
 }

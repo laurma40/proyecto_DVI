@@ -75,6 +75,11 @@ export default class CabezaPesanta extends Phaser.GameObjects.Sprite {
 
 		this.scene.physics.add.existing(this);
 
+		this.sonidoPesanta = scene.sound.add('sonPesanta');
+		this.sonidoPesanta.volume = 0.08;
+		this.playGrito = false;
+
+		setTimeout(() => { this.playGrito = true; }, 1000);
 	}
 	/**
 	 * Bucle principal del personaje, actualizamos su posición y ejecutamos acciones según el Input
@@ -119,5 +124,18 @@ export default class CabezaPesanta extends Phaser.GameObjects.Sprite {
 
 		this.setPosition(this.follower.x, this.follower.y);
 
+
+		if(this.playGrito){
+
+			this.sonidoPesanta.play();
+
+			this.playGrito = false;
+			setTimeout(() => { this.playGrito = true; }, 10000);
+		}
+
+		
 	}
+
+
+	
 }

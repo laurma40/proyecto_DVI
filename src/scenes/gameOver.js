@@ -56,7 +56,7 @@ export default class GameOver extends Phaser.Scene {
 	    });
 
 	    sprite.on('pointerup', pointer => {
-			this.scene.start('firstLevel'); //Cambiamos a la escena de juego
+			this.scene.start('title'); //Cambiamos a la escena de juego
 
 	    });
 

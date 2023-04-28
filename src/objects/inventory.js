@@ -18,6 +18,7 @@ export default class Inventory extends Phaser.GameObjects.Container {
   
   removeGameObject(gameObject) {
     this.remove(gameObject);
+    gameObject.destroy();
   }
 
   print(xFilemon, yFilemon){
@@ -41,6 +42,7 @@ export default class Inventory extends Phaser.GameObjects.Container {
     this.iterate(function(elemento) {
       if(elemento.getColorLlave() == colorBuscado){
         encontrado = true;
+        this.removeGameObject(elemento);
       }
     }, this);
     return encontrado;

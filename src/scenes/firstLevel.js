@@ -73,7 +73,8 @@ export default class firstLevel extends Phaser.Scene {
 		this.pilas = this.map.createFromObjects('Objetos', {name: "pila",classType: Battery, key: 'battery' });
 		this.armarios = this.map.createFromObjects('Objetos', {name: "armario", classType: Armario, key: 'armario'});
 		this.bed = this.map.createFromObjects('Objetos', {name: "bed", classType: Bed, key: 'bed'});
-		this.puertaMarron = new Puertas(this, 661, 1714, "marron", true);
+		//this.puertaMarron = new Puertas(this, 661, 1714, "marron", true);
+		this.puertaMarron = new Puertas(this, 661, 1714, "marron", true, "Prueba Puerta", true);
 		this.puertaMarron.setDepth(1.9);
 		this.physics.add.overlap(this.bed, this.player, this.player.dormir, null, this.player);
         this.physics.add.overlap(this.armarios, this.player, this.player.interactuarArmario, null, this.player);
@@ -132,7 +133,7 @@ export default class firstLevel extends Phaser.Scene {
 		}else if(this.player.sKey.isDown){
 			this.muroExteriorLayer.setVisible(true);
 		}
-		this.escribirTexto("Bienvenido a la habitacion");
+		//this.escribirTexto("Bienvenido a la habitacion");
 	}
 	cambioLateralesIncio(){
 		if(this.player.wKey.isDown){

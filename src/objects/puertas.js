@@ -5,12 +5,15 @@ export default class Puertas extends Phaser.GameObjects.Sprite {
 	 * @param {number} y - coordenada y
 	*/
 
-    constructor(scene, x, y, color, frontal) { 
+    constructor(scene, x, y, color, frontal, mensajePuerta, bloqueadaInicio) { 
 		super(scene, x, y, 'puertas'); // todo menos la escena son opcionales
 		this.setScale(0.8,0.8);
 		this.scene.add.existing(this); //Añadimos el armario a la escena
 		this.scene.physics.add.existing(this);
 		this.body.immovable = true;
+
+		if(bloqueadaInicio == null) this.bloqueada = true;
+		else this.bloqueada = bloqueadaInicio;
 
 		this.color = color;
 		this.setVisible(frontal);
@@ -46,20 +49,34 @@ export default class Puertas extends Phaser.GameObjects.Sprite {
 			repeat: 0
 		});
 
-		switch(color){
-            case 'azul':
-                this.play('closeBlue');
-                break;
-            case 'gris':
-                this.play('closeGrey');
-                break;
-            case 'marron':
-                this.play('closeBrown');
-                break;
-            case 'rojo':
-                this.play('closeRed');
-                break;
-        }
+		if(this.bloqueada){
+			switch(color){
+				case 'azul':
+					this.play('closeBlue');
+					break;
+				case 'gris':
+					this.play('closeGrey');
+					break;
+				case 'marron':
+					this.play('closeBrown');
+					break;
+				case 'rojo':
+					this.play('closeRed');
+					break;
+			}
+		}else{
+			this.play('openDoor');
+			this.body.enable = false;
+		}
+		
+		//crear fuentes
+		if(mensajePuerta == null) this.texto = "Que raro, la puerta está cerrada. ¿Dónde estará la llave?";
+		else this.texto = mensajePuerta;
+		this.textoEscribiendose = false;
+		this.retroText = this.scene.add.bitmapText(100,100,'fuente','', 16);
+		this.retroText.setTint(0xffffff);
+		this.retroText.setDepth(4);
+
 
     }
 
@@ -74,5 +91,28 @@ export default class Puertas extends Phaser.GameObjects.Sprite {
 	 */
 	preUpdate(t, dt) {
         super.preUpdate(t, dt);
+		if (this.retroText) {
+			this.retroText.x = this.scene.cameras.main.scrollX + 10; // posicionar el texto en la esquina superior izquierda, dejando 10 píxeles de margen
+			this.retroText.y = this.scene.cameras.main.scrollY + 10; // posicionar el texto en la esquina superior izquierda, dejando 10 píxeles de margen
+		}
+
 	}
+
+	escribirTexto() {
+		if (!this.textoEscribiendose) {
+			this.textoEscribiendose = true;
+			if (this.retroText) {
+				var aux = '';  
+				for (var i = 0; i < this.texto.length; i++) {
+					setTimeout((index) => {
+						aux = aux + this.texto[index]; 
+						this.retroText.setText(aux);
+						if (index === this.texto.length - 1) {
+							this.textoEscribiendose = false;
+						}
+					}, i * 100, i);
+				}
+			}
+		}
+	} 
 }

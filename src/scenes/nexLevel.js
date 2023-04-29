@@ -63,7 +63,7 @@ export default class NextLevel extends Phaser.Scene {
 					this.scene.start('fifthLevel');
 					break;
 				case this.currentLevel = 'fifthLevel':
-					this.scene.start('gameOver'); //TODO CAMBIAR A FIN DEL JUEGO
+					this.scene.start('endScene'); //TODO CAMBIAR A FIN DEL JUEGO
 					break;
                 default:
                     this.scene.start('title');

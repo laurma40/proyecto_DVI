@@ -6,7 +6,7 @@ export default class PauseMenu extends Phaser.Scene {
   init(data) {
     this.currentLevel = data.nivel;
     console.log(this.currentLevel);
-}
+  }
   
   create() {
     this.scene.bringToTop();

@@ -20,8 +20,19 @@ export default class Level extends Phaser.Scene {
 	*/
 	create() {
 
+		const config = {
+			mute: false,
+			volume: 1,
+			rate: 1,
+			detune: 0,
+			seek: 0,
+			loop: true,
+			delay: 0,
+		};
+
+
 		this.sonido();
-		this.rain = this.sound.add('rain', { loop: true });
+		this.rain = this.sound.add('rain', config);
 		this.rain.play();
 
 		this.shortCut();
@@ -183,7 +194,16 @@ export default class Level extends Phaser.Scene {
 			});
 		}.bind(this));
 
-		
+		this.input.keyboard.on('keydown-P', function (event) {
+
+			this.sound.stopAll();
+
+			console.log('La tecla P ha sido presionada');
+			this.cameras.main.fadeOut(1000, 0, 0, 0)
+			this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
+				this.scene.start('endScene'); //Cambiamos a la escena de juego
+			});
+		}.bind(this));
 	}
 
 	pauseMenu() {

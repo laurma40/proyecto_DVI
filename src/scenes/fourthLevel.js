@@ -57,6 +57,15 @@ export default class FourthLevel extends level {
 
         super.create();
 
+        this.t_caja = this.map.addTilesetImage('cajas');
+		this.cajasLayer = this.map.createLayer('Cajas/CajasNivel4',this.t_caja);
+		this.cajasLayer.setDepth(1.8);
+		this.cajasLayer.setVisible(true);
+		this.cajasColisiones = this.map.createLayer('Cajas/colisionesCajasNivel4',this.t_caja);
+		this.cajasLayer.setDepth(1.8);
+		this.cajasColisiones.setVisible(false);
+		this.cajasColisiones.setCollision(7809);
+		this.physics.add.collider(this.player, this.cajasColisiones);
 		// Creamos los objetos a través de la capa de objetos del tilemap y la imagen o la clase que queramos
 		this.pilas = this.map.createFromObjects('ObjetosNivel4', {name: "pila",classType: Battery, key: 'battery' });
 		this.armarios = this.map.createFromObjects('Armarios', {name: "armario1", classType: Armario, key: 'armario'});

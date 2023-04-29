@@ -53,8 +53,7 @@ export default class Title extends Phaser.Scene {
 	    });
 
 	    sprite.on('pointerup', pointer => {
-			this.music.stop();
-			this.rain.stop();
+			this.sound.stopAll();
 			this.scene.start('firstLevel'); //Cambiamos a la escena de juego
 	    });
 

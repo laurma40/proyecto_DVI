@@ -18,7 +18,7 @@ export default class NextLevel extends Phaser.Scene {
 		this.sonido();
 
 		this.sonidoWin = this.sound.add('sonWin');
-		this.sonidoWin.volume = 0.25;
+		this.sonidoWin.volume = 0.1;
 		this.sonidoWin.play();
 		this.sonidoWin.rate = 0.5;
 
@@ -48,11 +48,22 @@ export default class NextLevel extends Phaser.Scene {
 		home.setInteractive({ cursor: 'url(assets/vertopal.com_cursorHover.png), pointer' });
 
 	    next.on('pointerup', pointer => {
-			//this.scene.start('firstLevel'); //Cambiamos a la escena de juego
             switch(this.currentLevel){
                 case this.currentLevel = 'firstLevel':
-                    this.scene.start('gameOver');
+                    this.scene.start('secondLevel');
                     break;
+				case this.currentLevel = 'secondLevel':
+					this.scene.start('thirdLevel');
+					break;
+				case this.currentLevel = 'thirdLevel':
+					this.scene.start('fourthLevel');
+					break;
+				case this.currentLevel = 'fourthLevel':
+					this.scene.start('fifthLevel');
+					break;
+				case this.currentLevel = 'fifthLevel':
+					this.scene.start('gameOver'); //TODO CAMBIAR A FIN DEL JUEGO
+					break;
                 default:
                     this.scene.start('title');
                     break;

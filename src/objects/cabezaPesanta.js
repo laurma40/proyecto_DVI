@@ -4,7 +4,6 @@ export default class CabezaPesanta extends Phaser.GameObjects.Sprite {
 		this.setScale(0.12);
 		this.path = path;
 		this.t = 0;
-		this.speed = 100;
 		//this.easing = null;
 		this.x = x;
 		this.y = y;
@@ -65,12 +64,11 @@ export default class CabezaPesanta extends Phaser.GameObjects.Sprite {
 
 		this.follower = scene.add.follower(path, x, y, this);
 		this.follower.startFollow({
-			duration: 3000,
+			duration: 5750,
 			ease: 'Linear',
 			repeat: -1,
 			yoyo: true
 		});
-		this.follower.pathSpeed = 0.05;
 		this.follower.setAlpha(0);
 
 		this.scene.physics.add.existing(this);

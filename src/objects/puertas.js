@@ -70,7 +70,7 @@ export default class Puertas extends Phaser.GameObjects.Sprite {
 		}
 		
 		//crear fuentes
-		if(mensajePuerta == null) this.texto = "Que raro, la puerta está cerrada. ¿Dónde estará la llave?";
+		if(mensajePuerta == null) this.texto = "Cerrada...";
 		else this.texto = mensajePuerta;
     }
 

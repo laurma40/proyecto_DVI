@@ -30,9 +30,10 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		this.corduraMax = 4000; //esto se pasaría por el constructor para que dependa del nivel
 		this.cordura = this.corduraMax;
 
-		this.maxSpeed = 115;
+		this.maxSpeed = 120;
 		this.minSpeed = 70;
 		this.speed = this.maxSpeed;		
+		this.depth=1.9;
 
 		// Creamos las animaciones de cabeza de pesanta
 		this.scene.anims.create({
@@ -357,6 +358,7 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 
 		if(this.eKey.isDown){ 
 
+			this.scene.sound.stopAll();
 			sprte1.play('conFilemon')
 			this.visible = false;
 			this.linterna = false;

@@ -112,6 +112,8 @@ export default class loadingScreen extends Phaser.Scene {
         this.load.image('noPausado', 'assets/pausa.png');
         this.load.image('pausado', 'assets/reanuda.png');
 
+        this.load.image('caja', 'assets/Tilemap/cajas.jpg');
+
 	}
 	
 	/**
@@ -206,12 +208,9 @@ export default class loadingScreen extends Phaser.Scene {
 			console.log('La tecla M ha sido presionada');
 			if (!this.sound.mute) {
 				this.sound.setMute(true);
-				this.spriteSound.setTexture(this.sound2.key);
 
 			  } else {
 				this.sound.setMute(false);
-				this.spriteSound.setTexture(this.sound1.key);
-
 			}
 		}.bind(this));
 	

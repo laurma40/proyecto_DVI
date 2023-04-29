@@ -112,7 +112,7 @@ export default class loadingScreen extends Phaser.Scene {
         this.load.image('noPausado', 'assets/pausa.png');
         this.load.image('pausado', 'assets/reanuda.png');
 
-        this.load.image('caja', 'assets/Tilemap/cajas.jpg');
+        this.load.image('cajas', 'assets/Tilemap/cajas.jpg');
 
 	}
 	

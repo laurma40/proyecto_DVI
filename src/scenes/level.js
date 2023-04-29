@@ -36,6 +36,7 @@ export default class Level extends Phaser.Scene {
 			height:200
 		});
 		this.t_muro = this.map.addTilesetImage('nuevosMuros');
+		//console.log(this.t_muro);
 		this.imagenCapa = this.add.image(0,0,'mapaImg');
 		this.imagenCapa.setOrigin(0, 0);
 		this.imagenCapa.setDepth(0);

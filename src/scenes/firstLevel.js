@@ -24,11 +24,15 @@ export default class FirstLevel extends level {
 
         super.create();
 
-		const t_caja = this.map.addTilesetImage('caja');
+
+		const t_caja = this.map.addTilesetImage('cajas');
 		this.cajasLayer = this.map.createLayer('Cajas/CajasNivel1',t_caja);
 		this.cajasLayer.setDepth(1.8);
-		this.cajasColisiones = this.map.createLayer('Cajas/colisionesCajasNivel1',super.t_muro);
+		this.cajasColisiones = this.map.createLayer('Cajas/colisionesCajasNivel1',this.t_muro);
+		console.log(this.t_muro);
 		this.cajasColisiones.setDepth(1.8);
+		this.cajasColisiones.setCollision(1280);
+		console.log(this);
 
 
 		// Creamos los objetos a través de la capa de objetos del tilemap y la imagen o la clase que queramos

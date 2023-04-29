@@ -12,14 +12,12 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 	 * @param {number} y - coordenada y
 	*/
 
-	constructor(scene, x, y, colliderGroup) {
+	constructor(scene, x, y) {
 		super(scene, x, y, 'filemon');
 		this.setScale(0.1);
 		this.scene = scene;
 		this.scene.add.existing(this); //Añadimos el caballero a la escena
 		this.scene.physics.add.existing(this);
-
-		this.depth = 1;
 
 		//variables globales (creo q si se declaran arriba con el @ se hacen globales también)
 		this.linterna = false;
@@ -260,7 +258,7 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 	}
 
 	
-	cojePila(sprite1, sprite2){//this.pila1, this.player,
+	cogePila(sprite1, sprite2){//this.pila1, this.player,
 
 		if(this.eKey.isDown){ 
 

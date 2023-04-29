@@ -48,6 +48,7 @@ export default class NextLevel extends Phaser.Scene {
 		home.setInteractive({ cursor: 'url(assets/vertopal.com_cursorHover.png), pointer' });
 
 	    next.on('pointerup', pointer => {
+			this.sound.stopAll();
             switch(this.currentLevel){
                 case this.currentLevel = 'firstLevel':
                     this.scene.start('secondLevel');

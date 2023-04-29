@@ -25,6 +25,7 @@ export default class SecondLevel extends level {
 	create() {
 
 		this.nocheSonido = this.sound.add('nocheSonido',true);
+		this.nocheSonido.volume = 0.1;
 		this.nocheSonido.play();
         var text = this.add.text(100, 350, 'Noche 2', { fontFamily: 'silkscreenregular', fontSize: '24px', fill: '#ffffff' });
         text.setOrigin(0.5);
@@ -60,7 +61,7 @@ export default class SecondLevel extends level {
 
 		// Creamos los objetos a través de la capa de objetos del tilemap y la imagen o la clase que queramos
 		this.pilas = this.map.createFromObjects('ObjetosNivel2', {name: "pila",classType: Battery, key: 'battery' });
-		this.armarios = this.map.createFromObjects('ObjetosNivel2', {name: "armario", classType: Armario, key: 'armario'});
+		this.armarios = this.map.createFromObjects('Armarios', {name: "armario1", classType: Armario, key: 'armario'});
 		this.bed = this.map.createFromObjects('ObjetosNivel2', {name: "cama", classType: Bed, key: 'bed'});
 		this.puertaMarron = new Puertas(this, 661, 1714, "marron", true, "Prueba Puerta", false);
 		this.puertaMarron.setDepth(1.8);

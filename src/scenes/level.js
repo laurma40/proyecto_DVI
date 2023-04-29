@@ -90,10 +90,10 @@ export default class Level extends Phaser.Scene {
 	}
 	update() {
         // actualizar la posición del texto en función de la posición actual del jugador
-		/*if (this.retroText) {
+		if (this.retroText) {
 			this.retroText.x = this.cameras.main.scrollX + 10; // posicionar el texto en la esquina superior izquierda, dejando 10 píxeles de margen
 			this.retroText.y = this.cameras.main.scrollY + 10; // posicionar el texto en la esquina superior izquierda, dejando 10 píxeles de margen
-		}*/
+		}
 
 		if (this.botonPausa) {
 			this.botonPausa.x = this.cameras.main.scrollX + this.sys.game.canvas.width-20; // posicionar el texto en la esquina superior izquierda, dejando 10 píxeles de margen

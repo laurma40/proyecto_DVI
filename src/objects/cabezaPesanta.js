@@ -62,9 +62,12 @@ export default class CabezaPesanta extends Phaser.GameObjects.Sprite {
 
 		this.play('frontP');
 
+		
+
+
 		this.follower = scene.add.follower(path, x, y, this);
 		this.follower.startFollow({
-			duration: 5750,
+			duration: 10 * this.path.getLength(),
 			ease: 'Linear',
 			repeat: -1,
 			yoyo: true

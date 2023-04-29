@@ -27,10 +27,12 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		this.zonaSegura = false;
 		//this.pilas.push(new Battery(scene,400,300));
 
-		this.corduraMax = 4000; //esto se pasaría por el constructor para que dependa del nivel
+		this.corduraMax = 30000; //esto se pasaría por el constructor para que dependa del nivel
+
+		//this.corduraMax = 3000; //esto se pasaría por el constructor para que dependa del nivel
 		this.cordura = this.corduraMax;
 
-		this.maxSpeed = 120;
+		this.maxSpeed = 115;
 		this.minSpeed = 70;
 		this.speed = this.maxSpeed;		
 		this.depth=1.9;
@@ -115,6 +117,7 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		this.sonidoPuerta.volume = 0.3;
 
 		this.animacionEnCurso = false;
+		this.enArmario = false;
 		
 		this.luz = new Luz(this.scene, this.x, this.y);
 		this.progressBar = new LifeBar(this.scene, this.x + 170, this.y - 180, this.corduraMax, 96, 6);
@@ -130,33 +133,30 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		super.preUpdate(t, dt);
 		let velocity = new Phaser.Math.Vector2(0, 0);
 		// Mientras pulsemos la tecla 'A' movemos el personaje en la X
-		if (this.aKey.isDown) {
+		if (this.aKey.isDown && !this.enArmario) {
 			if (this.anims.currentAnim.key !== 'left'){
 				this.play('left');
 			}
 			velocity.x = -1;
 			//this.x -= this.speed*dt/60;
 		}
-
 		else if (this.aKey.isUp && this.anims.currentAnim.key === 'left') {
 			this.play('standLeft');
 		}
-
 		// Mientras pulsemos la tecla 'D' movemos el personaje en la X
-		else if (this.dKey.isDown) {
+		else if (this.dKey.isDown && !this.enArmario) {
 			if (this.anims.currentAnim.key !== 'right'){
 				this.play('right');
 			}
 			velocity.x = 1;
 			//this.x += speed*dt/60;
 		}
-
 		else if (this.dKey.isUp && this.anims.currentAnim.key === 'right') {
 			this.play('standRight');
 		}
 
 		// Mientras pulsemos la tecla 'W' movemos el personaje en la Y
-		if (this.wKey.isDown) {
+		if (this.wKey.isDown && !this.enArmario) {
 			if (this.anims.currentAnim.key !== 'back' && this.anims.currentAnim.key !== 'left' && this.anims.currentAnim.key !== 'right'){
 				this.play('back');
 			}
@@ -164,12 +164,12 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 			velocity.y = -1;
 		}
 
-		else if (this.wKey.isUp && this.anims.currentAnim.key === 'back') {
+		else if (this.wKey.isUp && this.anims.currentAnim.key === 'back' ) {
 			this.play('standBack');
 		}
 
 		// Mientras pulsemos la tecla 'S' movemos el personaje en la Y
-		else if (this.sKey.isDown) {
+		else if (this.sKey.isDown && !this.enArmario) {
 			if (this.anims.currentAnim.key !== 'front' && this.anims.currentAnim.key !== 'left' && this.anims.currentAnim.key !== 'right')
 				this.play('front');
 			velocity.y = 1;
@@ -321,6 +321,7 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
                     this.scene.input.keyboard.removeKey('S');
                     this.scene.input.keyboard.removeKey('D');
                     this.scene.input.keyboard.removeKey('F');
+					this.enArmario = true;
                     setTimeout(() => { 
                         sprite2.visible = false;
                         setTimeout(() => { 
@@ -340,6 +341,7 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
                             this.sKey = this.scene.input.keyboard.addKey('S');
                             this.dKey = this.scene.input.keyboard.addKey('D');
                             this.fKey = this.scene.input.keyboard.addKey('F');
+							this.enArmario = false;
                             this.animacionEnCurso = false;
                         }, 1500);
                     }, 1500);
@@ -374,8 +376,9 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
     
 	cercaPesanta(sprte1, sprite2){//cabeza de Pesanta, this.player,
 
-
-		this.cordura -= 10;
+		if(!this.zonaSegura){
+			this.cordura -= 10;
+		}
 		
 	}
 
@@ -384,14 +387,15 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		console.log("Puerta " + sprite1.color);
 		if(sprite1.bloqueada){
 			if(this.eKey.isDown){
+
 				if(this.inventario.getLlave(sprite1.color)){
 					sprite1.body.enable = false;
 					sprite1.bloqueada = false;
 					this.sonidoPuerta.play();
 					sprite1.play("openDoor");
+					sprite1.setVisible(sprite1.frontal);
 				}
 				else{ 
-					//sprite1.escribirTexto();
 					this.scene.escribirTexto(sprite1.texto);
 				}
 				

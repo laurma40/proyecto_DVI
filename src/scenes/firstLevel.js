@@ -56,9 +56,10 @@ export default class FirstLevel extends level {
 		super.create();
 
 
-		const t_caja = this.map.addTilesetImage('cajas');
-		this.cajasLayer = this.map.createLayer('Cajas/CajasNivel1',t_caja);
+		this.t_caja = this.map.addTilesetImage('cajas');
+		this.cajasLayer = this.map.createLayer('Cajas/CajasNivel1',this.t_caja);
 		this.cajasLayer.setDepth(1.8);
+		this.cajasLayer.setVisible(true);
 		//this.cajasColisiones = this.map.createLayer('Cajas/colisionesCajasNivel1',this.t_muro);
 		//console.log(this.t_muro);
 		//this.cajasColisiones.setDepth(1.9);
@@ -78,7 +79,7 @@ export default class FirstLevel extends level {
         this.puertaAzul.setDepth(1.8);
 		this.physics.add.overlap(this.bed, this.player, this.player.dormir, null, this.player);
         this.physics.add.overlap(this.armarios, this.player, this.player.interactuarArmario, null, this.player);
-		this.physics.add.overlap(this.pilas, this.player, this.player.cojePila, null, this.player);
+		this.physics.add.overlap(this.pilas, this.player, this.player.cogePila, null, this.player);
 		this.physics.add.collider(this.puertaMarron, this.player, this.player.abrirPuerta, null, this.player);
         this.physics.add.collider(this.puertaAzul, this.player, this.player.abrirPuerta, null, this.player);
 	}

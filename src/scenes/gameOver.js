@@ -20,10 +20,30 @@ export default class GameOver extends Phaser.Scene {
 	* Creación de los elementos de la escena principal de juego
 	*/
 	create() {
+
+		this.sonido();
+
+		const config = {
+			mute: false,
+			volume: 1,
+			rate: 1,
+			detune: 0,
+			seek: 0,
+			loop: true,
+			delay: 0,
+		  };
+		this.sonidoInter = this.sound.add('sonGameOver', config);
+		this.sonidoInter.volume = 0.1;
+		this.sonidoInter.play();
+		this.sonidoInter.rate = 0.5;
+
+
+
 		//Pintamos un fondo
-		var back = this.add.image(this.sys.game.canvas.width/2, this.sys.game.canvas.height/2, 'inicio');
+		var back = this.add.image(this.sys.game.canvas.width/2, this.sys.game.canvas.height/2, 'tv');
         back.setScale(0.75);
-        
+		back.setAlpha(0.60);
+
 
 		//Pintamos un botón de Empezar
 		var overView = this.add.image(this.sys.game.canvas.width/2, this.sys.game.canvas.height/2-20, 'over')
@@ -36,8 +56,8 @@ export default class GameOver extends Phaser.Scene {
 		var sprite = this.add.image(this.sys.game.canvas.width/2, this.sys.game.canvas.height/2-20, 'retry')
         sprite.setScale(0.025);
 
-
-		sprite.setInteractive(); // Hacemos el sprite interactivo para que lance eventos
+		// Hacemos el sprite interactivo para que lance eventos
+		sprite.setInteractive({ cursor: 'url(assets/vertopal.com_cursorHover.png), pointer' });
 
 		// Escuchamos los eventos del ratón cuando interactual con nuestro sprite de "Start"
 	    sprite.on('pointerdown', pointer => {
@@ -45,7 +65,8 @@ export default class GameOver extends Phaser.Scene {
 	    });
 
 	    sprite.on('pointerup', pointer => {
-			this.scene.start('firstLevel'); //Cambiamos a la escena de juego
+			this.sound.stopAll();
+			this.scene.start('title'); //Cambiamos a la escena de juego
 
 	    });
 
@@ -61,5 +82,18 @@ export default class GameOver extends Phaser.Scene {
 
 	    });
 
+	}
+
+	sonido(){
+
+		this.input.keyboard.on('keydown-M', function (event) {
+			console.log('La tecla M ha sido presionada');
+			if (!this.sound.mute) {
+				this.sound.setMute(true);
+			  } else {
+				this.sound.setMute(false);
+			}
+		}.bind(this));
+	
 	}
 }

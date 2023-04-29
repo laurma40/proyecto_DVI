@@ -30,11 +30,9 @@ export default class Luz extends Phaser.GameObjects.Sprite {
 		this.setAlpha(0.75);
         this.depth = 2;
 
-		this.displayWidth = this.scene.cameras.main.width + 5;
-		this.displayHeight = this.scene.cameras.main.height + 5;
+		this.displayWidth = this.scene.cameras.main.width + 10;
+		this.displayHeight = this.scene.cameras.main.height + 10;
 		this.play('offLuz');
-
-
 
 	}
 
@@ -45,7 +43,10 @@ export default class Luz extends Phaser.GameObjects.Sprite {
 	 * @param {number} dt - Tiempo entre frames
 	 */
 	preUpdate(t, dt) {
-	
+
+		this.x = this.scene.cameras.main.scrollX + 302; // posicionar el texto en la esquina superior izquierda, dejando 10 píxeles de margen
+		this.y = this.scene.cameras.main.scrollY + 200; // posicionar el texto en la esquina superior izquierda, dejando 10 píxeles de margen
+		
 
 	}
 }

@@ -1,101 +1,95 @@
 import Battery from "../objects/battery.js";
-import CabezaPesanta from "../objects/cabezaPesanta.js";
-import Filemon from "../objects/filemon.js";
 import Armario from "../objects/armario.js";
 import Bed from "../objects/bed.js";
+import Puertas from "../objects/puertas.js"
+import level from "./level.js";
+
 /**
  * Escena principal de juego.
  * @extends Phaser.Scenes
  */
-export default class firstLevel extends Phaser.Scene {
+export default class FirstLevel extends level {
 	
 	constructor() {
-		super({ key: 'firstLevel' });
+		super('firstLevel');
 	}
 	
 	preload(){
-		this.load.bitmapFont('fuente', 'assets/fuentes/ComicSansMs.png','assets/fuentes/ComicSansMs.xml');
-		this.load.spritesheet('cabezaPesanta', 'assets/spritesheets_1row.png', {frameWidth: 504, frameHeight: 420})
-		this.load.spritesheet('filemon', 'assets/filemon-250-400.png', {frameWidth: 250, frameHeight: 400})
-		this.load.spritesheet('battery', 'assets/SpriteSheet_Batery3.png',{frameWidth: 280, frameHeight: 370})
-		this.load.spritesheet('luz', 'assets/luz.png',{frameWidth: 100, frameHeight: 100})
-		this.load.spritesheet('bed', 'assets/cama_530_330.png', {frameWidth: 530, frameHeight: 330})
-
-		this.load.spritesheet('armario', 'assets/armario-125-125.png', {frameWidth: 125, frameHeight: 125})
-		//Cargamos el archivo JSON necesario para importar el Tilemap
-		this.load.tilemapTiledJSON('tilemap','assets/Tilemap/MapaPiso1Definitivo.json');
-		//Cargamos los tilesets necesarios para poder crear el mapa
-		this.load.image('nuevosMuros','assets/Tilemap/nuevosMuros.jpeg');
-		//this.load.image('puertas','../../assets/Tilemap/puertas.png');
-		this.load.image('mapaImg','assets/Tilemap/mapaCapa.png');
 	}
 	
 	/**
 	* Creación de los elementos de la escena principal de juego
 	*/
 	create() {
-		//crear tilemap
-		this.map = this.make.tilemap({
-			key: 'tilemap',
-			tileWidth: 12,
-			tileHeight: 12,
-			width:200,
-			height:200
-		});
-		const t_muro = this.map.addTilesetImage('nuevosMuros');
-		this.imagenCapa = this.add.image(0,0,'mapaImg');
-		this.imagenCapa.setOrigin(0, 0);
-		this.imagenCapa.setDepth(0);
-		//Este es el orden de Pintado
-		this.colisionesLayer =this.map.createLayer('Colisiones/colisionesMuro',t_muro);
-		this.colisionesLayer.setVisible(false);
-		this.colisionesLayer.setDepth(1);
-		//this.capaAntiguoMapa = this.map.createLayer('mapaCapa', imagenCapa);
-		this.muroInteriorLayer = this.map.createLayer('Muros/muroInterior',t_muro);
-		this.muroInteriorLayer.setDepth(2);
-		this.muroExteriorLayer = this.map.createLayer('Muros/muroExterior',t_muro);
-		this.muroExteriorLayer.setDepth(3);
-		//this.puertasLayer = this.map.createLayer('Puertas',t_puertas);
-		
-		this.colisionesLayer.setCollision(1281);
-		this.colisionesLayer.setTileIndexCallback(1289,this.cambioEntrada,this);
-		this.colisionesLayer.setTileIndexCallback(1297,this.cambioLateralesIncio,this);
-		this.colisionesLayer.setTileIndexCallback(1305,this.cambioLateralesArriba,this);
-		this.colisionesLayer.setTileIndexCallback(1313,this.entradaHabitacion,this);
-		//this.colisionesLayer.setTileIndexCallback(2601,this.escaleraHabitacion,this);
-		this.mov = this.map.createFromObjects('Objetos',{name: 'player',classType: Filemon, key:'player'});
-		this.player = this.mov[0];
 
-		this.cameras.main.startFollow(this.player);
-		this.physics.add.existing(this.player);
-		this.physics.world.enable(this.player);
+		const config = {
+			mute: false,
+			volume: 1,
+			rate: 1,
+			detune: 0,
+			seek: 0,
+			loop: true,
+			delay: 0,
+		  };
+		this.nocheSonido = this.sound.add('nocheSonido',config);
+		this.nocheSonido.volume = 0.1;
+        this.nocheSonido.play();
+        var text = this.add.text(100, 350, 'Noche 1', { fontFamily: 'silkscreenregular', fontSize: '24px', fill: '#ffffff' });
+        text.setOrigin(0.5);
+        text.setDepth(1); // asegura que el texto aparezca sobre la imagen
+        var textTweens = this.tweens.add({
+            targets: text,
+            alpha: {
+                from: 0,
+                to: 1
+            },
+            duration: 2000, // duración de la animación en milisegundos
+            ease: 'Linear', // tipo de interpolación de la animación
+            yoyo: true, // hace que la animación se reproduzca en sentido inverso
+            onComplete: function () {
+                setTimeout(function () {
+                    this.nocheSonido.stop();
+                    this.creacionMapa();//sustituir por el create de antes
+                }.bind(this)); // espera 1 segundo antes de cambiar de escena
+            },
+            onCompleteScope: this // asegura que la segunda animación se agregue al objeto correcto
+        });
 
-		//Añadir las colisiones del jugador con la capa
-		this.physics.add.collider(this.player, this.colisionesLayer, this.colision);
-		
-		console.log(this);
-		
-		// Creamos los objetos a través de la capa de objetos del tilemap y la imagen o la clase que queramos
-		this.pilas = this.map.createFromObjects('Objetos', {name: "pila",classType: Battery, key: 'battery' });
-		//this.armarios = this.map.createFromObjects('Objetos', {name: "armario", classType: Armario, key: 'armario'});
-		this.bed = this.map.createFromObjects('Objetos', {name: "bed", classType: Bed, key: 'bed'});
-		this.physics.add.overlap(this.bed, this.player, this.player.dormir, null, this.player);
-        //this.physics.add.overlap(this.armarios, this.player, this.player.interactuarArmario, null, this.player);
-		this.physics.add.overlap(this.pilas, this.player, this.player.cojePila, null, this.player);
-
-		//crear fuentes
-		this.textoEscribiendose = false;
-		this.retroText = this.add.bitmapText(100,100,'fuente','', 16);
-		this.retroText.setTint(0xffffff);
-		this.retroText.setDepth(4);
 	}
+
 	update() {
-        // actualizar la posición del texto en función de la posición actual del jugador
-		if (this.retroText) {
-			this.retroText.x = this.cameras.main.scrollX + 10; // posicionar el texto en la esquina superior izquierda, dejando 10 píxeles de margen
-			this.retroText.y = this.cameras.main.scrollY + 10; // posicionar el texto en la esquina superior izquierda, dejando 10 píxeles de margen
-		}
+        super.update();
     }
+
+	creacionMapa() {
+		super.create();
+
+
+		this.t_caja = this.map.addTilesetImage('cajas');
+		this.cajasLayer = this.map.createLayer('Cajas/CajasNivel1',this.t_caja);
+		this.cajasLayer.setDepth(1.8);
+		this.cajasLayer.setVisible(true);
+		this.cajasColisiones = this.map.createLayer('Cajas/colisionesCajasNivel1',this.t_caja);
+		this.cajasLayer.setDepth(1.8);
+		this.cajasColisiones.setVisible(false);
+		this.cajasColisiones.setCollision(7809);
+		this.physics.add.collider(this.player, this.cajasColisiones);
+		console.log(this);
+
+
+		// Creamos los objetos a través de la capa de objetos del tilemap y la imagen o la clase que queramos
+		this.pilas = this.map.createFromObjects('ObjetosNivel1', {name: "pila",classType: Battery, key: 'battery' });
+		this.armarios = this.map.createFromObjects('Armarios', {name: "armario1", classType: Armario, key: 'armario'});
+		this.bed = this.map.createFromObjects('ObjetosNivel1', {name: "cama", classType: Bed, key: 'bed'});
+		this.puertaMarron = new Puertas(this, 661, 1714, "marron", true, "Prueba Puerta", false);
+		this.puertaMarron.setDepth(1.8);
+        this.puertaAzul= new Puertas(this, 1739, 1714, "azul", true, "Prueba Puerta", false);
+        this.puertaAzul.setDepth(1.8);
+		this.physics.add.overlap(this.bed, this.player, this.player.dormir, null, this.player);
+        this.physics.add.overlap(this.armarios, this.player, this.player.interactuarArmario, null, this.player);
+		this.physics.add.overlap(this.pilas, this.player, this.player.cogePila, null, this.player);
+		this.physics.add.collider(this.puertaMarron, this.player, this.player.abrirPuerta, null, this.player);
+        this.physics.add.collider(this.puertaAzul, this.player, this.player.abrirPuerta, null, this.player);
 	cambioEntrada(){
 		if(this.player.wKey.isDown){
 			this.muroExteriorLayer.setVisible(false);
@@ -120,37 +114,18 @@ export default class firstLevel extends Phaser.Scene {
 			this.muroExteriorLayer.setVisible(true);
 		}
 	}
+
 	entradaHabitacion(){
 		if(this.player.wKey.isDown || this.player.aKey.isDown){
 			this.muroInteriorLayer.setVisible(false);
+			this.puertaMarron.setVisible(false);
+			this.puertaAzul.setVisible(false);
 		}else if(this.player.sKey.isDown || this.player.dKey.isDown){
 			this.muroInteriorLayer.setVisible(true);
+			this.puertaMarron.setVisible(true);
+			this.puertaAzul.setVisible(true);
 		}
 	};
-	escaleraHabitacion(){
-		console.log('Pulsa p para entrar al dormitorio');
-	}
-	colision(){
-		console.log('Colision');
-	}
-	puerta(){
-		console.log('Puerta');
-	}
-	escribirTexto(texto) {
-		if (!this.textoEscribiendose) {
-			this.textoEscribiendose = true;
-			if (this.retroText) {
-				var aux = '';  
-				for (var i = 0; i < texto.length; i++) {
-					setTimeout((index) => {
-						aux = aux + texto[index]; 
-						this.retroText.setText(aux);
-						if (index === texto.length - 1) {
-							this.textoEscribiendose = false;
-						}
-					}, i * 100, i);
-				}
-			}
-		}
-	} 
+   
+
 }

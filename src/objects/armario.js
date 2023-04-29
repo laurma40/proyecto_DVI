@@ -10,6 +10,8 @@ export default class Armario extends Phaser.GameObjects.Sprite {
 		this.setScale(1,1);
 		this.scene.add.existing(this); //Añadimos el armario a la escena
 		this.scene.physics.add.existing(this);
+		this.body.immovable = true;
+
 
         this.scene.anims.create({
 			key: 'open',
@@ -19,7 +21,7 @@ export default class Armario extends Phaser.GameObjects.Sprite {
 		});
 		this.scene.anims.create({
 			key: 'close',
-			frames: scene.anims.generateFrameNumbers('armario', {start:0, end:14}),
+			frames: scene.anims.generateFrameNumbers('armario', {start:14, end:0}),
 			frameRate: 5,
 			repeat: -1
 		});
@@ -31,6 +33,7 @@ export default class Armario extends Phaser.GameObjects.Sprite {
 		});
 
         this.play('closed');
+		this.depth = 1.8;
     }
     /**
 	 * Bucle principal de la caja, comprobamos la velocidad para reducirla y setearla a 0 en ciertos umbrales

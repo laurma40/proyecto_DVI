@@ -1,5 +1,6 @@
 
 
+import Inventory from "./inventory.js";
 import LifeBar from "./lifeBar.js";
 import Luz from "./luz.js";
 
@@ -11,20 +12,19 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 	 * @param {number} y - coordenada y
 	*/
 
-	constructor(scene, x, y, colliderGroup) {
+	constructor(scene, x, y) {
 		super(scene, x, y, 'filemon');
 		this.setScale(0.1);
 		this.scene = scene;
 		this.scene.add.existing(this); //Añadimos el caballero a la escena
 		this.scene.physics.add.existing(this);
 
-		this.depth = 1;
-
 		//variables globales (creo q si se declaran arriba con el @ se hacen globales también)
 		this.linterna = false;
 		this.pilas = [];
 		this.zonaSegura = false;
-		//this.pilas.push(new Battery(scene,400,300));
+
+		//this.corduraMax = 30000; //esto se pasaría por el constructor para que dependa del nivel
 
 		this.corduraMax = 4000; //esto se pasaría por el constructor para que dependa del nivel
 		this.cordura = this.corduraMax;
@@ -32,6 +32,7 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		this.maxSpeed = 115;
 		this.minSpeed = 70;
 		this.speed = this.maxSpeed;		
+		this.depth=1.9;
 
 		// Creamos las animaciones de cabeza de pesanta
 		this.scene.anims.create({
@@ -100,16 +101,24 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		this.canPressS = true;
 		this.canPressD = true;
 
-		scene.load.audio('sonlinterna', 'assets/audio/zapsplat_household_torch_flashlight_maglite_switch_on_or_off_001.mp3');
+		this.sonidoLinterna = scene.sound.add('sonlinterna');
+		this.sonidoLinterna.volume = 0.3;
 
-		//this.sonidoLinterna = scene.sound.add('sonlinterna');
-		//this.sonidoLinterna.play();	
-		
+		this.sonidoCoger = scene.sound.add('sonCoger');
+		this.sonidoCoger.volume = 0.3;
+
+		this.sonidoGrito = scene.sound.add('sonGrito');
+		this.sonidoGrito.volume = 0.08;
+
+		this.sonidoPuerta = scene.sound.add('sonPuerta');
+		this.sonidoPuerta.volume = 0.3;
 
 		this.animacionEnCurso = false;
+		this.enArmario = false;
 		
 		this.luz = new Luz(this.scene, this.x, this.y);
-		this.progressBar = new LifeBar(this.scene, this.x + 170, this.y - 180, this.corduraMax );
+		this.progressBar = new LifeBar(this.scene, this.x + 170, this.y - 180, this.corduraMax, 96, 6);
+		this.inventario = new Inventory(this.scene, this.x + 260, this.y - 130);
 	}
 	/**
 	 * Bucle principal del personaje, actualizamos su posición y ejecutamos acciones según el Input
@@ -121,33 +130,30 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		super.preUpdate(t, dt);
 		let velocity = new Phaser.Math.Vector2(0, 0);
 		// Mientras pulsemos la tecla 'A' movemos el personaje en la X
-		if (this.aKey.isDown) {
+		if (this.aKey.isDown && !this.enArmario) {
 			if (this.anims.currentAnim.key !== 'left'){
 				this.play('left');
 			}
 			velocity.x = -1;
 			//this.x -= this.speed*dt/60;
 		}
-
 		else if (this.aKey.isUp && this.anims.currentAnim.key === 'left') {
 			this.play('standLeft');
 		}
-
 		// Mientras pulsemos la tecla 'D' movemos el personaje en la X
-		else if (this.dKey.isDown) {
+		else if (this.dKey.isDown && !this.enArmario) {
 			if (this.anims.currentAnim.key !== 'right'){
 				this.play('right');
 			}
 			velocity.x = 1;
 			//this.x += speed*dt/60;
 		}
-
 		else if (this.dKey.isUp && this.anims.currentAnim.key === 'right') {
 			this.play('standRight');
 		}
 
 		// Mientras pulsemos la tecla 'W' movemos el personaje en la Y
-		if (this.wKey.isDown) {
+		if (this.wKey.isDown && !this.enArmario) {
 			if (this.anims.currentAnim.key !== 'back' && this.anims.currentAnim.key !== 'left' && this.anims.currentAnim.key !== 'right'){
 				this.play('back');
 			}
@@ -155,12 +161,12 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 			velocity.y = -1;
 		}
 
-		else if (this.wKey.isUp && this.anims.currentAnim.key === 'back') {
+		else if (this.wKey.isUp && this.anims.currentAnim.key === 'back' ) {
 			this.play('standBack');
 		}
 
 		// Mientras pulsemos la tecla 'S' movemos el personaje en la Y
-		else if (this.sKey.isDown) {
+		else if (this.sKey.isDown && !this.enArmario) {
 			if (this.anims.currentAnim.key !== 'front' && this.anims.currentAnim.key !== 'left' && this.anims.currentAnim.key !== 'right')
 				this.play('front');
 			velocity.y = 1;
@@ -178,10 +184,12 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 
 		////LINTERNA encender y apagar
 		
-		this.luz.setPosition(this.x, this.y);
 		
 		//Encender y apagar linterna -> se pulsa el boton de encender y tenemos pilas
 		if(this.fKey.isDown && this.pilas.length != 0 && this.canPressF){ 
+
+			this.sonidoLinterna.play();	
+
 			this.linterna = !this.linterna;
 			console.log("linterna " + this.linterna);
 
@@ -198,7 +206,7 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 
 			this.canPressF = false;
 			// Esperar un segundo antes de volver a escuchar la tecla E porque si no no se pulsa bien
-			setTimeout(() => { this.canPressF = true; }, 100); //esto lo mejora pero no lo arregla del todo
+			setTimeout(() => { this.canPressF = true; }, 100); // no lo corregimos del todo paar dar más ambiente
 		}
 		
 		//Descargamos pila 
@@ -211,13 +219,21 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 				this.pilas[0].y = this.y + 10;
 				this.pilas[0].visible = true;
 				this.pilas.shift();//suelto la pila en primera posición
+
+				this.sonidoCoger.play();
+
 			}
 			if(this.pilas.length == 0){
+
+				this.sonidoLinterna.play();	
+				this.sonidoCoger.play();
 				this.linterna = false;
 				this.luz.play('offLuz');
 				this.speed = this.maxSpeed;
 			} 
 		}
+		this.printBattry();
+		this.inventario.print( this.x + 8, this.y + 12);
 
 
 		////CORDURA
@@ -229,6 +245,9 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 			if(this.cordura > 0) this.cordura--; //USAR DT¿?
 			else{
 				//LLAMAR A SCENE GAME OVER 
+
+				this.scene.sound.stopAll();
+				this.sonidoGrito.play();
 				this.scene.scene.start('gameOver'); //Cambiamos a la escena de juego
 			}
 
@@ -237,67 +256,101 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		
 	}
 
-
-
 	
-	cojePila(sprte1, sprite2){//this.pila1, this.player,
-
-
-		console.log("AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
+	cogePila(sprite1, sprite2){//this.pila1, this.player,
 
 		if(this.eKey.isDown){ 
 
-
-			if( sprte1.carga > 0 && this.pilas.length < 3){ //Solo puede llevar tres pilas y solo la cojo si tiene carga
-				this.pilas.push(sprte1);
+			if( sprite1.carga > 0 && this.pilas.length < 3){ //Solo puede llevar tres pilas y solo la cojo si tiene carga
+				this.pilas.push(sprite1);
 				
-				//AQUI SE METERIAN EN ALGUN ESPECIO DE INVENTARIO (la hago invisible de momento y la mando lejos)
+				
+				sprite1.visible = false;
+				sprite1.x = 100000;
+				sprite1.y = 100000;
 
-				sprte1.visible = false;
-				sprte1.x = 100000;
-				sprte1.y = 100000;
-
-
-				//Y PONER SONIDO
+				this.sonidoCoger.play();
 			}
 		}
 		
+	}
+	printBattry(){
+
+		if(this.pilas.length > 0){
+
+			this.pilas[0].x = this.x + 260;
+			this.pilas[0].y = this.y - 150;
+			this.pilas[0].setScale(0.08,0.08);
+			this.pilas[0].depth = 5;
+			this.pilas[0].visible = true; 
+			this.pilas[0].updateBar();
+
+			if(this.pilas.length == 2){
+				this.pilas[0].play('dos');
+			}else if(this.pilas.length == 3){
+				this.pilas[0].play('tres');
+			}
+		}
+	}
+
+	cogeObjeto(sprite1, sprite2){//objeto(llave), player
+		if(this.eKey.isDown){ 
+			this.sonidoCoger.play();
+			this.inventario.addGameObject(sprite1);
+			console.log("COJO LLAVE");
+		}
+		
+	
 	}
 
 	interactuarArmario(sprite1, sprite2){ // armario, this.player
-		
-		if(this.eKey.isDown){
-			this.linterna = false;
-			this.luz.play('offLuz');
-			this.zonaSegura = !this.zonaSegura;
-			if(this.zonaSegura){
-				sprite1.play('open');
-				this.scene.input.keyboard.removeKey('W');
-				this.scene.input.keyboard.removeKey('A');
-				this.scene.input.keyboard.removeKey('S');
-				this.scene.input.keyboard.removeKey('D');
-				this.scene.input.keyboard.removeKey('F');
-				sprite2.visible = false;
-			}
-			else{
-				sprite1.play('close');
-				this.wKey = this.scene.input.keyboard.addKey('W');
-				this.aKey = this.scene.input.keyboard.addKey('A');
-				this.sKey = this.scene.input.keyboard.addKey('S');
-				this.dKey = this.scene.input.keyboard.addKey('D');
-				this.fKey = this.scene.input.keyboard.addKey('F');
-				sprite2.visible = true;
-			}
-
-			this.canPressF = false;
-			setTimeout(() => { 
-				this.canPressF = true;
-				sprite1.play('closed') ;
-			}, 1000);
-		}
-	
-		this.canPressF = true;
-	}
+        if(!this.animacionEnCurso){
+            this.animacionEnCurso = true;
+            if(this.eKey.isDown){
+                this.linterna = false;
+                this.luz.play('offLuz');
+                this.zonaSegura = !this.zonaSegura;
+                this.eKey.isDown = false;
+                if(this.zonaSegura){
+                    sprite1.play('open');
+                    this.scene.input.keyboard.removeKey('W');
+                    this.scene.input.keyboard.removeKey('A');
+                    this.scene.input.keyboard.removeKey('S');
+                    this.scene.input.keyboard.removeKey('D');
+                    this.scene.input.keyboard.removeKey('F');
+					this.enArmario = true;
+                    setTimeout(() => { 
+                        sprite2.visible = false;
+                        setTimeout(() => { 
+                            sprite1.play('closed') ;
+                            this.animacionEnCurso = false;
+                        }, 1500);
+                    }, 1500);
+                }
+                else{
+                    sprite1.play('close');
+                    setTimeout(() => { 
+                        sprite2.visible = true;
+						this.speed = this.maxSpeed;
+                        setTimeout(() => { 
+                            sprite1.play('closed') ;
+                            this.wKey = this.scene.input.keyboard.addKey('W');
+                            this.aKey = this.scene.input.keyboard.addKey('A');
+                            this.sKey = this.scene.input.keyboard.addKey('S');
+                            this.dKey = this.scene.input.keyboard.addKey('D');
+                            this.fKey = this.scene.input.keyboard.addKey('F');
+							this.enArmario = false;
+                            this.animacionEnCurso = false;
+                        }, 1500);
+                    }, 1500);
+                }
+            }
+            else{
+                this.animacionEnCurso = false;
+            }
+        }
+    
+    }
 
 	
     dormir(sprte1, sprite2){//cama, this.player,
@@ -305,6 +358,7 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 
 		if(this.eKey.isDown){ 
 
+			this.scene.sound.stopAll();
 			sprte1.play('conFilemon')
 			this.visible = false;
 			this.linterna = false;
@@ -312,11 +366,39 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 	
 			this.scene.cameras.main.fadeOut(1000, 0, 0, 0)
 			this.scene.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
-				this.scene.scene.start('gameOver'); //Cambiamos a la escena de juego
+				this.scene.scene.start('nextLevel', {nivel: this.scene.scene.key}); //Cambiamos a la escena de juego
 			});
 		}
 		
 	}
     
+	cercaPesanta(sprte1, sprite2){//cabeza de Pesanta, this.player,
 
+		if(!this.zonaSegura){
+			this.cordura -= 8;
+		}
+		
+	}
+
+	abrirPuerta(sprite1, sprite2){
+
+		console.log("Puerta " + sprite1.color);
+		if(sprite1.bloqueada){
+			if(this.eKey.isDown){
+
+				if(this.inventario.getLlave(sprite1.color)){
+					sprite1.body.enable = false;
+					sprite1.bloqueada = false;
+					this.sonidoPuerta.play();
+					sprite1.play("openDoor");
+					sprite1.setVisible(sprite1.frontal);
+				}
+				else{ 
+					this.scene.escribirTexto(sprite1.texto);
+				}
+				
+			}
+		}
+
+	}
 }

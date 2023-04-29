@@ -1,3 +1,4 @@
+import LifeBar from "./lifeBar.js";
 
 export default class Battery extends Phaser.GameObjects.Sprite {
 	/**
@@ -14,7 +15,7 @@ export default class Battery extends Phaser.GameObjects.Sprite {
 
 		//(guardo la carga total por si se quiere haer una barra o algo)
 		
-		if(cargaInicial == null) this.carga = 400; //pongo una carga por defecto
+		if(cargaInicial == null) this.carga = 600; //pongo una carga por defecto
 		else this.carga = cargaInicial;
 
 		//var cargaTotl = cargaInicial; //(guardo la carga total por si se quiere haer una barra o algo)
@@ -35,7 +36,22 @@ export default class Battery extends Phaser.GameObjects.Sprite {
 			frameRate: 1,
 			repeat: 0
 		});
+		this.scene.anims.create({
+			key: 'dos',
+			frames: scene.anims.generateFrameNumbers('battery', {start:2, end:2}),
+			frameRate: 1,
+			repeat: 0
+		});
+		this.scene.anims.create({
+			key: 'tres',
+			frames: scene.anims.generateFrameNumbers('battery', {start:3, end:3}),
+			frameRate: 1,
+			repeat: 0
+		});
 
+
+		this.progressBar = new LifeBar(this.scene, this.x - 15, this.y + 20,  this.carga, 20, 3);
+		this.progressBar.visible = false;
 
 		this.play('on');
 
@@ -56,12 +72,27 @@ export default class Battery extends Phaser.GameObjects.Sprite {
 		
 		this.carga--; 
 		
-		if(this.carga >= 0){ //si la carga baja de 0 se gasta
+		if(this.carga <= 0){ //si la carga baja de 0 se gasta
 			this.play('off');
+			this.setScale(0.04,0.04);
+			this.depth = 0; 
+			this.progressBar.visible = false;
 		}
+		else{
+			this.progressBar.visible = true;
+			this.progressBar.updateBar(this.carga, this.x - 10 , this.y + 15);
+		}
+		
+		
+
 		
 		console.log(this.carga);
 	}
 
+	updateBar(){
+
+		this.progressBar.updateBar(this.carga, this.x - 10 , this.y + 15);
+	}
 
 }
+

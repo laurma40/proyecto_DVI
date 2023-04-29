@@ -27,51 +27,51 @@
 
 <a name="_heading=h.ep13uwvl0dmf"></a>**ÍNDICE**
 
-[**1. INTRODUCCIÓN	2**](#_heading=h.30j0zll)**
+[**1. INTRODUCCIÓN**](#_heading=h.30j0zll)
 
-[1.1 GAME CONCEPT	2](#_heading=h.1fob9te)
+[1.1 GAME CONCEPT](#_heading=h.1fob9te)
 
-[1.1.1 INFORMACIÓN BÁSICA	2](#_heading=h.3znysh7)
+[1.1.1 INFORMACIÓN BÁSICA](#_heading=h.3znysh7)
 
-[1.1.2 DESCRIPCIÓN	2](#_heading=h.2et92p0)
+[1.1.2 DESCRIPCIÓN](#_heading=h.2et92p0)
 
-[1.1.3 CARACTERÍSTICAS PRINCIPALES	2](#_heading=h.tyjcwt)
+[1.1.3 CARACTERÍSTICAS PRINCIPALES](#_heading=h.tyjcwt)
 
-[1.1.4 RIESGOS	2](#_heading=h.3dy6vkm)
+[1.1.4 RIESGOS](#_heading=h.3dy6vkm)
 
-[1.2 ESTÉTICA	3](#_heading=h.1t3h5sf)
+[1.2 ESTÉTICA](#_heading=h.1t3h5sf)
 
-[1.2.1 ARTE	3](#_heading=h.4d34og8)
+[1.2.1 ARTE](#_heading=h.4d34og8)
 
-[1.2.2 MÚSICA Y SONIDO	5](#_heading=h.2s8eyo1)
+[1.2.2 MÚSICA Y SONIDO](#_heading=h.2s8eyo1)
 
-[**2. MECÁNICAS	6**](#_heading=h.17dp8vu)
+[**2. MECÁNICAS**](#_heading=h.17dp8vu)
 
-[2.1 FLUJO DEL JUEGO	6](#_heading=h.3rdcrjn)
+[2.1 FLUJO DEL JUEGO](#_heading=h.3rdcrjn)
 
-[2.2 MUNDO	6](#_heading=h.26in1rg)
+[2.2 MUNDO](#_heading=h.26in1rg)
 
-[2.3 JUGADOR	6](#_heading=h.lnxbz9)
+[2.3 JUGADOR](#_heading=h.lnxbz9)
 
-[2.4 ENEMIGOS	7](#_heading=h.35nkun2)
+[2.4 ENEMIGOS](#_heading=h.35nkun2)
 
-[2.5 COMBATE	7](#_heading=h.1ksv4uv)
+[2.5 COMBATE](#_heading=h.1ksv4uv)
 
-[2.6 OBJETOS / ELEMENTOS	7](#_heading=h.44sinio)
+[2.6 OBJETOS / ELEMENTOS](#_heading=h.44sinio)
 
-[2.7 NIVELES	9](#_heading=h.4ri9jvhbibys)
+[2.7 NIVELES](#_heading=h.4ri9jvhbibys)
 
-[2.8 ACERTIJOS	12](#_heading=h.st4d8mtrrmd0)
+[2.8 ACERTIJOS](#_heading=h.st4d8mtrrmd0)
 
-[**3. CONTENIDO DE MUESTRA	12**](#_heading=h.1y810tw)
+[**3. CONTENIDO DE MUESTRA**](#_heading=h.1y810tw)
 
-[**4. INTERFAZ	15**](#_heading=h.4i7ojhp)
+[**4. INTERFAZ**](#_heading=h.4i7ojhp)
 
-[4.1 GUI	15](#_heading=h.2xcytpi)
+[4.1 GUI](#_heading=h.2xcytpi)
 
-[4.2 CONTROLES	15](#_heading=h.1ci93xb)
+[4.2 CONTROLES](#_heading=h.1ci93xb)
 
-[**5. REFERENCIAS	17**](#_heading=h.3whwml4)
+[**5. REFERENCIAS**](#_heading=h.3whwml4)
 
 
 # <a name="_heading=h.30j0zll"></a>1. **INTRODUCCIÓN**
@@ -229,23 +229,17 @@ Esta es una idea inicial de los primeros niveles del juego, se irán incorporand
 
 **Nivel 1**
 
-|![Interfaz de usuario gráfica
-
-Descripción generada automáticamente con confianza media](Aspose.Words.6872cca5-f7dd-4bc1-8c05-b17f0fcb5b7f.025.png)|<p>El nivel uno es una primera toma de contacto con el juego por lo que no hay ningún acertijo o monstruo, tan solo consiste en probar la linterna cogiendo las pilas, el armario y llegar a la cama. </p><p>***Explicación***: *mitad del pasillo sur libre (nivel muy limitado), tres pilas, un armario y la cama.*</p>|
+|![](Aspose.Words.6872cca5-f7dd-4bc1-8c05-b17f0fcb5b7f.025.png)|<p>El nivel uno es una primera toma de contacto con el juego por lo que no hay ningún acertijo o monstruo, tan solo consiste en probar la linterna cogiendo las pilas, el armario y llegar a la cama. </p><p>***Explicación***: *mitad del pasillo sur libre (nivel muy limitado), tres pilas, un armario y la cama.*</p>|
 | :-: | - |
 
 **Nivel 2**
 
-|![Interfaz de usuario gráfica
-
-Descripción generada automáticamente](Aspose.Words.6872cca5-f7dd-4bc1-8c05-b17f0fcb5b7f.026.png)|<p>El segundo nivel añade dificultad con respecto al anterior, a la hora de entrar a la habitación la puerta estará cerrada y se tendrá que encontrar una llave para poder abrirla. La llave estará escondida en una habitación, por lo que para encontrarla será necesario recorrer las distintas habitaciones de la casa. Además se agregará un monstruo que se moverá con una ruta establecida para aumentar la dificultad.</p><p>***Explicación***: *pasillo sur totalmente despejado (sigue siendo muy limitado), una llave, una puerta bloqueada donde está la cama, una cabeza de pesanta, un armario y cuatro pilas.*</p>|
+|![](Aspose.Words.6872cca5-f7dd-4bc1-8c05-b17f0fcb5b7f.026.png)|<p>El segundo nivel añade dificultad con respecto al anterior, a la hora de entrar a la habitación la puerta estará cerrada y se tendrá que encontrar una llave para poder abrirla. La llave estará escondida en una habitación, por lo que para encontrarla será necesario recorrer las distintas habitaciones de la casa. Además se agregará un monstruo que se moverá con una ruta establecida para aumentar la dificultad.</p><p>***Explicación***: *pasillo sur totalmente despejado (sigue siendo muy limitado), una llave, una puerta bloqueada donde está la cama, una cabeza de pesanta, un armario y cuatro pilas.*</p>|
 | :-: | - |
 
 **Nivel 3**
 
-|![Interfaz de usuario gráfica
-
-Descripción generada automáticamente con confianza media](Aspose.Words.6872cca5-f7dd-4bc1-8c05-b17f0fcb5b7f.027.png)|<p>En este nivel será más difícil encontrar el camino a la cama, se requerirá resolver acertijos para encontrar la llave que estará mejor escondida y recorrer la casa en más profundidad, teniendo en cuenta que el número de enemigos aumentará..  </p><p>***Explicación***: *pasillo sur y este totalmente despejado (mitad del mapa limitado), dos llaves, dos puertas bloqueadas (en una está la cama y no es la misma ubicación que el anterior nivel), tres cabezas de pesanta, dos armarios y siete pilas.*</p>|
+|![](Aspose.Words.6872cca5-f7dd-4bc1-8c05-b17f0fcb5b7f.027.png)|<p>En este nivel será más difícil encontrar el camino a la cama, se requerirá resolver acertijos para encontrar la llave que estará mejor escondida y recorrer la casa en más profundidad, teniendo en cuenta que el número de enemigos aumentará..  </p><p>***Explicación***: *pasillo sur y este totalmente despejado (mitad del mapa limitado), dos llaves, dos puertas bloqueadas (en una está la cama y no es la misma ubicación que el anterior nivel), tres cabezas de pesanta, dos armarios y siete pilas.*</p>|
 | :-: | - |
 
 **Nivel 4**

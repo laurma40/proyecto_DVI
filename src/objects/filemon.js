@@ -23,7 +23,6 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		this.linterna = false;
 		this.pilas = [];
 		this.zonaSegura = false;
-		//this.pilas.push(new Battery(scene,400,300));
 
 		//this.corduraMax = 30000; //esto se pasaría por el constructor para que dependa del nivel
 

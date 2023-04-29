@@ -64,7 +64,7 @@ export default class ThirdLevel extends level {
 		this.cajasColisiones = this.map.createLayer('Cajas/colisionesCajasNivel3',this.t_caja);
 		this.cajasLayer.setDepth(1.8);
 		this.cajasColisiones.setVisible(false);
-		this.cajasColisiones.setCollision(7809);s
+		this.cajasColisiones.setCollision(7809);
 		this.physics.add.collider(this.player, this.cajasColisiones);
 		// Creamos los objetos a través de la capa de objetos del tilemap y la imagen o la clase que queramos
 		this.pilas = this.map.createFromObjects('ObjetosNivel3', {name: "pila",classType: Battery, key: 'battery' });

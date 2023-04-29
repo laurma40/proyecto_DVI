@@ -118,19 +118,25 @@ export default class FourthLevel extends level {
 			.lineTo(2030,900);
 
 		this.cabezaPesanta3 = new CabezaPesanta(this, 2030,1305,path3);
-		this.physics.add.overlap(this.cabezaPesanta, this.player, this.player.cercaPesanta, null, this.player);
+		this.physics.add.overlap(this.cabezaPesanta3, this.player, this.player.cercaPesanta, null, this.player);
 
         let path4 = this.add.path(280,1000)
             .lineTo(400,1000);
 
         this.cabezaPesanta4 = new CabezaPesanta(this, 280,1005,path4);
-        this.physics.add.overlap(this.cabezaPesanta, this.player, this.player.cercaPesanta, null, this.player);
+        this.physics.add.overlap(this.cabezaPesanta4, this.player, this.player.cercaPesanta, null, this.player);
 
         let path5 = this.add.path(280,1500)
             .lineTo(400,1500);
 
         this.cabezaPesanta5 = new CabezaPesanta(this, 280,1505,path5);
-        this.physics.add.overlap(this.cabezaPesanta, this.player, this.player.cercaPesanta, null, this.player);
+        this.physics.add.overlap(this.cabezaPesanta5, this.player, this.player.cercaPesanta, null, this.player);
+
+        let path6 = this.add.path(907,432)
+            .lineTo(907,720);
+
+        this.cabezaPesanta6 = new CabezaPesanta(this, 907, 435,path6);
+        this.physics.add.overlap(this.cabezaPesanta6, this.player, this.player.cercaPesanta, null, this.player);
 
 	}
 

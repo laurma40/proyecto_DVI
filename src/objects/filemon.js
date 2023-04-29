@@ -25,9 +25,9 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		this.zonaSegura = false;
 		//this.pilas.push(new Battery(scene,400,300));
 
-		this.corduraMax = 30000; //esto se pasaría por el constructor para que dependa del nivel
+		//this.corduraMax = 30000; //esto se pasaría por el constructor para que dependa del nivel
 
-		//this.corduraMax = 3000; //esto se pasaría por el constructor para que dependa del nivel
+		this.corduraMax = 3000; //esto se pasaría por el constructor para que dependa del nivel
 		this.cordura = this.corduraMax;
 
 		this.maxSpeed = 115;
@@ -294,7 +294,7 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		}
 	}
 
-	cojeObjeto(sprite1, sprite2){//objeto(llave), player
+	cogeObjeto(sprite1, sprite2){//objeto(llave), player
 		if(this.eKey.isDown){ 
 			this.sonidoCoger.play();
 			this.inventario.addGameObject(sprite1);
@@ -332,6 +332,7 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
                     sprite1.play('close');
                     setTimeout(() => { 
                         sprite2.visible = true;
+						this.speed = this.maxSpeed;
                         setTimeout(() => { 
                             sprite1.play('closed') ;
                             this.wKey = this.scene.input.keyboard.addKey('W');

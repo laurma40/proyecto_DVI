@@ -159,17 +159,17 @@ export default class FifthLevel extends level {
          
         let path8 = this.add.path(2030,900)
             .lineTo(2030, 600)
-            .lineTo(1600, 600);
+            .lineTo(1750, 600);
 
         this.cabezaPesanta8 = new CabezaPesanta(this, 2030, 905, path8);
         this.physics.add.overlap(this.cabezaPesanta8, this.player, this.player.cercaPesanta, null, this.player);
     
 
-        let path9 = this.add.path(1600, 500)
+        let path9 = this.add.path(1700, 500)
             .lineTo(2100, 500)
             .lineTo(2100, 900);
 
-        this.cabezaPesanta9 = new CabezaPesanta(this, 1500, 505, path9);
+        this.cabezaPesanta9 = new CabezaPesanta(this, 1700, 505, path9);
         this.physics.add.overlap(this.cabezaPesanta9, this.player, this.player.cercaPesanta, null, this.player);
 
         let path10 = this.add.path(1212, 444)

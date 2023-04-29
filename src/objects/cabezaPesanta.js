@@ -77,7 +77,7 @@ export default class CabezaPesanta extends Phaser.GameObjects.Sprite {
 		this.scene.physics.add.existing(this);
 
 		this.sonidoPesanta = scene.sound.add('sonPesanta');
-		this.sonidoPesanta.volume = 0.08;
+		this.sonidoPesanta.volume = 0.05;
 		this.playGrito = false;
 
 		setTimeout(() => { this.playGrito = true; }, 1000);

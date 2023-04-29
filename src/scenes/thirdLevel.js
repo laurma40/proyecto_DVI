@@ -10,10 +10,10 @@ import CabezaPesanta from "../objects/cabezaPesanta.js";
  * Escena principal de juego.
  * @extends Phaser.Scenes
  */
-export default class SecondLevel extends level {
+export default class ThirdLevel extends level {
 	
 	constructor() {
-		super('secondLevel');
+		super('thirdLevel');
 	}
 	
 	preload(){
@@ -27,24 +27,30 @@ export default class SecondLevel extends level {
         super.create();
 
 		// Creamos los objetos a través de la capa de objetos del tilemap y la imagen o la clase que queramos
-		this.pilas = this.map.createFromObjects('ObjetosNivel2', {name: "pila",classType: Battery, key: 'battery' });
-		this.armarios = this.map.createFromObjects('ObjetosNivel2', {name: "armario", classType: Armario, key: 'armario'});
-		this.bed = this.map.createFromObjects('ObjetosNivel2', {name: "cama", classType: Bed, key: 'bed'});
+		this.pilas = this.map.createFromObjects('ObjetosNivel3', {name: "pila",classType: Battery, key: 'battery' });
+		this.armarios = this.map.createFromObjects('ObjetosNivel3', {name: "armario", classType: Armario, key: 'armario'});
+		this.bed = this.map.createFromObjects('ObjetosNivel3', {name: "cama", classType: Bed, key: 'bed'});
 		this.puertaMarron = new Puertas(this, 661, 1714, "marron", true, "Prueba Puerta", false);
 		this.puertaMarron.setDepth(1.8);
-        this.puertaAzul= new Puertas(this, 1739, 1714, "azul", true, "Que raro, la puerta está cerrada. ¿Dónde estará la llave?", true);
+        this.puertaAzul= new Puertas(this, 1739, 1714, "azul", true, "Cerrada otra vez", true);
         this.puertaAzul.setDepth(1.8);
+        this.puertaRoja= new Puertas(this, 1945, 1034, "rojo", false, "Esta puerta roja no se abre...", true);
+        this.puertaRoja.setDepth(1.8);
 		this.physics.add.overlap(this.bed, this.player, this.player.dormir, null, this.player);
         this.physics.add.overlap(this.armarios, this.player, this.player.interactuarArmario, null, this.player);
 		this.physics.add.overlap(this.pilas, this.player, this.player.cojePila, null, this.player);
 		this.physics.add.collider(this.puertaMarron, this.player, this.player.abrirPuerta, null, this.player);
         this.physics.add.collider(this.puertaAzul, this.player, this.player.abrirPuerta, null, this.player);
+        this.physics.add.collider(this.puertaRoja, this.player, this.player.abrirPuerta, null, this.player);
 
 
 
-        //Llave nivel 2 --> 510, 1537
-        this.llaveAzul = new Llave(this, 510, 1537,'azul');
+
+        //Llave nivel 3 --> 1613, 1701(salon) && 684, 1456 (billar)         
+        this.llaveAzul = new Llave(this, 684, 1456,'azul');
         this.physics.add.overlap(this.llaveAzul, this.player, this.player.cojeObjeto, null, this.player);
+        this.llaveRoja = new Llave(this, 1613, 1701,'rojo');
+        this.physics.add.overlap(this.llaveRoja, this.player, this.player.cojeObjeto, null, this.player);
 
 
 
@@ -55,6 +61,21 @@ export default class SecondLevel extends level {
 
 		this.cabezaPesanta = new CabezaPesanta(this, 1037,1785,path);
 		this.physics.add.overlap(this.cabezaPesanta, this.player, this.player.cercaPesanta, null, this.player);
+
+        let path2 = this.add.path(1800,1815)
+            .lineTo(2100,1815)
+            .lineTo(2100,1500);
+
+        this.cabezaPesanta2 = new CabezaPesanta(this, 1800,1820,path2);
+        this.physics.add.overlap(this.cabezaPesanta, this.player, this.player.cercaPesanta, null, this.player);
+
+
+        /*
+        let path3 = this.add.path(1037,1790)
+			.lineTo(1037,1957)
+
+		this.cabezaPesanta3 = new CabezaPesanta(this, 1037,1785,path3);
+		this.physics.add.overlap(this.cabezaPesanta, this.player, this.player.cercaPesanta, null, this.player);*/
 
 
 	}
@@ -67,10 +88,12 @@ export default class SecondLevel extends level {
 			this.muroInteriorLayer.setVisible(false);
 			this.puertaMarron.setVisible(false);
 			this.puertaAzul.setVisible(false);
+            this.puertaRoja.setVisible(false);
 		}else if(this.player.sKey.isDown || this.player.dKey.isDown){
 			this.muroInteriorLayer.setVisible(true);
 			this.puertaMarron.setVisible(true);
 			this.puertaAzul.setVisible(true);
+            this.puertaRoja.setVisible(true);
 		}
 	};
    

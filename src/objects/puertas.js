@@ -16,7 +16,7 @@ export default class Puertas extends Phaser.GameObjects.Sprite {
 		else this.bloqueada = bloqueadaInicio;
 
 		this.color = color;
-		this.setVisible(frontal);
+		
 
         this.scene.anims.create({
 			key: 'closeRed',
@@ -72,6 +72,8 @@ export default class Puertas extends Phaser.GameObjects.Sprite {
 		//crear fuentes
 		if(mensajePuerta == null) this.texto = "Cerrada...";
 		else this.texto = mensajePuerta;
+		
+		this.setVisible(frontal);
     }
 
 	getColor(){

@@ -27,7 +27,7 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 
 		//this.corduraMax = 30000; //esto se pasaría por el constructor para que dependa del nivel
 
-		this.corduraMax = 3000; //esto se pasaría por el constructor para que dependa del nivel
+		this.corduraMax = 4000; //esto se pasaría por el constructor para que dependa del nivel
 		this.cordura = this.corduraMax;
 
 		this.maxSpeed = 115;
@@ -376,7 +376,7 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 	cercaPesanta(sprte1, sprite2){//cabeza de Pesanta, this.player,
 
 		if(!this.zonaSegura){
-			this.cordura -= 10;
+			this.cordura -= 8;
 		}
 		
 	}

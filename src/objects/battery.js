@@ -15,7 +15,7 @@ export default class Battery extends Phaser.GameObjects.Sprite {
 
 		//(guardo la carga total por si se quiere haer una barra o algo)
 		
-		if(cargaInicial == null) this.carga = 400; //pongo una carga por defecto
+		if(cargaInicial == null) this.carga = 600; //pongo una carga por defecto
 		else this.carga = cargaInicial;
 
 		//var cargaTotl = cargaInicial; //(guardo la carga total por si se quiere haer una barra o algo)

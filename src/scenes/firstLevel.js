@@ -25,6 +25,9 @@ export default class firstLevel extends Phaser.Scene {
 	create() {
 
 		this.sonido();
+		this.rain = this.sound.add('rain', { loop: true });
+		this.rain.play();
+
 		this.shortCut();
 		this.pauseMenu();
 
@@ -144,7 +147,7 @@ export default class firstLevel extends Phaser.Scene {
 		}else if(this.player.sKey.isDown){
 			this.muroExteriorLayer.setVisible(true);
 		}
-		this.escribirTexto("Bienvenido a la habitacion");
+		//this.escribirTexto("Bienvenido a la habitacion");
 	}
 	cambioLateralesIncio(){
 		if(this.player.wKey.isDown){
@@ -199,19 +202,12 @@ export default class firstLevel extends Phaser.Scene {
 
 	sonido(){
 
-		this.sound.stopAll();
-
-		this.rain = this.sound.add('rain', { loop: true });
-
-		this.rain.play();
-
 		this.input.keyboard.on('keydown-M', function (event) {
 			console.log('La tecla M ha sido presionada');
 			if (!this.sound.mute) {
 				this.sound.setMute(true);
 			  } else {
 				this.sound.setMute(false);
-				this.rain.play();
 			}
 		}.bind(this));
 	

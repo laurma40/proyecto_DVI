@@ -18,6 +18,9 @@ export default class Title extends Phaser.Scene {
 	* Creación de los elementos de la escena principal de juego
 	*/
 	create() {
+
+		this.sonido();
+
 		console.log('title');
 		this.music = this.sound.add('titlesong',{ loop: true });
 		this.rain = this.sound.add('rain',{ loop: true });
@@ -67,31 +70,48 @@ export default class Title extends Phaser.Scene {
 	    });
 
 		//Pintamos el botón de mutear el sonido
-		var sound1 = this.textures.get('soundon');
-		var sound2 = this.textures.get('soundoff');
+		this.sound1 = this.textures.get('soundon');
+		this.sound2 = this.textures.get('soundoff');
 
-		if(this.sound.mute == false)var spriteSound = this.add.image(this.sys.game.canvas.width-20, 20, 'soundon');
-		else var spriteSound = this.add.image(this.sys.game.canvas.width-20, 20, 'soundoff');
-        spriteSound.setScale(0.925);
+		if(this.sound.mute == false)this.spriteSound = this.add.image(this.sys.game.canvas.width-20, 20, 'soundon');
+		else this.spriteSound = this.add.image(this.sys.game.canvas.width-20, 20, 'soundoff');
+        this.spriteSound.setScale(0.925);
 
-		spriteSound.setInteractive({ cursor: 'url(assets/vertopal.com_cursorHover.png), pointer' });
+		this.spriteSound.setInteractive({ cursor: 'url(assets/vertopal.com_cursorHover.png), pointer' });
 
-		spriteSound.on('pointerdown', pointer => {
+		this.spriteSound.on('pointerdown', pointer => {
 	    	console.log("pulsando");
 	    });
 
-	    spriteSound.on('pointerup', pointer => {
+	    this.spriteSound.on('pointerup', pointer => {
 			if (!this.sound.mute) {
 				this.sound.setMute(true);
-				spriteSound.setTexture(sound2.key);
+				this.spriteSound.setTexture(this.sound2.key);
 			}	
 			else {
 				this.sound.setMute(false);
 				this.rain.play();
 				this.music.play();
-				spriteSound.setTexture(sound1.key);
+				this.spriteSound.setTexture(this.sound1.key);
 			}
 	    });
 
+	}
+
+	sonido(){
+
+		this.input.keyboard.on('keydown-M', function (event) {
+			console.log('La tecla M ha sido presionada');
+			if (!this.sound.mute) {
+				this.sound.setMute(true);
+				this.spriteSound.setTexture(this.sound2.key);
+
+			  } else {
+				this.sound.setMute(false);
+				this.spriteSound.setTexture(this.sound1.key);
+
+			}
+		}.bind(this));
+	
 	}
 }

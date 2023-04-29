@@ -389,8 +389,8 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 					sprite1.play("openDoor");
 				}
 				else{ 
-					sprite1.escribirTexto();
-					//this.scene.escribirTexto("Esta puerta esta cerrada");
+					//sprite1.escribirTexto();
+					this.scene.escribirTexto(sprite1.texto);
 				}
 				
 			}

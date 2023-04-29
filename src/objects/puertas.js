@@ -72,12 +72,6 @@ export default class Puertas extends Phaser.GameObjects.Sprite {
 		//crear fuentes
 		if(mensajePuerta == null) this.texto = "Que raro, la puerta está cerrada. ¿Dónde estará la llave?";
 		else this.texto = mensajePuerta;
-		this.textoEscribiendose = false;
-		this.retroText = this.scene.add.bitmapText(100,100,'fuente','', 16);
-		this.retroText.setTint(0xffffff);
-		this.retroText.setDepth(4);
-
-
     }
 
 	getColor(){
@@ -91,28 +85,7 @@ export default class Puertas extends Phaser.GameObjects.Sprite {
 	 */
 	preUpdate(t, dt) {
         super.preUpdate(t, dt);
-		if (this.retroText) {
-			this.retroText.x = this.scene.cameras.main.scrollX + 10; // posicionar el texto en la esquina superior izquierda, dejando 10 píxeles de margen
-			this.retroText.y = this.scene.cameras.main.scrollY + 10; // posicionar el texto en la esquina superior izquierda, dejando 10 píxeles de margen
-		}
-
 	}
 
-	escribirTexto() {
-		if (!this.textoEscribiendose) {
-			this.textoEscribiendose = true;
-			if (this.retroText) {
-				var aux = '';  
-				for (var i = 0; i < this.texto.length; i++) {
-					setTimeout((index) => {
-						aux = aux + this.texto[index]; 
-						this.retroText.setText(aux);
-						if (index === this.texto.length - 1) {
-							this.textoEscribiendose = false;
-						}
-					}, i * 100, i);
-				}
-			}
-		}
-	} 
+	
 }

@@ -118,6 +118,9 @@ export default class loadingScreen extends Phaser.Scene {
 	* Creación de los elementos de la escena principal de juego
 	*/
 	create() {
+
+        this.sonido();
+
         this.rain = this.sound.add('rain',true);
         this.rain.play();
 
@@ -195,5 +198,22 @@ export default class loadingScreen extends Phaser.Scene {
 
 		}.bind(this));
 
+	}
+
+    sonido(){
+
+		this.input.keyboard.on('keydown-M', function (event) {
+			console.log('La tecla M ha sido presionada');
+			if (!this.sound.mute) {
+				this.sound.setMute(true);
+				this.spriteSound.setTexture(this.sound2.key);
+
+			  } else {
+				this.sound.setMute(false);
+				this.spriteSound.setTexture(this.sound1.key);
+
+			}
+		}.bind(this));
+	
 	}
 }

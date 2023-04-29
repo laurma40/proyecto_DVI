@@ -97,7 +97,6 @@ export default class NextLevel extends Phaser.Scene {
 				this.sound.setMute(true);
 			  } else {
 				this.sound.setMute(false);
-				this.sonidoWin.play();
 			}
 		}.bind(this));
 	

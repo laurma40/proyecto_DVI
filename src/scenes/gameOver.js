@@ -82,7 +82,6 @@ export default class GameOver extends Phaser.Scene {
 				this.sound.setMute(true);
 			  } else {
 				this.sound.setMute(false);
-				this.sonidoInter.play();
 			}
 		}.bind(this));
 	

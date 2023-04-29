@@ -97,7 +97,7 @@ export default class ThirdLevel extends level {
             .lineTo(2100,1500);
 
         this.cabezaPesanta2 = new CabezaPesanta(this, 1800,1820,path2);
-        this.physics.add.overlap(this.cabezaPesanta, this.player, this.player.cercaPesanta, null, this.player);
+        this.physics.add.overlap(this.cabezaPesanta2, this.player, this.player.cercaPesanta, null, this.player);
 
 
         /*

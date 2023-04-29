@@ -2,8 +2,14 @@ export default class PauseMenu extends Phaser.Scene {
   constructor() {
     super({ key: 'pauseMenu' });
   }
+
+  init(data) {
+    this.currentLevel = data.nivel;
+    console.log(this.currentLevel);
+}
   
   create() {
+    this.scene.bringToTop();
     // create a sprite
     this.pauseKey();
     // Create a dark background for the pause menu
@@ -16,7 +22,7 @@ export default class PauseMenu extends Phaser.Scene {
     const resumeButton = this.add.text(this.sys.game.canvas.width / 2, 115, 'Reanudar', { fontFamily: 'silkscreenregular', fontSize: '32px', color: '#ffffff' }).setOrigin(0.5);
     resumeButton.setInteractive({ cursor: 'url(assets/vertopal.com_cursorHover.png), pointer' });
     resumeButton.on('pointerdown', () => {
-      this.scene.resume('firstLevel');
+      this.scene.resume(this.currentLevel);
       this.scene.stop('pauseMenu');
     });
 
@@ -24,7 +30,7 @@ export default class PauseMenu extends Phaser.Scene {
     const quitButton = this.add.text(this.sys.game.canvas.width / 2, 150, 'Menu principal', { fontFamily: 'silkscreenregular', fontSize: '32px', color: '#ffffff' }).setOrigin(0.5);
     quitButton.setInteractive({ cursor: 'url(assets/vertopal.com_cursorHover.png), pointer' });
     quitButton.on('pointerdown', () => {
-      this.scene.stop('firstLevel');
+      this.scene.stop(this.currentLevel);
       this.scene.stop('pauseMenu');
       setTimeout(function () {
         this.scene.start('title');
@@ -40,7 +46,7 @@ export default class PauseMenu extends Phaser.Scene {
 
 		this.input.keyboard.on('keydown-ESC', function (event) {
 
-			this.scene.resume('firstLevel');
+			this.scene.resume(this.currentLevel);
       this.scene.stop('pauseMenu');
 
 		}.bind(this));

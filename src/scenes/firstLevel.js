@@ -22,7 +22,37 @@ export default class FirstLevel extends level {
 	*/
 	create() {
 
-        super.create();
+		this.nocheSonido = this.sound.add('nocheSonido',true);
+        this.nocheSonido.play();
+        var text = this.add.text(100, 350, 'Noche 1', { fontFamily: 'silkscreenregular', fontSize: '24px', fill: '#ffffff' });
+        text.setOrigin(0.5);
+        text.setDepth(1); // asegura que el texto aparezca sobre la imagen
+        var textTweens = this.tweens.add({
+            targets: text,
+            alpha: {
+                from: 0,
+                to: 1
+            },
+            duration: 2000, // duración de la animación en milisegundos
+            ease: 'Linear', // tipo de interpolación de la animación
+            yoyo: true, // hace que la animación se reproduzca en sentido inverso
+            onComplete: function () {
+                setTimeout(function () {
+                    this.nocheSonido.stop();
+                    this.creacionMapa();//sustituir por el create de antes
+                }.bind(this)); // espera 1 segundo antes de cambiar de escena
+            },
+            onCompleteScope: this // asegura que la segunda animación se agregue al objeto correcto
+        });
+
+	}
+
+	update() {
+        super.update();
+    }
+
+	creacionMapa() {
+		super.create();
 
 
 		const t_caja = this.map.addTilesetImage('cajas');
@@ -50,11 +80,8 @@ export default class FirstLevel extends level {
 		this.physics.add.overlap(this.pilas, this.player, this.player.cojePila, null, this.player);
 		this.physics.add.collider(this.puertaMarron, this.player, this.player.abrirPuerta, null, this.player);
         this.physics.add.collider(this.puertaAzul, this.player, this.player.abrirPuerta, null, this.player);
-
 	}
-	update() {
-        super.update();
-    }
+
 	entradaHabitacion(){
 		if(this.player.wKey.isDown || this.player.aKey.isDown){
 			this.muroInteriorLayer.setVisible(false);

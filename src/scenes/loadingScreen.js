@@ -57,6 +57,7 @@ export default class loadingScreen extends Phaser.Scene {
             assetText.destroy();
         });
         
+        //Imagenes (botones, fondos, logos, etc.)
         this.load.image('fondo-present', 'assets/fondo-present.png');
         this.load.image('logo', 'assets/logo-studio2.png');
         this.load.image('start', 'assets/start3.png');
@@ -71,10 +72,14 @@ export default class loadingScreen extends Phaser.Scene {
         this.load.image('next1', 'assets/next1.png');
         this.load.image('next2', 'assets/next2.png');
         this.load.image('tv', 'assets/fondoGameOver.jpeg');
-
 		this.load.image('soundon', 'assets/sound_on.png');
 		this.load.image('soundoff', 'assets/sound_off.png');
-
+        this.load.image('cursorCustom', 'assets/vertopal.com_cursorHover.png');
+        this.load.image('controllers', 'assets/controles.png');
+        this.load.image('noPausado', 'assets/pausa.png');
+        this.load.image('pausado', 'assets/reanuda.png');
+        
+        //Audios
 		this.load.audio('titlesong', ['assets/audio/titlesong.mp3', 'assets/audio/titlesong.ogg']);
 		this.load.audio('rain', 'assets/audio/zapsplat_nature_thunder_distant_or_high_above_very_light_rain_001_45552.mp3');
         this.load.audio('sonlinterna', 'assets/audio/zapsplat_household_torch_flashlight_maglite_switch_on_or_off_001.mp3');
@@ -85,13 +90,12 @@ export default class loadingScreen extends Phaser.Scene {
         this.load.audio('sonWin', 'assets/audio/win.mp3');
         this.load.audio('sonPuerta', 'assets/audio/zapsplat_household_door_wooden_old_slightly_rotten_close_004_97951.mp3');
         this.load.audio('sonPesanta', 'assets/audio/zapsplat_horror_monster_ogre_single_weak_snarl_97943.mp3');
+        this.load.audio('nocheSonido', 'assets/audio/audio_hero_NightAmbienceCalm.mp3')
 
-
-        this.load.image('cursorCustom', 'assets/vertopal.com_cursorHover.png');
-        this.load.image('controllers', 'assets/controles.png');
-
+        //Fuente
         this.load.bitmapFont('fuente', 'assets/fuentes/ComicSansMs.png','assets/fuentes/ComicSansMs.xml');
 
+        //Sprites
 		this.load.spritesheet('cabezaPesanta', 'assets/pesanta-580-500.png', {frameWidth: 580, frameHeight: 500});
 		this.load.spritesheet('filemon', 'assets/filemon-250-400.png', {frameWidth: 250, frameHeight: 400});
 		this.load.spritesheet('battery', 'assets/SpriteSheet_Batery3.png',{frameWidth: 280, frameHeight: 370});
@@ -101,17 +105,14 @@ export default class loadingScreen extends Phaser.Scene {
         this.load.spritesheet('llave', 'assets/llaves_de_colores.png', {frameWidth: 30, frameHeight: 20});
 		this.load.spritesheet('armario', 'assets/armario-125-125.png', {frameWidth: 125, frameHeight: 125});
         this.load.spritesheet('puertas', 'assets/puertasSprite.png', {frameWidth: 100, frameHeight: 100});
-		//Cargamos el archivo JSON necesario para importar el Tilemap
+		
+        //Tile
+        //Cargamos el archivo JSON necesario para importar el Tilemap
 		this.load.tilemapTiledJSON('tilemap','assets/Tilemap/MapaPiso1Definitivo.json');
-
 		//Cargamos los tilesets necesarios para poder crear el mapa
 		this.load.image('nuevosMuros','assets/Tilemap/nuevosMuros.jpeg');
 		//this.load.image('puertas','../../assets/Tilemap/puertas.png');
 		this.load.image('mapaImg','assets/Tilemap/mapaCapa.png');
-
-        this.load.image('noPausado', 'assets/pausa.png');
-        this.load.image('pausado', 'assets/reanuda.png');
-
         this.load.image('cajas', 'assets/Tilemap/cajas.jpg');
 
 	}

@@ -96,7 +96,6 @@ export default class FourthLevel extends level {
 
 
 
-
         //Llave nivel 4 --> 1761, 1024 && 684, 1456 (billar) && 626, 565(entrada nieve)       
         this.llaveRoja = new Llave(this, 684, 1456,'rojo');
         this.physics.add.overlap(this.llaveRoja, this.player, this.player.cogeObjeto, null, this.player);

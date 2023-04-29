@@ -23,7 +23,16 @@ export default class GameOver extends Phaser.Scene {
 
 		this.sonido();
 
-		this.sonidoInter = this.sound.add('sonGameOver', { loop: true });
+		const config = {
+			mute: false,
+			volume: 1,
+			rate: 1,
+			detune: 0,
+			seek: 0,
+			loop: true,
+			delay: 0,
+		  };
+		this.sonidoInter = this.sound.add('sonGameOver', config);
 		this.sonidoInter.volume = 0.1;
 		this.sonidoInter.play();
 		this.sonidoInter.rate = 0.5;

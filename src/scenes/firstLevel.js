@@ -22,7 +22,16 @@ export default class FirstLevel extends level {
 	*/
 	create() {
 
-		this.nocheSonido = this.sound.add('nocheSonido',true);
+		const config = {
+			mute: false,
+			volume: 1,
+			rate: 1,
+			detune: 0,
+			seek: 0,
+			loop: true,
+			delay: 0,
+		  };
+		this.nocheSonido = this.sound.add('nocheSonido',config);
 		this.nocheSonido.volume = 0.1;
         this.nocheSonido.play();
         var text = this.add.text(100, 350, 'Noche 1', { fontFamily: 'silkscreenregular', fontSize: '24px', fill: '#ffffff' });
@@ -81,6 +90,29 @@ export default class FirstLevel extends level {
 		this.physics.add.overlap(this.pilas, this.player, this.player.cogePila, null, this.player);
 		this.physics.add.collider(this.puertaMarron, this.player, this.player.abrirPuerta, null, this.player);
         this.physics.add.collider(this.puertaAzul, this.player, this.player.abrirPuerta, null, this.player);
+	cambioEntrada(){
+		if(this.player.wKey.isDown){
+			this.muroExteriorLayer.setVisible(false);
+		}else if(this.player.sKey.isDown){
+			this.muroExteriorLayer.setVisible(true);
+		}
+		this.escribirTexto("Bienvenido a la habitacion");
+	}
+	cambioLateralesIncio(){
+		if(this.player.wKey.isDown){
+			this.muroInteriorLayer.setVisible(true);
+			this.muroExteriorLayer.setVisible(true);
+		}else if(this.player.sKey.isDown){
+			this.muroExteriorLayer.setVisible(false);
+		}
+	}
+	cambioLateralesArriba(){
+		if(this.player.wKey.isDown){
+			this.muroInteriorLayer.setVisible(false);
+		}else if(this.player.sKey.isDown){
+			this.muroInteriorLayer.setVisible(true);
+			this.muroExteriorLayer.setVisible(true);
+		}
 	}
 
 	entradaHabitacion(){

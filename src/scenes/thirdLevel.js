@@ -23,8 +23,16 @@ export default class ThirdLevel extends level {
 	* Creación de los elementos de la escena principal de juego
 	*/
 	create() {
-
-		this.nocheSonido = this.sound.add('nocheSonido',true);
+		const config = {
+			mute: false,
+			volume: 1,
+			rate: 1,
+			detune: 0,
+			seek: 0,
+			loop: true,
+			delay: 0,
+		  };
+		this.nocheSonido = this.sound.add('nocheSonido',config);
 		this.nocheSonido.volume = 0.1;
 		this.nocheSonido.play();
         var text = this.add.text(100, 350, 'Noche 3', { fontFamily: 'silkscreenregular', fontSize: '24px', fill: '#ffffff' });

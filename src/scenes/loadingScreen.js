@@ -78,7 +78,7 @@ export default class loadingScreen extends Phaser.Scene {
         this.load.image('controllers', 'assets/controles.png');
         this.load.image('noPausado', 'assets/pausa.png');
         this.load.image('pausado', 'assets/reanuda.png');
-        
+
         //Audios
 		this.load.audio('titlesong', ['assets/audio/titlesong.mp3', 'assets/audio/titlesong.ogg']);
 		this.load.audio('rain', 'assets/audio/zapsplat_nature_thunder_distant_or_high_above_very_light_rain_001_45552.mp3');
@@ -117,6 +117,11 @@ export default class loadingScreen extends Phaser.Scene {
 		this.load.image('mapaImg','assets/Tilemap/mapaCapa.png');
         this.load.image('cajas', 'assets/Tilemap/cajas.jpg');
 
+
+        //Final
+        this.load.image('coco', 'assets/elcoco.png');
+        this.load.audio('chillidoHorror','assets/audio/human-18-month-toddler-boy-scream-002.mp3');
+        this.load.audio('horrorAtmosfera','assets/audio/zapsplat_horror_strings_stabs_psycho_57646.mp3');
 	}
 	
 	/**
@@ -126,7 +131,17 @@ export default class loadingScreen extends Phaser.Scene {
 
         this.sonido();
 
-        this.rain = this.sound.add('rain',true);
+        const config = {
+            mute: false,
+            volume: 1,
+            rate: 1,
+            detune: 0,
+            seek: 0,
+            loop: true,
+            delay: 0,
+          };
+
+        this.rain = this.sound.add('rain',config);
         this.rain.play();
 
         this.skip();

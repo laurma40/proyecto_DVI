@@ -21,9 +21,19 @@ export default class Title extends Phaser.Scene {
 
 		this.sonido();
 
+		const config = {
+			mute: false,
+			volume: 1,
+			rate: 1,
+			detune: 0,
+			seek: 0,
+			loop: true,
+			delay: 0,
+		  };
+
 		console.log('title');
-		this.music = this.sound.add('titlesong',{ loop: true });
-		this.rain = this.sound.add('rain',{ loop: true });
+		this.music = this.sound.add('titlesong', config);
+		this.rain = this.sound.add('rain', config);
 
 		this.music.volume = 0.1;
 

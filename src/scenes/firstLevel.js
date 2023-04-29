@@ -60,12 +60,11 @@ export default class FirstLevel extends level {
 		this.cajasLayer = this.map.createLayer('Cajas/CajasNivel1',this.t_caja);
 		this.cajasLayer.setDepth(1.8);
 		this.cajasLayer.setVisible(true);
-		//this.cajasColisiones = this.map.createLayer('Cajas/colisionesCajasNivel1',this.t_muro);
-		//console.log(this.t_muro);
-		//this.cajasColisiones.setDepth(1.9);
-		//this.cajasColisiones.setCollision();
-		this.cajasLayer.setCollision([3845,3846,3847,3848,3877,3878,3879,3880,3909,3910,3912,3941,3942,3943,3944]);
-		this.physics.add.collider(this.player, this.cajasLayer);
+		this.cajasColisiones = this.map.createLayer('Cajas/colisionesCajasNivel1',this.t_caja);
+		this.cajasLayer.setDepth(1.8);
+		this.cajasColisiones.setVisible(false);
+		this.cajasColisiones.setCollision(7809);
+		this.physics.add.collider(this.player, this.cajasColisiones);
 		console.log(this);
 
 

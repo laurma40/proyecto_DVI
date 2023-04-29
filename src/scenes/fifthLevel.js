@@ -57,6 +57,16 @@ export default class FifthLevel extends level {
 
         super.create();
 
+        this.t_caja = this.map.addTilesetImage('cajas');
+		this.cajasLayer = this.map.createLayer('Cajas/CajasNivel4',this.t_caja);
+		this.cajasLayer.setDepth(1.8);
+		this.cajasLayer.setVisible(true);
+		this.cajasColisiones = this.map.createLayer('Cajas/colisionesCajasNivel4',this.t_caja);
+		this.cajasLayer.setDepth(1.8);
+		this.cajasColisiones.setVisible(false);
+		this.cajasColisiones.setCollision(7809);
+		this.physics.add.collider(this.player, this.cajasColisiones);
+
 		// Creamos los objetos a través de la capa de objetos del tilemap y la imagen o la clase que queramos
 		this.pilas = this.map.createFromObjects('ObjetosNivel5', {name: "pila",classType: Battery, key: 'battery' });
 		this.armarios = this.map.createFromObjects('Armarios', {name: "armario1", classType: Armario, key: 'armario'});
@@ -111,36 +121,63 @@ export default class FifthLevel extends level {
 			.lineTo(2030,900);
 
 		this.cabezaPesanta3 = new CabezaPesanta(this, 2030,1305,path3);
-		this.physics.add.overlap(this.cabezaPesanta, this.player, this.player.cercaPesanta, null, this.player);
+		this.physics.add.overlap(this.cabezaPesanta3, this.player, this.player.cercaPesanta, null, this.player);
 
         let path4 = this.add.path(280,600)
             .lineTo(400,1000);
 
         this.cabezaPesanta4 = new CabezaPesanta(this, 280,605,path4);
-        this.physics.add.overlap(this.cabezaPesanta, this.player, this.player.cercaPesanta, null, this.player);
+        this.physics.add.overlap(this.cabezaPesanta4, this.player, this.player.cercaPesanta, null, this.player);
 
         let path5 = this.add.path(280,1000)
             .lineTo(400,1500);
 
         this.cabezaPesanta5 = new CabezaPesanta(this, 280,1005,path5);
-        this.physics.add.overlap(this.cabezaPesanta, this.player, this.player.cercaPesanta, null, this.player);
+        this.physics.add.overlap(this.cabezaPesanta5, this.player, this.player.cercaPesanta, null, this.player);
 
         let path6 = this.add.path(280,1600)
             .lineTo(400,1500);
 
         this.cabezaPesanta6 = new CabezaPesanta(this, 280,1605,path6);
-        this.physics.add.overlap(this.cabezaPesanta, this.player, this.player.cercaPesanta, null, this.player);
+        this.physics.add.overlap(this.cabezaPesanta6, this.player, this.player.cercaPesanta, null, this.player);
 
+        let path7 = this.add.path(1500, 1700)
+            .lineTo(1850, 1700);
 
-        ////////////
+        this.cabezaPesanta7 = new CabezaPesanta(this, 1500, 1705,path7);
+        this.physics.add.overlap(this.cabezaPesanta7, this.player, this.player.cercaPesanta, null, this.player);
 
-        //1739, 1714
-        let path7 = this.add.path(1700, 1714)
-            .lineTo(1800, 1714);
+         
+        let path8 = this.add.path(2030,900)
+            .lineTo(2030, 600)
+            .lineTo(1600, 600);
 
-        this.cabezaPesanta7 = new CabezaPesanta(this, 280,1605,path7);
-        this.physics.add.overlap(this.cabezaPesanta, this.player, this.player.cercaPesanta, null, this.player);
+        this.cabezaPesanta8 = new CabezaPesanta(this, 2030, 905, path8);
+        this.physics.add.overlap(this.cabezaPesanta8, this.player, this.player.cercaPesanta, null, this.player);
+    
 
+        let path9 = this.add.path(1600, 500)
+            .lineTo(2100, 500)
+            .lineTo(2100, 900);
+
+        this.cabezaPesanta9 = new CabezaPesanta(this, 1500, 505, path9);
+        this.physics.add.overlap(this.cabezaPesanta9, this.player, this.player.cercaPesanta, null, this.player);
+
+        let path10 = this.add.path(1212, 444)
+            .lineTo(960, 444)
+            .lineTo(960, 742);
+
+        this.cabezaPesanta10 = new CabezaPesanta(this, 1212, 449,path10);
+        this.physics.add.overlap(this.cabezaPesanta10, this.player, this.player.cercaPesanta, null, this.player);
+        
+        let path11 = this.add.path(960, 742)
+            .lineTo(1354, 742)
+            .lineTo(1354, 540);
+
+        this.cabezaPesanta11 = new CabezaPesanta(this, 960, 745,path11);
+        this.physics.add.overlap(this.cabezaPesanta11, this.player, this.player.cercaPesanta, null, this.player);
+        
+         
 
 	}
 

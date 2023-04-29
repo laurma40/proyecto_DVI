@@ -23,7 +23,6 @@ export default class ThirdLevel extends level {
 	* Creación de los elementos de la escena principal de juego
 	*/
 	create() {
-
 		const config = {
 			mute: false,
 			volume: 1,

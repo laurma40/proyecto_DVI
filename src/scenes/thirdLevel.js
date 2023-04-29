@@ -71,7 +71,7 @@ export default class ThirdLevel extends level {
 		this.physics.add.overlap(this.bed, this.player, this.player.dormir, null, this.player);
         this.physics.add.overlap(this.armarios, this.player, this.player.interactuarArmario, null, this.player);
 		this.physics.add.overlap(this.armarios2, this.player, this.player.interactuarArmario, null, this.player);
-		this.physics.add.overlap(this.pilas, this.player, this.player.cojePila, null, this.player);
+		this.physics.add.overlap(this.pilas, this.player, this.player.cogePila, null, this.player);
 		this.physics.add.collider(this.puertaMarron, this.player, this.player.abrirPuerta, null, this.player);
         this.physics.add.collider(this.puertaAzul, this.player, this.player.abrirPuerta, null, this.player);
         this.physics.add.collider(this.puertaRoja, this.player, this.player.abrirPuerta, null, this.player);
@@ -81,9 +81,9 @@ export default class ThirdLevel extends level {
 
         //Llave nivel 3 --> 1613, 1701(salon) && 684, 1456 (billar)         
         this.llaveAzul = new Llave(this, 684, 1456,'azul');
-        this.physics.add.overlap(this.llaveAzul, this.player, this.player.cojeObjeto, null, this.player);
+        this.physics.add.overlap(this.llaveAzul, this.player, this.player.cogeObjeto, null, this.player);
         this.llaveRoja = new Llave(this, 1613, 1701,'rojo');
-        this.physics.add.overlap(this.llaveRoja, this.player, this.player.cojeObjeto, null, this.player);
+        this.physics.add.overlap(this.llaveRoja, this.player, this.player.cogeObjeto, null, this.player);
 
 
 

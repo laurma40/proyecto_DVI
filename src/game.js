@@ -8,6 +8,7 @@ import Level from './scenes/level.js';
 import SecondLevel from './scenes/secondLevel.js';
 import ThirdLevel from './scenes/thirdLevel.js';
 import FourthLevel from './scenes/fourthLevel.js';
+import FifthLevel from './scenes/fifthLevel.js';
 /**
  * Inicio del juego en Phaser. Creamos el archivo de configuración del juego y creamos
  * la clase Game de Phaser, encargada de crear e iniciar el juego.
@@ -37,7 +38,7 @@ let config = {
         },
 		zoom: 1
     },
-    scene: [Loading, Title, FirstLevel, GameOver, NextLevel, PauseScreen, Level, SecondLevel, ThirdLevel,FourthLevel],
+    scene: [Loading, Title, FirstLevel, GameOver, NextLevel, PauseScreen, Level, SecondLevel, ThirdLevel, FourthLevel, FifthLevel],
     physics: { 
         default: 'arcade', 
         arcade: { 

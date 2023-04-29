@@ -69,7 +69,7 @@ export default class SecondLevel extends level {
         this.puertaAzul.setDepth(1.8);
 		this.physics.add.overlap(this.bed, this.player, this.player.dormir, null, this.player);
         this.physics.add.overlap(this.armarios, this.player, this.player.interactuarArmario, null, this.player);
-		this.physics.add.overlap(this.pilas, this.player, this.player.cojePila, null, this.player);
+		this.physics.add.overlap(this.pilas, this.player, this.player.cogePila, null, this.player);
 		this.physics.add.collider(this.puertaMarron, this.player, this.player.abrirPuerta, null, this.player);
         this.physics.add.collider(this.puertaAzul, this.player, this.player.abrirPuerta, null, this.player);
 
@@ -77,7 +77,7 @@ export default class SecondLevel extends level {
 
         //Llave nivel 2 --> 510, 1537
         this.llaveAzul = new Llave(this, 510, 1537,'azul');
-        this.physics.add.overlap(this.llaveAzul, this.player, this.player.cojeObjeto, null, this.player);
+        this.physics.add.overlap(this.llaveAzul, this.player, this.player.cogeObjeto, null, this.player);
 
 
 

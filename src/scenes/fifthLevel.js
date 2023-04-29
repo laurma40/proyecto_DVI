@@ -10,10 +10,10 @@ import CabezaPesanta from "../objects/cabezaPesanta.js";
  * Escena principal de juego.
  * @extends Phaser.Scenes
  */
-export default class FourthLevel extends level {
+export default class FifthLevel extends level {
 	
 	constructor() {
-		super('fourthLevel');
+		super('fifthLevel');
 	}
 	
 	preload(){
@@ -27,7 +27,7 @@ export default class FourthLevel extends level {
 		this.nocheSonido = this.sound.add('nocheSonido',true);
         this.nocheSonido.volume = 0.1;
 		this.nocheSonido.play();
-        var text = this.add.text(100, 350, 'Noche 4', { fontFamily: 'silkscreenregular', fontSize: '24px', fill: '#ffffff' });
+        var text = this.add.text(100, 350, 'Noche 5', { fontFamily: 'silkscreenregular', fontSize: '24px', fill: '#ffffff' });
         text.setOrigin(0.5);
         text.setDepth(1); // asegura que el texto aparezca sobre la imagen
         var textTweens = this.tweens.add({
@@ -58,10 +58,10 @@ export default class FourthLevel extends level {
         super.create();
 
 		// Creamos los objetos a través de la capa de objetos del tilemap y la imagen o la clase que queramos
-		this.pilas = this.map.createFromObjects('ObjetosNivel4', {name: "pila",classType: Battery, key: 'battery' });
+		this.pilas = this.map.createFromObjects('ObjetosNivel5', {name: "pila",classType: Battery, key: 'battery' });
 		this.armarios = this.map.createFromObjects('Armarios', {name: "armario1", classType: Armario, key: 'armario'});
 		this.armarios2 = this.map.createFromObjects('Armarios', {name: "armario2", classType: Armario, key: 'armario'});
-		this.bed = this.map.createFromObjects('ObjetosNivel4', {name: "cama", classType: Bed, key: 'bed'});
+		this.bed = this.map.createFromObjects('ObjetosNivel5', {name: "cama", classType: Bed, key: 'bed'});
 		this.puertaMarron = new Puertas(this, 661, 1714, "marron", true, "Ahora esta puerta tampoco se abre", true);
 		this.puertaMarron.setDepth(1.8);
         this.puertaAzul= new Puertas(this, 1739, 1714, "azul", true, "Cerrada otra vez", true);
@@ -79,13 +79,15 @@ export default class FourthLevel extends level {
 
 
 
-        //Llave nivel 4 --> 1761, 1024 && 684, 1456 (billar) && 626, 565(entrada nieve)       
-        this.llaveAzul = new Llave(this, 684, 1456,'azul');
+        //Llave nivel 5 --> 1636, 1524 && 1898, 1026 (cocina) && 1272, 433(nieve) && 2054,1569        
+        this.llaveAzul = new Llave(this, 2054, 1569,'azul');
         this.physics.add.overlap(this.llaveAzul, this.player, this.player.cogeObjeto, null, this.player);
-        this.llaveRoja = new Llave(this, 626, 565,'rojo');
+        this.llaveRoja = new Llave(this, 1636, 1524,'rojo');
         this.physics.add.overlap(this.llaveRoja, this.player, this.player.cogeObjeto, null, this.player);
-        this.llaveMarron = new Llave(this, 1761, 1024,'marron');
+        this.llaveMarron = new Llave(this, 1898, 1026,'marron');
         this.physics.add.overlap(this.llaveMarron, this.player, this.player.cogeObjeto, null, this.player);
+        this.llaveMarron2 = new Llave(this, 1272, 433,'marron');
+        this.physics.add.overlap(this.llaveMarron2, this.player, this.player.cogeObjeto, null, this.player);
 
 
 
@@ -111,17 +113,34 @@ export default class FourthLevel extends level {
 		this.cabezaPesanta3 = new CabezaPesanta(this, 2030,1305,path3);
 		this.physics.add.overlap(this.cabezaPesanta, this.player, this.player.cercaPesanta, null, this.player);
 
-        let path4 = this.add.path(280,1000)
+        let path4 = this.add.path(280,600)
             .lineTo(400,1000);
 
-        this.cabezaPesanta4 = new CabezaPesanta(this, 280,1005,path4);
+        this.cabezaPesanta4 = new CabezaPesanta(this, 280,605,path4);
         this.physics.add.overlap(this.cabezaPesanta, this.player, this.player.cercaPesanta, null, this.player);
 
-        let path5 = this.add.path(280,1500)
+        let path5 = this.add.path(280,1000)
             .lineTo(400,1500);
 
-        this.cabezaPesanta5 = new CabezaPesanta(this, 280,1505,path5);
+        this.cabezaPesanta5 = new CabezaPesanta(this, 280,1005,path5);
         this.physics.add.overlap(this.cabezaPesanta, this.player, this.player.cercaPesanta, null, this.player);
+
+        let path6 = this.add.path(280,1600)
+            .lineTo(400,1500);
+
+        this.cabezaPesanta6 = new CabezaPesanta(this, 280,1605,path6);
+        this.physics.add.overlap(this.cabezaPesanta, this.player, this.player.cercaPesanta, null, this.player);
+
+
+        ////////////
+
+        //1739, 1714
+        let path7 = this.add.path(1700, 1714)
+            .lineTo(1800, 1714);
+
+        this.cabezaPesanta7 = new CabezaPesanta(this, 280,1605,path7);
+        this.physics.add.overlap(this.cabezaPesanta, this.player, this.player.cercaPesanta, null, this.player);
+
 
 	}
 

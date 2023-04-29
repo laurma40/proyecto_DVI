@@ -74,10 +74,10 @@ export default class FifthLevel extends level {
 		this.bed = this.map.createFromObjects('ObjetosNivel5', {name: "cama", classType: Bed, key: 'bed'});
 		this.puertaMarron = new Puertas(this, 661, 1714, "marron", true, "Ahora esta puerta tampoco se abre", true);
 		this.puertaMarron.setDepth(1.8);
-        this.puertaAzul= new Puertas(this, 1739, 1714, "azul", true, "Cerrada otra vez", true);
-        this.puertaAzul.setDepth(1.8);
-        this.puertaRoja= new Puertas(this, 1945, 1034, "rojo", false, "Esta puerta roja no se abre...", true);
+        this.puertaRoja= new Puertas(this, 1739, 1714, "rojo", true, "Cerrada otra vez", true);
         this.puertaRoja.setDepth(1.8);
+        this.puertaAzul= new Puertas(this, 1945, 1034, "azul", false, "Esta puerta azul no se abre...", true);
+        this.puertaAzul.setDepth(1.8);
 		this.physics.add.overlap(this.bed, this.player, this.player.dormir, null, this.player);
         this.physics.add.overlap(this.armarios, this.player, this.player.interactuarArmario, null, this.player);
 		this.physics.add.overlap(this.armarios2, this.player, this.player.interactuarArmario, null, this.player);
@@ -90,10 +90,10 @@ export default class FifthLevel extends level {
 
 
         //Llave nivel 5 --> 1636, 1524 && 1898, 1026 (cocina) && 1272, 433(nieve) && 2054,1569        
-        this.llaveAzul = new Llave(this, 2054, 1569,'azul');
-        this.physics.add.overlap(this.llaveAzul, this.player, this.player.cogeObjeto, null, this.player);
-        this.llaveRoja = new Llave(this, 1636, 1524,'rojo');
+        this.llaveRoja = new Llave(this, 2054, 1569,'rojo');
         this.physics.add.overlap(this.llaveRoja, this.player, this.player.cogeObjeto, null, this.player);
+        this.llaveAzul = new Llave(this, 1636, 1524,'azul');
+        this.physics.add.overlap(this.llaveAzul, this.player, this.player.cogeObjeto, null, this.player);
         this.llaveMarron = new Llave(this, 1898, 1026,'marron');
         this.physics.add.overlap(this.llaveMarron, this.player, this.player.cogeObjeto, null, this.player);
         this.llaveMarron2 = new Llave(this, 1272, 433,'marron');
@@ -190,7 +190,7 @@ export default class FifthLevel extends level {
 		}else if(this.player.sKey.isDown || this.player.dKey.isDown){
 			this.muroInteriorLayer.setVisible(true);
 			this.puertaMarron.setVisible(true);
-			this.puertaAzul.setVisible(true);
+			this.puertaRoja.setVisible(true);
 		}
 	};
 

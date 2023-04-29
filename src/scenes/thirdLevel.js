@@ -73,10 +73,10 @@ export default class ThirdLevel extends level {
 		this.bed = this.map.createFromObjects('ObjetosNivel3', {name: "cama", classType: Bed, key: 'bed'});
 		this.puertaMarron = new Puertas(this, 661, 1714, "marron", true, "Prueba Puerta", false);
 		this.puertaMarron.setDepth(1.8);
-        this.puertaAzul= new Puertas(this, 1739, 1714, "azul", true, "Cerrada otra vez", true);
-        this.puertaAzul.setDepth(1.8);
-        this.puertaRoja= new Puertas(this, 1945, 1034, "rojo", false, "Esta puerta roja no se abre...", true);
+        this.puertaRoja= new Puertas(this, 1739, 1714, "rojo", true, "Cerrada otra vez", true);
         this.puertaRoja.setDepth(1.8);
+        this.puertaAzul= new Puertas(this, 1945, 1034, "azul", false, "Esta puerta azul no se abre...", true);
+        this.puertaAzul.setDepth(1.8);
 		this.physics.add.overlap(this.bed, this.player, this.player.dormir, null, this.player);
         this.physics.add.overlap(this.armarios, this.player, this.player.interactuarArmario, null, this.player);
 		this.physics.add.overlap(this.armarios2, this.player, this.player.interactuarArmario, null, this.player);
@@ -89,10 +89,10 @@ export default class ThirdLevel extends level {
 
 
         //Llave nivel 3 --> 1613, 1701(salon) && 684, 1456 (billar)         
-        this.llaveAzul = new Llave(this, 684, 1456,'azul');
-        this.physics.add.overlap(this.llaveAzul, this.player, this.player.cogeObjeto, null, this.player);
-        this.llaveRoja = new Llave(this, 1613, 1701,'rojo');
+        this.llaveRoja = new Llave(this, 684, 1456,'rojo');
         this.physics.add.overlap(this.llaveRoja, this.player, this.player.cogeObjeto, null, this.player);
+        this.llaveAzul = new Llave(this, 1613, 1701,'azul');
+        this.physics.add.overlap(this.llaveAzul, this.player, this.player.cogeObjeto, null, this.player);
 
 
 
@@ -129,7 +129,7 @@ export default class ThirdLevel extends level {
 		}else if(this.player.sKey.isDown || this.player.dKey.isDown){
 			this.muroInteriorLayer.setVisible(true);
 			this.puertaMarron.setVisible(true);
-			this.puertaAzul.setVisible(true);
+			this.puertaRoja.setVisible(true);
 		}
 	};
 

@@ -90,7 +90,9 @@ export default class loadingScreen extends Phaser.Scene {
         this.load.audio('sonWin', 'assets/audio/win.mp3');
         this.load.audio('sonPuerta', 'assets/audio/zapsplat_household_door_wooden_old_slightly_rotten_close_004_97951.mp3');
         this.load.audio('sonPesanta', 'assets/audio/zapsplat_horror_monster_ogre_single_weak_snarl_97943.mp3');
-        this.load.audio('nocheSonido', 'assets/audio/audio_hero_NightAmbienceCalm.mp3')
+        this.load.audio('nocheSonido', 'assets/audio/audio_hero_NightAmbienceCalm.mp3');
+        this.load.audio('sonPain', 'assets/audio/soundbits_Screams&Shouts_human_child_006.mp3')
+
 
         //Fuente
         this.load.bitmapFont('fuente', 'assets/fuentes/ComicSansMs.png','assets/fuentes/ComicSansMs.xml');

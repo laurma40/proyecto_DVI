@@ -279,30 +279,6 @@
                  "width":0,
                  "x":1793.33333333333,
                  "y":569.333333333333
-                }, 
-                {
-                 "height":0,
-                 "id":92,
-                 "name":"armario",
-                 "point":true,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":1344,
-                 "y":1754.66666666667
-                }, 
-                {
-                 "height":0,
-                 "id":93,
-                 "name":"armario",
-                 "point":true,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":2097.33333333333,
-                 "y":1416
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -446,34 +422,10 @@
                  "width":0,
                  "x":790.666666666667,
                  "y":1720
-                }, 
-                {
-                 "height":0,
-                 "id":94,
-                 "name":"armario",
-                 "point":true,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":2084,
-                 "y":1385.33333333333
-                }, 
-                {
-                 "height":0,
-                 "id":95,
-                 "name":"armario",
-                 "point":true,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":1356,
-                 "y":1752
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -541,18 +493,6 @@
                  "width":0,
                  "x":1637.33333333333,
                  "y":1693.33333333333
-                }, 
-                {
-                 "height":0,
-                 "id":40,
-                 "name":"armario",
-                 "point":true,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":1356,
-                 "y":1757.33333333334
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -627,18 +567,6 @@
                 }, 
                 {
                  "height":0,
-                 "id":39,
-                 "name":"armario",
-                 "point":true,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":1348,
-                 "y":1756
-                }, 
-                {
-                 "height":0,
                  "id":42,
                  "name":"player",
                  "point":true,
@@ -698,18 +626,6 @@
                 }, 
                 {
                  "height":0,
-                 "id":46,
-                 "name":"armario",
-                 "point":true,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":1345.33333333333,
-                 "y":1756
-                }, 
-                {
-                 "height":0,
                  "id":49,
                  "name":"pila",
                  "point":true,
@@ -746,18 +662,6 @@
                 }, 
                 {
                  "height":0,
-                 "id":53,
-                 "name":"armario",
-                 "point":true,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":2097.33333333334,
-                 "y":1310.66666666666
-                }, 
-                {
-                 "height":0,
                  "id":54,
                  "name":"pila",
                  "point":true,
@@ -791,6 +695,41 @@
                  "width":0,
                  "x":338.666666666667,
                  "y":1837.33333333333
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":false,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":26,
+         "name":"Armarios",
+         "objects":[
+                {
+                 "height":0,
+                 "id":102,
+                 "name":"armario1",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":1342.66666666667,
+                 "y":1692
+                }, 
+                {
+                 "height":0,
+                 "id":103,
+                 "name":"armario2",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":2076.66666666667,
+                 "y":1236.66666666667
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -3151,8 +3090,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":26,
- "nextobjectid":96,
+ "nextlayerid":27,
+ "nextobjectid":104,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.10.0",
@@ -3448,7 +3387,6 @@
                  "objectgroup":
                     {
                      "draworder":"index",
-                     "id":2,
                      "name":"",
                      "objects":[
                             {
@@ -3496,7 +3434,6 @@
                  "objectgroup":
                     {
                      "draworder":"index",
-                     "id":2,
                      "name":"",
                      "objects":[
                             {
@@ -3533,7 +3470,6 @@
                  "objectgroup":
                     {
                      "draworder":"index",
-                     "id":2,
                      "name":"",
                      "objects":[
                             {
@@ -3592,7 +3528,6 @@
                  "objectgroup":
                     {
                      "draworder":"index",
-                     "id":2,
                      "name":"",
                      "objects":[
                             {
@@ -3651,7 +3586,6 @@
                  "objectgroup":
                     {
                      "draworder":"index",
-                     "id":2,
                      "name":"",
                      "objects":[
                             {

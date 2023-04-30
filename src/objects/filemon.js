@@ -329,8 +329,8 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
                         setTimeout(() => { 
                             sprite1.play('closed') ;
                             this.animacionEnCurso = false;
-                        }, 1500);
-                    }, 1500);
+                        }, 750);
+                    }, 750);
                 }
                 else{
                     sprite1.play('close');
@@ -346,8 +346,8 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
                             this.fKey = this.scene.input.keyboard.addKey('F');
 							this.enArmario = false;
                             this.animacionEnCurso = false;
-                        }, 1500);
-                    }, 1500);
+                        }, 750);
+                    }, 750);
                 }
             }
             else{

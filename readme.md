@@ -16,11 +16,25 @@ A través de los pasillos de su casa y escondiéndose de figuras extrañas, tend
 
 ![ventana de juego](https://github.com/laurma40/proyecto_DVI/blob/pagina/assets/capturas/ventanaJuego2.png)
 
+![ventana de juego](https://github.com/laurma40/proyecto_DVI/blob/pagina/assets/capturas/ventanaJuego3.png)
+
+![ventana de juego](https://github.com/laurma40/proyecto_DVI/blob/pagina/assets/capturas/ventanaJuego4.png)
+
+![ventana de juego](https://github.com/laurma40/proyecto_DVI/blob/pagina/assets/capturas/ventanaJuego5.png)
+
+![ventana de juego](https://github.com/laurma40/proyecto_DVI/blob/pagina/assets/capturas/ventanaNextLevel.png)
+
 ![ventana de juego](https://github.com/laurma40/proyecto_DVI/blob/pagina/assets/capturas/ventanaMovimientos.gif)
 
 ![ventana de juego](https://github.com/laurma40/proyecto_DVI/blob/pagina/assets/capturas/ventanaPila.gif)
 
 ![ventana de juego](https://github.com/laurma40/proyecto_DVI/blob/pagina/assets/capturas/ventanaLinterna.gif)
+
+![ventana de juego](https://github.com/laurma40/proyecto_DVI/blob/pagina/assets/capturas/cogerllave.gif)
+
+![ventana de juego](https://github.com/laurma40/proyecto_DVI/blob/pagina/assets/capturas/quitavida.gif)
+
+![ventana de juego](https://github.com/laurma40/proyecto_DVI/blob/pagina/assets/capturas/armario.gif)
 
 ## Página web
 

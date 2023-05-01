@@ -189,7 +189,7 @@ Sus distintas interacciones son:
 
 **Cabezas De Pesanta**
 
-|![](Aspose.Words.6872cca5-f7dd-4bc1-8c05-b17f0fcb5b7f.013.png)|Enemigos más débiles que el COCO, pero harán de tu camino una pesadilla. Rápidos e insistentes. Son más rápidos que Filemón con linterna, pero más lentos que sin linterna (10\*longitud del camino). Siguen una ruta predeterminada y aparecen en distintos puntos de la casa y acercarse a este implicaría que la cordura de Filemón bajaría más rápido que cuando no se encuentra con luz (8 unidades de cordura y 4 si se tiene a linterna encendida). Hay que evitarlos. No es posible derrotarlos sólo se puede huir de ellos porque la cordura baja muy rápido.|
+|![](Aspose.Words.6872cca5-f7dd-4bc1-8c05-b17f0fcb5b7f.013.png)|Enemigos más débiles que el COCO, pero harán de tu camino una pesadilla. Rápidos e insistentes. Son más rápidos que Filemón con linterna, pero más lentos que sin linterna (10\*longitud del camino). Siguen una ruta predeterminada y aparecen en distintos puntos de la casa y acercarse a este implicaría que la cordura de Filemón bajaría más rápido que cuando no se encuentra con luz (8 unidades de cordura y 4 si se tiene la linterna encendida). Hay que evitarlos. No es posible derrotarlos sólo se puede huir de ellos porque la cordura baja muy rápido.|
 | :-: | - |
 ## <a name="_heading=h.1ksv4uv"></a>2.5 COMBATE
 No existe ningún tipo de combate, hay que evitar a los enemigos.
@@ -206,7 +206,7 @@ No existe ningún tipo de combate, hay que evitar a los enemigos.
 
 **Armario**
 
-|![](armario.png)|<p>Permite al jugador esconderse y recuperar coordura a la misma velocidad que la linterna y mientras se esté en su interior los monstros no afectaran a la cordura ni se gastarán las pilas.</p>|
+|![](armario.png)|<p>Permite al jugador esconderse y recuperar coordura a la misma velocidad que la linterna y mientras se esté en su interior los monstros no afectarán a la cordura ni se gastarán las pilas.</p>|
 | :-: | - |
 
 **Inventario**
@@ -293,7 +293,7 @@ Mapa de la casa (las distribuciones para cada nivel queda reflejado en el siguie
 *Mapa completo*
 
 ## <a name="_heading=h.4ri9jvhbibys"></a>3.1 NIVELES 
-Esta es una idea inicial de los primeros niveles del juego, se irán incorporando bocetos  los acertijos y caminos según se vayan desarrollando.
+Clasificamos los niveles como noches en nuestro juego, de modo que cada uno se supera al llegar a la cama. Estos son unos bocetos de los niveles actales usando como base el mapa anterior y mostrando los objetos localizados en cada nivel. La idea es que la dificultad vaya aumentando de nivel a nivel. 
 
 **Nivel 1**
 

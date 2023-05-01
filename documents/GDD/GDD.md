@@ -59,11 +59,11 @@
 
 [2.6 OBJETOS / ELEMENTOS](#_heading=h.44sinio)
 
-[2.7 NIVELES](#_heading=h.4ri9jvhbibys)
-
-[2.8 ACERTIJOS](#_heading=h.st4d8mtrrmd0)
+[2.7 ACERTIJOS](#_heading=h.st4d8mtrrmd0)
 
 [**3. CONTENIDO DE MUESTRA**](#_heading=h.1y810tw)
+
+[3.1 NIVELES](#_heading=h.4ri9jvhbibys)
 
 [**4. INTERFAZ**](#_heading=h.4i7ojhp)
 
@@ -189,19 +189,24 @@ Sus distintas interacciones son:
 
 **Cabezas De Pesanta**
 
-|![](Aspose.Words.6872cca5-f7dd-4bc1-8c05-b17f0fcb5b7f.013.png)|Enemigos más débiles que el COCO, pero harán de tu camino una pesadilla. Rápidos e insistentes. Son más rápidos que Filemón con linterna, pero más lentos que sin linterna (10\*longitud del camino). Siguen una ruta predeterminada y aparecen en distintos puntos de la casa y acercarse a este implicaría que la cordura de Filemón bajaría más rápido que cuando no se encuentra con luz (8 unidades de cordura). Hay que evitarlos. No es posible derrotarlos sólo se puede huir de ellos porque la cordura baja muy rápido.|
+|![](Aspose.Words.6872cca5-f7dd-4bc1-8c05-b17f0fcb5b7f.013.png)|Enemigos más débiles que el COCO, pero harán de tu camino una pesadilla. Rápidos e insistentes. Son más rápidos que Filemón con linterna, pero más lentos que sin linterna (10\*longitud del camino). Siguen una ruta predeterminada y aparecen en distintos puntos de la casa y acercarse a este implicaría que la cordura de Filemón bajaría más rápido que cuando no se encuentra con luz (8 unidades de cordura y 4 si se tiene a linterna encendida). Hay que evitarlos. No es posible derrotarlos sólo se puede huir de ellos porque la cordura baja muy rápido.|
 | :-: | - |
 ## <a name="_heading=h.1ksv4uv"></a>2.5 COMBATE
 No existe ningún tipo de combate, hay que evitar a los enemigos.
 ## <a name="_heading=h.44sinio"></a>2.6 OBJETOS / ELEMENTOS
 **Pila**
 
-|![](Aspose.Words.6872cca5-f7dd-4bc1-8c05-b17f0fcb5b7f.014.png)|Objeto que permite prolongar la duración de la luz de la linterna. Se encuentran pilas repartidas a lo largo de toda la casa. La pila tiene una carga por defecto de 600 unidades que desciende de uno en uno en cada actualización del juego (frame). |
+|![](Aspose.Words.6872cca5-f7dd-4bc1-8c05-b17f0fcb5b7f.014.png)|Objeto que permite prolongar la duración de la luz de la linterna. Se encuentran pilas repartidas a lo largo de toda la casa. La pila tiene una carga por defecto de 500 unidades que desciende de uno en uno en cada actualización del juego (frame). |
 | :-: | - |
 
 **Linterna**
 
 |![](Aspose.Words.6872cca5-f7dd-4bc1-8c05-b17f0fcb5b7f.015.png)|<p>En el juego se podrá contar con una linterna que se irá apagando a medida que la usas. Será necesario el uso de pilas para encender la linterna, además, estas sólo mantendrán la linterna encendida durante un periodo de tiempo limitado. La luz de la linterna aumentará la cordura del personaje gradualmente, en cambio, mientras el personaje está a oscuras el indicador de cordura bajará, pero también se beneficiará de un aumento de la velocidad de movimiento.</p><p>Para dar más ambiente y generar frustración al jugador, encender la linterna es irregular, no funciona demasiado bien porque es vieja y cuesta, por lo tanto, encenderla.</p>|
+| :-: | - |
+
+**Armario**
+
+|![](armario.png)|<p>Permite al jugador esconderse y recuperar coordura a la misma velocidad que la linterna y mientras se esté en su interior los monstros no afectaran a la cordura ni se gastarán las pilas.</p>|
 | :-: | - |
 
 **Inventario**
@@ -224,41 +229,11 @@ No existe ningún tipo de combate, hay que evitar a los enemigos.
 
 |<p>![](Aspose.Words.6872cca5-f7dd-4bc1-8c05-b17f0fcb5b7f.023.png)</p><p>![](Aspose.Words.6872cca5-f7dd-4bc1-8c05-b17f0fcb5b7f.024.png)</p><p>*En la parte derecha arriba del juego*</p>|<p>Es el elemento más importante ya que baja más cuanto más tiempo estés en la oscuridad o estés cerca de los enemigos.</p><p>La cordura desciende de uno en uno en cada actualización del juego (frame), siendo el total 4000, si se alcanza este nivel aún si se tiene la luz encendida no aumenta más. </p><p></p>|
 | :-: | :- |
-## <a name="_heading=h.4ri9jvhbibys"></a>2.7 NIVELES 
-Esta es una idea inicial de los primeros niveles del juego, se irán incorporando bocetos  los acertijos y caminos según se vayan desarrollando.
 
-**Nivel 1**
-
-|![](Aspose.Words.6872cca5-f7dd-4bc1-8c05-b17f0fcb5b7f.025.png)|<p>El nivel uno es una primera toma de contacto con el juego por lo que no hay ningún acertijo o monstruo, tan solo consiste en probar la linterna cogiendo las pilas, el armario y llegar a la cama. </p><p>***Explicación***: *mitad del pasillo sur libre (nivel muy limitado), tres pilas, un armario y la cama.*</p>|
-| :-: | - |
-
-**Nivel 2**
-
-|![](Aspose.Words.6872cca5-f7dd-4bc1-8c05-b17f0fcb5b7f.026.png)|<p>El segundo nivel añade dificultad con respecto al anterior, a la hora de entrar a la habitación la puerta estará cerrada y se tendrá que encontrar una llave para poder abrirla. La llave estará escondida en una habitación, por lo que para encontrarla será necesario recorrer las distintas habitaciones de la casa. Además se agregará un monstruo que se moverá con una ruta establecida para aumentar la dificultad.</p><p>***Explicación***: *pasillo sur totalmente despejado (sigue siendo muy limitado), una llave, una puerta bloqueada donde está la cama, una cabeza de pesanta, un armario y cuatro pilas.*</p>|
-| :-: | - |
-
-**Nivel 3**
-
-|![](Aspose.Words.6872cca5-f7dd-4bc1-8c05-b17f0fcb5b7f.027.png)|<p>En este nivel será más difícil encontrar el camino a la cama, se requerirá resolver acertijos para encontrar la llave que estará mejor escondida y recorrer la casa en más profundidad, teniendo en cuenta que el número de enemigos aumentará..  </p><p>***Explicación***: *pasillo sur y este totalmente despejado (mitad del mapa limitado), dos llaves, dos puertas bloqueadas (en una está la cama y no es la misma ubicación que el anterior nivel), tres cabezas de pesanta, dos armarios y siete pilas.*</p>|
-| :-: | - |
-
-**Nivel 4**
-
-|![](Aspose.Words.6872cca5-f7dd-4bc1-8c05-b17f0fcb5b7f.028.png)|<p>Se abre todo el mapa y todas las puertas están bloqueadas.</p><p>***Explicación***: *todo el mapa despejado, tres llaves, tres puertas bloqueadas (en una está la cama y no es la misma ubicación que el anterior nivel), seis cabezas de pesanta, dos armarios y ocho pilas.*</p><p></p>|
-| :-: | - |
-
-**Nivel 5**
-
-|![](Aspose.Words.6872cca5-f7dd-4bc1-8c05-b17f0fcb5b7f.029.png)|<p>Un caos, dificultad máxima.</p><p>***Explicación***: *todo el mapa despejado, cuatro llaves (dos llaves iguales para complicarlo), tres puertas bloqueadas (en una está la cama y no es la misma ubicación que el anterior nivel), once cabezas de pesanta, dos armarios y nueve pilas.*</p><p></p>|
-| :-: | - |
-
-***Notas de distribución de objeto**: (P naranja) pilas. (A azul) armarios. (Líneas rojas) caminos predefinidos seguidos por una cabeza de Pesanta. (L con distintos colores) corresponden a las distintas llaves que existen (los colores del mapa no corresponden con el color final de las llaves del juego). (Líneas cortas con distintos colores, no rojos) corresponden a las puertas (el color no es el correspondiente con el final de las puertas del juego, cada puerta tiene el mismo color que la llave que la abre tanto en el juego como en el mapa). (C verde) cama. (F azul) Filemón. (X roja) límites del juego.*
-## <a name="_heading=h.st4d8mtrrmd0"></a>2.8 ACERTIJOS
+## <a name="_heading=h.st4d8mtrrmd0"></a>2.7 ACERTIJOS
 Se tenía pensado al principio que los acertijos principales fueran notas o mensajes que el jugador tendrá que interpretar para encontrar el camino correcto. Debido a contratiempos hemos tenido que suprimir ese tipo de acertijos.
 
 Sin embargo, hemos mantenido los puzzles de encontrar llaves que abren puertas concretas. Se ha añadido un sistema de llaves con colores así como puertas con estos mismos colores para distinguir qué llaves abren qué puertas. Además se muestra mensajes cuando el jugador intenta abrir las puertas de colores bloqueadas, remarcandole el color de la puerta para ayudar a que asocie el color de la puerta con el de la llave.
-
-
 
 
 # <a name="_heading=h.hj5v5qeohf3q"></a>
@@ -311,11 +286,42 @@ El final “bueno” de la noche es llegar a la cama pero hay otro malo. Por eso
 
 *Pantalla de partida perdida*
 
-Mapa de la casa (las distribuciones para cada nivel queda reflejado en [*2.7 NIVELES*](#_heading=h.4ri9jvhbibys))
+Mapa de la casa (las distribuciones para cada nivel queda reflejado en el siguiente apartado)
 
 ![](Aspose.Words.6872cca5-f7dd-4bc1-8c05-b17f0fcb5b7f.040.jpeg)
 
 *Mapa completo*
+
+## <a name="_heading=h.4ri9jvhbibys"></a>3.1 NIVELES 
+Esta es una idea inicial de los primeros niveles del juego, se irán incorporando bocetos  los acertijos y caminos según se vayan desarrollando.
+
+**Nivel 1**
+
+|![](Aspose.Words.6872cca5-f7dd-4bc1-8c05-b17f0fcb5b7f.025.png)|<p>El nivel uno es una primera toma de contacto con el juego por lo que no hay ningún acertijo o monstruo, tan solo consiste en probar la linterna cogiendo las pilas, el armario y llegar a la cama. </p><p>***Explicación***: *mitad del pasillo sur libre (nivel muy limitado), tres pilas, un armario y la cama.*</p>|
+| :-: | - |
+
+**Nivel 2**
+
+|![](Aspose.Words.6872cca5-f7dd-4bc1-8c05-b17f0fcb5b7f.026.png)|<p>El segundo nivel añade dificultad con respecto al anterior, a la hora de entrar a la habitación la puerta estará cerrada y se tendrá que encontrar una llave para poder abrirla. La llave estará escondida en una habitación, por lo que para encontrarla será necesario recorrer las distintas habitaciones de la casa. Además se agregará un monstruo que se moverá con una ruta establecida para aumentar la dificultad.</p><p>***Explicación***: *pasillo sur totalmente despejado (sigue siendo muy limitado), una llave, una puerta bloqueada donde está la cama, una cabeza de pesanta, un armario y cuatro pilas.*</p>|
+| :-: | - |
+
+**Nivel 3**
+
+|![](Aspose.Words.6872cca5-f7dd-4bc1-8c05-b17f0fcb5b7f.027.png)|<p>En este nivel será más difícil encontrar el camino a la cama, se requerirá resolver acertijos para encontrar la llave que estará mejor escondida y recorrer la casa en más profundidad, teniendo en cuenta que el número de enemigos aumentará..  </p><p>***Explicación***: *pasillo sur y este totalmente despejado (mitad del mapa limitado), dos llaves, dos puertas bloqueadas (en una está la cama y no es la misma ubicación que el anterior nivel), tres cabezas de pesanta, dos armarios y siete pilas.*</p>|
+| :-: | - |
+
+**Nivel 4**
+
+|![](Aspose.Words.6872cca5-f7dd-4bc1-8c05-b17f0fcb5b7f.028.png)|<p>Se abre todo el mapa y todas las puertas están bloqueadas.</p><p>***Explicación***: *todo el mapa despejado, tres llaves, tres puertas bloqueadas (en una está la cama y no es la misma ubicación que el anterior nivel), seis cabezas de pesanta, dos armarios y ocho pilas.*</p><p></p>|
+| :-: | - |
+
+**Nivel 5**
+
+|![](Aspose.Words.6872cca5-f7dd-4bc1-8c05-b17f0fcb5b7f.029.png)|<p>Un caos, dificultad máxima.</p><p>***Explicación***: *todo el mapa despejado, cuatro llaves (dos llaves iguales para complicarlo), tres puertas bloqueadas (en una está la cama y no es la misma ubicación que el anterior nivel), once cabezas de pesanta, dos armarios y nueve pilas.*</p><p></p>|
+| :-: | - |
+
+***Notas de distribución de objeto**: (P naranja) pilas. (A azul) armarios. (Líneas rojas) caminos predefinidos seguidos por una cabeza de Pesanta. (L con distintos colores) corresponden a las distintas llaves que existen (los colores del mapa no corresponden con el color final de las llaves del juego). (Líneas cortas con distintos colores, no rojos) corresponden a las puertas (el color no es el correspondiente con el final de las puertas del juego, cada puerta tiene el mismo color que la llave que la abre tanto en el juego como en el mapa). (C verde) cama. (F azul) Filemón. (X roja) límites del juego.*
+
 # <a name="_heading=h.4i7ojhp"></a>4. **INTERFAZ**
 ## <a name="_heading=h.2xcytpi"></a>4.1 GUI
 ## ![](Aspose.Words.6872cca5-f7dd-4bc1-8c05-b17f0fcb5b7f.041.png)

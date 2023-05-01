@@ -101,12 +101,13 @@ Todos los recursos de audio que se han recopilado hasta el momento proceden de l
 |Pasos|<https://www.zapsplat.com/music/boys-sneaker-single-footstep-on-concrete-2/>|
 | :- | :- |
 |Botón linterna |<https://www.zapsplat.com/music/maglite-flashlight-button-press-to-switch-on-or-off-3/>|
-|Abrir puerta|<https://www.zapsplat.com/music/old-slightly-rotten-wooden-door-close-gently-4/>|
+|Abrir puerta |<https://www.zapsplat.com/music/old-slightly-rotten-wooden-door-close-gently-4/>|
 |Coger objeto |<https://www.zapsplat.com/music/polymer-banknote-grab-snatch-out-of-a-persons-hand-2/>|
-|Monstruo 1|[https://www.zapsplat.com/music/monster-ogre-sleeping-weak-growl/](https://www.zapsplat.com/music/monster-ogre-sleeping-weak-growl/#)|
-|Monstro 2|<https://www.zapsplat.com/music/monster-ogre-single-weak-snarl/>|
-|Grito|<https://www.zapsplat.com/music/18-month-old-toddler-scream-1/>|
+|Monstruo 1 |[https://www.zapsplat.com/music/monster-ogre-sleeping-weak-growl/](https://www.zapsplat.com/music/monster-ogre-sleeping-weak-growl/#)|
+|Monstro 2 |<https://www.zapsplat.com/music/monster-ogre-single-weak-snarl/>|
+|Grito final |<https://www.zapsplat.com/music/18-month-old-toddler-scream-1/>|
 |LLuvia |<https://www.zapsplat.com/music/distant-thunder-and-lightning-with-very-light-rain/>|
 |Victoria |<https://www.zapsplat.com/music/game-sound-fast-glissando-win-award-2/>|
 |Interferencias |<https://www.zapsplat.com/music/cb-radio-walkie-talkie-interference-crackle-1/>|
+|Grito daño |<https://www.zapsplat.com/music/young-child-or-toddler-light-scream/>|
 

@@ -90,7 +90,9 @@ export default class loadingScreen extends Phaser.Scene {
         this.load.audio('sonWin', 'assets/audio/win.mp3');
         this.load.audio('sonPuerta', 'assets/audio/zapsplat_household_door_wooden_old_slightly_rotten_close_004_97951.mp3');
         this.load.audio('sonPesanta', 'assets/audio/zapsplat_horror_monster_ogre_single_weak_snarl_97943.mp3');
-        this.load.audio('nocheSonido', 'assets/audio/audio_hero_NightAmbienceCalm.mp3')
+        this.load.audio('nocheSonido', 'assets/audio/audio_hero_NightAmbienceCalm.mp3');
+        this.load.audio('sonPain', 'assets/audio/soundbits_Screams&Shouts_human_child_006.mp3')
+
 
         //Fuente
         this.load.bitmapFont('fuente', 'assets/fuentes/ComicSansMs.png','assets/fuentes/ComicSansMs.xml');
@@ -120,6 +122,13 @@ export default class loadingScreen extends Phaser.Scene {
         this.load.image('coco', 'assets/elcoco.png');
         this.load.audio('chillidoHorror','assets/audio/human-18-month-toddler-boy-scream-002.mp3');
         this.load.audio('horrorAtmosfera','assets/audio/zapsplat_horror_strings_stabs_psycho_57646.mp3');
+
+        //Info
+        this.load.image('info', 'assets/info.png');
+        this.load.image('ok1', 'assets/ok1.png');
+        this.load.image('ok2', 'assets/ok2.png');
+
+
 	}
 	
 	/**
@@ -189,7 +198,9 @@ export default class loadingScreen extends Phaser.Scene {
                                 onComplete: function () {
                                     setTimeout(function () {
                                         this.rain.stop();
-                                        this.scene.start('title');
+                                        //this.scene.start('title');
+                                        this.scene.start('infoScene');
+
                                     }.bind(this), 1000); // espera 1 segundo antes de cambiar de escena
                                 },
                                 onCompleteScope: this // asegura que la segunda animación se agregue al objeto correcto
@@ -212,7 +223,8 @@ export default class loadingScreen extends Phaser.Scene {
 		this.input.keyboard.on('keydown-B', function (event) {
 
             this.rain.stop();
-            this.scene.start('title');
+            //this.scene.start('title');
+            this.scene.start('infoScene');
 
 		}.bind(this));
 

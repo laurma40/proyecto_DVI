@@ -113,6 +113,11 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		this.sonidoPuerta = scene.sound.add('sonPuerta');
 		this.sonidoPuerta.volume = 0.3;
 
+		this.sonidoPain = scene.sound.add('sonPain');
+		this.sonidoPain.volume = 0.3;
+
+		this.isInPain = false;
+
 		this.animacionEnCurso = false;
 		this.enArmario = false;
 		
@@ -324,8 +329,8 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
                         setTimeout(() => { 
                             sprite1.play('closed') ;
                             this.animacionEnCurso = false;
-                        }, 1500);
-                    }, 1500);
+                        }, 750);
+                    }, 750);
                 }
                 else{
                     sprite1.play('close');
@@ -341,8 +346,8 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
                             this.fKey = this.scene.input.keyboard.addKey('F');
 							this.enArmario = false;
                             this.animacionEnCurso = false;
-                        }, 1500);
-                    }, 1500);
+                        }, 750);
+                    }, 750);
                 }
             }
             else{
@@ -375,7 +380,16 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 	cercaPesanta(sprte1, sprite2){//cabeza de Pesanta, this.player,
 
 		if(!this.zonaSegura){
-			this.cordura -= 8;
+			if(this.linterna) this.cordura -= 4;
+			else this.cordura -= 8;
+
+			if(!this.isInPain){
+				this.sonidoPain.play();
+				this.isInPain = true;
+				setTimeout(() => {this.isInPain = false; }, 2000);
+			}
+			
+
 		}
 		
 	}

@@ -38,7 +38,7 @@ export default class PauseMenu extends Phaser.Scene {
     });
    
     var imagePresent = this.add.image(this.sys.game.canvas.width/2,280, 'controllers');
-    imagePresent.setScale(0.40);
+    imagePresent.setScale(0.50);
 
   }
 

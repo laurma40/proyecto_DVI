@@ -79,6 +79,8 @@
 
 /*Parte de controles*/
 #controles h2 {
+    overflow: auto;
+    margin-top: 60PX;
     color: black;
 	text-align: center;
     font-family: 'silkscreenbold';
@@ -96,8 +98,8 @@
     font-family: 'silkscreenregular';
     box-sizing: border-box;
     border: dashed #000000 7.5px;  
-    width: 600px;
-    padding: 20px;
+    width: 750px;
+    padding: 15px;
     background-color: #be1c5a;
 }
 
@@ -121,6 +123,7 @@
 
 /*Parte del estudio*/
 #estudio h2 {
+    margin-top: 100PX;
     color: black;
 	text-align: center;
     font-family: 'silkscreenbold';

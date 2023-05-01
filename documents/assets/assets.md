@@ -48,7 +48,10 @@ Hemos utilizado los siguientes tilesets para construir la imagen de fondo con la
 |Enlace Recursos del Autor:|<p><https://forums.rpgmakerweb.com/index.php?threads/sleepy-mv-resources.47234/></p><p></p>|
 |![](Aspose.Words.a7dab0d0-63ce-405f-8bb6-2669b6c7ae8c.012.png)|
 |Enlace Imagen:|<p><https://forums.rpgmakerweb.com/proxy.php?image=http%3A%2F%2Fi.imgur.com%2F4EbYgig.png&hash=6844cd331537f9d6ab152d7e0e78939f></p><p></p>|
-
+|Autor: |<h1><a name="_bdu7sw5e3ck1"></a>Kafu's "resources"</h1>|
+|Enlace Recursos del Autor:|<p><https://forums.rpgmakerweb.com/index.php?threads/kafu-s-resources.62453/></p><p></p>|
+|![](salonAssets.png)|
+|Enlace Imagen:|<p><https://forums.rpgmakerweb.com/data/attachments/23/23152-824974e20209486107fb31e1ceba8c00.jpg></p><p></p>|
 
 Una vez explicado los assets del TileMap, proseguimos con el resto de recursos creados por nosotros mismos.
 

@@ -377,7 +377,6 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 
 	abrirPuerta(sprite1, sprite2){
 
-		
 		if(sprite1.bloqueada){
 			if(this.eKey.isDown){
 

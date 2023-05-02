@@ -11,11 +11,6 @@ export default class Bed extends Phaser.GameObjects.Sprite {
 		this.scene.add.existing(this); 
 		this.scene.physics.add.existing(this);
 
-        console.log("CAMAMAMMAMMAMAMAMAMMA")
-		//		this.load.spritesheet('bed', 'assets/cama_530_330.png', {frameWidth: 530, frameHeight: 330})
-
-
-
 		this.scene.anims.create({
 			key: 'sinFilemon',
 			frames: scene.anims.generateFrameNumbers('bed', {start:0, end:0}),

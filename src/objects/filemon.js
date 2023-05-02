@@ -7,7 +7,6 @@ import Luz from "./luz.js";
 export default class Filemon extends Phaser.GameObjects.Sprite {
 
 	/**
-	 * Constructor de Box, nuestras cajas destructibles
 	 * @param {number} x - coordenada x
 	 * @param {number} y - coordenada y
 	*/
@@ -16,17 +15,14 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		super(scene, x, y, 'filemon');
 		this.setScale(0.1);
 		this.scene = scene;
-		this.scene.add.existing(this); //Añadimos el caballero a la escena
+		this.scene.add.existing(this); 
 		this.scene.physics.add.existing(this);
 
-		//variables globales (creo q si se declaran arriba con el @ se hacen globales también)
 		this.linterna = false;
 		this.pilas = [];
 		this.zonaSegura = false;
 
-		//this.corduraMax = 30000; //esto se pasaría por el constructor para que dependa del nivel
-
-		this.corduraMax = 4000; //esto se pasaría por el constructor para que dependa del nivel
+		this.corduraMax = 4000; 
 		this.cordura = this.corduraMax;
 
 		this.maxSpeed = 115;
@@ -34,7 +30,7 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		this.speed = this.maxSpeed;		
 		this.depth=1.9;
 
-		// Creamos las animaciones de cabeza de pesanta
+		// Creamos las animaciones de filemon
 		this.scene.anims.create({
 			key: 'front',
 			frames: scene.anims.generateFrameNumbers('filemon', {start:4, end:7}),
@@ -101,6 +97,7 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		this.canPressS = true;
 		this.canPressD = true;
 
+		//Sonidos 
 		this.sonidoLinterna = scene.sound.add('sonlinterna');
 		this.sonidoLinterna.volume = 0.3;
 
@@ -116,6 +113,7 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		this.sonidoPain = scene.sound.add('sonPain');
 		this.sonidoPain.volume = 0.3;
 
+		//Otros atributos 
 		this.isInPain = false;
 
 		this.animacionEnCurso = false;
@@ -126,12 +124,10 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		this.inventario = new Inventory(this.scene, this.x + 260, this.y - 130);
 	}
 	/**
-	 * Bucle principal del personaje, actualizamos su posición y ejecutamos acciones según el Input
 	 * @param {number} t - Tiempo total
 	 * @param {number} dt - Tiempo entre frames
 	 */
 	preUpdate(t, dt) {
-		// Es muy imporante llamar al preUpdate del padre (Sprite), sino no se ejecutará la animación
 		super.preUpdate(t, dt);
 		let velocity = new Phaser.Math.Vector2(0, 0);
 		// Mientras pulsemos la tecla 'A' movemos el personaje en la X
@@ -140,7 +136,6 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 				this.play('left');
 			}
 			velocity.x = -1;
-			//this.x -= this.speed*dt/60;
 		}
 		else if (this.aKey.isUp && this.anims.currentAnim.key === 'left') {
 			this.play('standLeft');
@@ -151,7 +146,6 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 				this.play('right');
 			}
 			velocity.x = 1;
-			//this.x += speed*dt/60;
 		}
 		else if (this.dKey.isUp && this.anims.currentAnim.key === 'right') {
 			this.play('standRight');
@@ -162,7 +156,6 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 			if (this.anims.currentAnim.key !== 'back' && this.anims.currentAnim.key !== 'left' && this.anims.currentAnim.key !== 'right'){
 				this.play('back');
 			}
-			//this.y -= speed*dt/60;
 			velocity.y = -1;
 		}
 
@@ -175,7 +168,6 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 			if (this.anims.currentAnim.key !== 'front' && this.anims.currentAnim.key !== 'left' && this.anims.currentAnim.key !== 'right')
 				this.play('front');
 			velocity.y = 1;
-			//this.y += speed*dt/60;
 		}
 
 		else if (this.sKey.isUp && this.anims.currentAnim.key === 'front') {
@@ -189,35 +181,30 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 
 		////LINTERNA encender y apagar
 		
-		
 		//Encender y apagar linterna -> se pulsa el boton de encender y tenemos pilas
 		if(this.fKey.isDown && this.pilas.length != 0 && this.canPressF){ 
 
 			this.sonidoLinterna.play();	
 
 			this.linterna = !this.linterna;
-			console.log("linterna " + this.linterna);
 
 			if(this.linterna){
 				this.luz.play('onLuz');
 				this.speed = this.minSpeed;
-				console.log(this.speed);
 			} 
 			else{
 				this.luz.play('offLuz');
 				this.speed = this.maxSpeed;
-				console.log(this.speed);
 			}
 
 			this.canPressF = false;
-			// Esperar un segundo antes de volver a escuchar la tecla E porque si no no se pulsa bien
-			setTimeout(() => { this.canPressF = true; }, 100); // no lo corregimos del todo paar dar más ambiente
+			setTimeout(() => { this.canPressF = true; }, 200);
 		}
 		
 		//Descargamos pila 
 		if(this.linterna){//si esta encendida la linterna, para que se haya encendido tiene q tener pilas se chequea antes
 			
-			this.pilas[0].descarga(); //USAR DT¿?
+			this.pilas[0].descarga(); 
 
 			if(this.pilas[0].carga <= 0){
 				this.pilas[0].x = this.x + 5;
@@ -243,14 +230,13 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 
 		////CORDURA
 
-		if(this.linterna || this.zonaSegura){
-			if(this.cordura < this.corduraMax) this.cordura++; //HACERLO CON
+		if(this.linterna || this.zonaSegura){ 
+
+			if(this.cordura < this.corduraMax) this.cordura++;
 		}
 		else{
-			if(this.cordura > 0) this.cordura--; //USAR DT¿?
+			if(this.cordura > 0) this.cordura--;
 			else{
-				//LLAMAR A SCENE GAME OVER 
-
 				this.scene.sound.stopAll();
 				this.sonidoGrito.play();
 				this.scene.scene.start('gameOver'); //Cambiamos a la escena de juego
@@ -268,8 +254,6 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 
 			if( sprite1.carga > 0 && this.pilas.length < 3){ //Solo puede llevar tres pilas y solo la cojo si tiene carga
 				this.pilas.push(sprite1);
-				
-				
 				sprite1.visible = false;
 				sprite1.x = 100000;
 				sprite1.y = 100000;
@@ -302,10 +286,7 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 		if(this.eKey.isDown){ 
 			this.sonidoCoger.play();
 			this.inventario.addGameObject(sprite1);
-			console.log("COJO LLAVE");
 		}
-		
-	
 	}
 
 	interactuarArmario(sprite1, sprite2){ // armario, this.player
@@ -396,7 +377,6 @@ export default class Filemon extends Phaser.GameObjects.Sprite {
 
 	abrirPuerta(sprite1, sprite2){
 
-		console.log("Puerta " + sprite1.color);
 		if(sprite1.bloqueada){
 			if(this.eKey.isDown){
 

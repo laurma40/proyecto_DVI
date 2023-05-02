@@ -6,17 +6,15 @@ export default class Llave extends Phaser.GameObjects.Sprite {
 	*/
 
 	constructor(scene, x, y, color) { //paso el color por el constructor
-		super(scene, x, y, 'llave'); // todo menos la escena son opcionales
+		super(scene, x, y, 'llave'); 
 		this.setScale(1,1);
-		this.scene.add.existing(this); //Añadimos la pila a la escena
+		this.scene.add.existing(this); //Añadimos la llave a la escena
 		this.scene.physics.add.existing(this);
 
 		//guardo el color de la llave
-		
 		this.color = color;
 
 
-		// Creamos las animaciones de nuestra caja
 		this.scene.anims.create({
 			key: 'gris',
 			frames: scene.anims.generateFrameNumbers('llave', {start:0, end:0}),
@@ -65,8 +63,6 @@ export default class Llave extends Phaser.GameObjects.Sprite {
 	}
 
 	/**
-	 * Bucle principal de la caja, comprobamos la velocidad para reducirla y setearla a 0 en ciertos umbrales
-	 * Así no se movera de manera infinita cuando la golpeemos
 	 * @param {number} t - Tiempo total
 	 * @param {number} dt - Tiempo entre frames
 	 */

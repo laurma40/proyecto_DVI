@@ -201,7 +201,7 @@ No existe ningún tipo de combate, hay que evitar a los enemigos.
 
 **Linterna**
 
-|![](Aspose.Words.6872cca5-f7dd-4bc1-8c05-b17f0fcb5b7f.015.png)|<p>En el juego se podrá contar con una linterna que se irá apagando a medida que la usas. Será necesario el uso de pilas para encender la linterna, además, estas sólo mantendrán la linterna encendida durante un periodo de tiempo limitado. La luz de la linterna aumentará la cordura del personaje gradualmente, en cambio, mientras el personaje está a oscuras el indicador de cordura bajará, pero también se beneficiará de un aumento de la velocidad de movimiento.</p><p>Para dar más ambiente y generar frustración al jugador, encender la linterna es irregular, no funciona demasiado bien porque es vieja y cuesta, por lo tanto, encenderla.</p>|
+|![](Aspose.Words.6872cca5-f7dd-4bc1-8c05-b17f0fcb5b7f.015.png)|<p>En el juego se podrá contar con una linterna que se irá apagando a medida que la usas. Será necesario el uso de pilas para encender la linterna, además, estas sólo mantendrán la linterna encendida durante un periodo de tiempo limitado. La luz de la linterna aumentará la cordura del personaje gradualmente, en cambio, mientras el personaje está a oscuras el indicador de cordura bajará, pero también se beneficiará de un aumento de la velocidad de movimiento.|
 | :-: | - |
 
 **Armario**

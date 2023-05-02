@@ -15,9 +15,6 @@ export default class Level extends Phaser.Scene {
 	preload(){
 	}
 	
-	/**
-	* Creación de los elementos de la escena principal de juego
-	*/
 	create() {
 
 		const config = {
@@ -47,7 +44,6 @@ export default class Level extends Phaser.Scene {
 			height:200
 		});
 		this.t_muro = this.map.addTilesetImage('nuevosMuros');
-		//console.log(this.t_muro);
 		this.imagenCapa = this.add.image(0,0,'mapaImg');
 		this.imagenCapa.setOrigin(0, 0);
 		this.imagenCapa.setDepth(0);
@@ -55,19 +51,18 @@ export default class Level extends Phaser.Scene {
 		this.colisionesLayer =this.map.createLayer('Colisiones/colisionesMuro',this.t_muro);
 		this.colisionesLayer.setVisible(false);
 		this.colisionesLayer.setDepth(1);
-		//this.capaAntiguoMapa = this.map.createLayer('mapaCapa', imagenCapa);
+	
 		this.muroInteriorLayer = this.map.createLayer('Muros/muroInterior',this.t_muro);
 		this.muroInteriorLayer.setDepth(1.8);
 		this.muroExteriorLayer = this.map.createLayer('Muros/muroExterior',this.t_muro);
 		this.muroExteriorLayer.setDepth(3);
-		//this.puertasLayer = this.map.createLayer('Puertas',t_puertas);
 		
 		this.colisionesLayer.setCollision(1281);
 		this.colisionesLayer.setTileIndexCallback(1289,this.cambioEntrada,this);
 		this.colisionesLayer.setTileIndexCallback(1297,this.cambioLateralesIncio,this);
 		this.colisionesLayer.setTileIndexCallback(1305,this.cambioLateralesArriba,this);
 		this.colisionesLayer.setTileIndexCallback(1313,this.entradaHabitacion,this);
-		//this.colisionesLayer.setTileIndexCallback(2601,this.escaleraHabitacion,this);
+		
 		this.mov = this.map.createFromObjects('Objetos',{name: 'player',classType: Filemon, key:'player'});
 		this.player = this.mov[0];
 
@@ -77,9 +72,7 @@ export default class Level extends Phaser.Scene {
 
 		//Añadir las colisiones del jugador con la capa
 		this.physics.add.collider(this.player, this.colisionesLayer, this.colision);
-		
-		console.log(this);
-		
+				
 
 		//crear fuentes
 		this.textoEscribiendose = false;
@@ -140,14 +133,8 @@ export default class Level extends Phaser.Scene {
 			this.muroInteriorLayer.setVisible(true);
 		}
 	}
-	escaleraHabitacion(){
-		console.log('Pulsa p para entrar al dormitorio');
-	}
 	colision(){
-		console.log('Colision');
-	}
-	puerta(){
-		console.log('Puerta');
+		//console.log('Colision');
 	}
 	escribirTexto(texto) {
 		if (!this.textoEscribiendose) {
@@ -171,7 +158,6 @@ export default class Level extends Phaser.Scene {
 	sonido(){
 
 		this.input.keyboard.on('keydown-M', function (event) {
-			console.log('La tecla M ha sido presionada');
 			if (!this.sound.mute) {
 				this.sound.setMute(true);
 			  } else {
@@ -187,7 +173,6 @@ export default class Level extends Phaser.Scene {
 
 			this.sound.stopAll();
 
-			console.log('La tecla N ha sido presionada');
 			this.cameras.main.fadeOut(1000, 0, 0, 0)
 			this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
 				this.scene.start('nextLevel', {nivel: this.scene.key}); //Cambiamos a la escena de juego
@@ -198,7 +183,6 @@ export default class Level extends Phaser.Scene {
 
 			this.sound.stopAll();
 
-			console.log('La tecla P ha sido presionada');
 			this.cameras.main.fadeOut(1000, 0, 0, 0)
 			this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
 				this.scene.start('endScene'); //Cambiamos a la escena de juego

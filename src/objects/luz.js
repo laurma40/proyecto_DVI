@@ -1,7 +1,6 @@
 
 export default class Luz extends Phaser.GameObjects.Sprite {
 	/**
-	 * Constructor de Box, nuestras cajas destructibles
 	 * @param {number} x - coordenada x
 	 * @param {number} y - coordenada y
 	*/
@@ -25,8 +24,6 @@ export default class Luz extends Phaser.GameObjects.Sprite {
 		});
 
 
-        console.log('LUZZZZZZZZZZZZZZZZZZZZZZzz');
-
 		this.setAlpha(0.75);
         this.depth = 2;
 
@@ -37,16 +34,14 @@ export default class Luz extends Phaser.GameObjects.Sprite {
 	}
 
 	/**
-	 * Bucle principal de la caja, comprobamos la velocidad para reducirla y setearla a 0 en ciertos umbrales
-	 * Así no se movera de manera infinita cuando la golpeemos
+
 	 * @param {number} t - Tiempo total
 	 * @param {number} dt - Tiempo entre frames
 	 */
 	preUpdate(t, dt) {
 
-		this.x = this.scene.cameras.main.scrollX + 302; // posicionar el texto en la esquina superior izquierda, dejando 10 píxeles de margen
-		this.y = this.scene.cameras.main.scrollY + 200; // posicionar el texto en la esquina superior izquierda, dejando 10 píxeles de margen
+		this.x = this.scene.cameras.main.scrollX + 302; 
+		this.y = this.scene.cameras.main.scrollY + 200;
 		
-
 	}
 }

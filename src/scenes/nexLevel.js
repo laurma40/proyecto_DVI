@@ -10,7 +10,6 @@ export default class NextLevel extends Phaser.Scene {
 
 	init(data) {
         this.currentLevel = data.nivel;
-        console.log(this.currentLevel);
     }
 
 	create() {
@@ -63,7 +62,7 @@ export default class NextLevel extends Phaser.Scene {
 					this.scene.start('fifthLevel');
 					break;
 				case this.currentLevel = 'fifthLevel':
-					this.scene.start('endScene'); //TODO CAMBIAR A FIN DEL JUEGO
+					this.scene.start('endScene');
 					break;
                 default:
                     this.scene.start('title');
@@ -104,7 +103,6 @@ export default class NextLevel extends Phaser.Scene {
 	sonido(){
 
 		this.input.keyboard.on('keydown-M', function (event) {
-			console.log('La tecla M ha sido presionada');
 			if (!this.sound.mute) {
 				this.sound.setMute(true);
 			  } else {

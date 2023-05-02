@@ -17,9 +17,6 @@ export default class FirstLevel extends level {
 	preload(){
 	}
 	
-	/**
-	* Creación de los elementos de la escena principal de juego
-	*/
 	create() {
 
 		const config = {
@@ -74,7 +71,6 @@ export default class FirstLevel extends level {
 		this.cajasColisiones.setVisible(false);
 		this.cajasColisiones.setCollision(7809);
 		this.physics.add.collider(this.player, this.cajasColisiones);
-		console.log(this);
 
 
 		// Creamos los objetos a través de la capa de objetos del tilemap y la imagen o la clase que queramos

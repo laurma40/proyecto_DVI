@@ -10,7 +10,6 @@ export default class InfoScene extends Phaser.Scene {
 
 	init(data) {
         this.currentLevel = data.nivel;
-        console.log(this.currentLevel);
     }
 
 	create() {
@@ -54,7 +53,6 @@ export default class InfoScene extends Phaser.Scene {
 	sonido(){
 
 		this.input.keyboard.on('keydown-M', function (event) {
-			console.log('La tecla M ha sido presionada');
 			if (!this.sound.mute) {
 				this.sound.setMute(true);
 			  } else {

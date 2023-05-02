@@ -19,9 +19,6 @@ export default class ThirdLevel extends level {
 	preload(){
 	}
 	
-	/**
-	* Creación de los elementos de la escena principal de juego
-	*/
 	create() {
 		const config = {
 			mute: false,

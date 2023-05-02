@@ -19,9 +19,6 @@ export default class SecondLevel extends level {
 	preload(){
 	}
 	
-	/**
-	* Creación de los elementos de la escena principal de juego
-	*/
 	create() {
 
 		const config = {
@@ -61,7 +58,6 @@ export default class SecondLevel extends level {
 
 	update() {
         super.update();
-
     }
 
 	creacionMapa() {

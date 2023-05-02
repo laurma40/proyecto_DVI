@@ -4,7 +4,6 @@ export default class CabezaPesanta extends Phaser.GameObjects.Sprite {
 		this.setScale(0.12);
 		this.path = path;
 		this.t = 0;
-		//this.easing = null;
 		this.x = x;
 		this.y = y;
 		this.scene.add.existing(this); 
@@ -62,8 +61,6 @@ export default class CabezaPesanta extends Phaser.GameObjects.Sprite {
 
 		this.play('frontP');
 
-		
-
 
 		this.follower = scene.add.follower(path, x, y, this);
 		this.follower.startFollow({
@@ -83,19 +80,12 @@ export default class CabezaPesanta extends Phaser.GameObjects.Sprite {
 		setTimeout(() => { this.playGrito = true; }, 1000);
 	}
 	/**
-	 * Bucle principal del personaje, actualizamos su posición y ejecutamos acciones según el Input
 	 * @param {number} t - Tiempo total
 	 * @param {number} dt - Tiempo entre frames
 	 */
 	preUpdate(t, dt) {
-		// Es muy imporante llamar al preUpdate del padre (Sprite), sino no se ejecutará la animación
 		super.preUpdate(t, dt);	
 
-		//console.log("Coors path: " + this.follower.x + " " + this.follower.y);
-		//console.log("Coors delta path: " + this.follower.path.deltaX + " " + this.follower.path.deltaY);
-		//console.log("Coors pesanta: " + this.x + " " + this.y);
-
-		// Check if sprite's position has incremented or decremented since the last update
 		if (this.follower.x > this.x) {
 			this.anims.play('rightP', true);
 		} 

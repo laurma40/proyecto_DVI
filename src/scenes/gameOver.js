@@ -8,17 +8,9 @@ export default class GameOver extends Phaser.Scene {
 		super({ key: 'gameOver' });
 	}
 
-	/**
-	 * Cargamos todos los assets que vamos a necesitar
-	 */
 	preload(){
-        
-
 	}
 	
-	/**
-	* Creación de los elementos de la escena principal de juego
-	*/
 	create() {
 
 		this.sonido();
@@ -59,27 +51,17 @@ export default class GameOver extends Phaser.Scene {
 		// Hacemos el sprite interactivo para que lance eventos
 		sprite.setInteractive({ cursor: 'url(assets/vertopal.com_cursorHover.png), pointer' });
 
-		// Escuchamos los eventos del ratón cuando interactual con nuestro sprite de "Start"
-	    sprite.on('pointerdown', pointer => {
-	    	console.log("pulsando");
-	    });
-
-	    sprite.on('pointerup', pointer => {
+	    sprite.on('pointerup', pointer => {  
 			this.sound.stopAll();
 			this.scene.start('title'); //Cambiamos a la escena de juego
-
 	    });
 
 		sprite.on('pointerover', () => {
-			console.log("hola")
 			sprite.setTexture(s2.key);
-
 	    });
 
 	    sprite.on('pointerout', () => {
-			console.log("adios")
 			sprite.setTexture(s1.key);
-
 	    });
 
 	}
@@ -87,7 +69,6 @@ export default class GameOver extends Phaser.Scene {
 	sonido(){
 
 		this.input.keyboard.on('keydown-M', function (event) {
-			console.log('La tecla M ha sido presionada');
 			if (!this.sound.mute) {
 				this.sound.setMute(true);
 			  } else {
